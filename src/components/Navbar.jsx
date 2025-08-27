@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid"; // ⬅️ import icon
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid"; 
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,7 +22,7 @@ const Navbar = () => {
       >
         {/* Logo */}
         <div className="flex items-center space-x-2">
-          <img src="/logo.png" alt="Logo" className="w-8 h-8 object-contain" />
+          <img src="/logo.svg" alt="Logo" className="w-8 h-8 object-contain" />
           <span className="font-bold text-gray-900 drop-shadow-sm">Amerta</span>
         </div>
 
