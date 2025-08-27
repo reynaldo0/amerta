@@ -16,20 +16,23 @@ const Navbar = () => {
 
         {/* Menu */}
         <ul className="hidden md:flex space-x-6 text-gray-900 font-medium">
-          {["Home", "About", "Skema", "Lomba", "Timeline", "FAQ"].map(
-            (item) => (
-              <li key={item}>
-                <a
-                  href="#"
-                  className="relative transition duration-300 hover:text-[#84441E] 
-                  after:content-[''] after:absolute after:left-0 after:-bottom-1 
-                  after:h-[2px] after:w-0 after:bg-[#84441E] after:transition-all 
-                  after:duration-300 hover:after:w-full"
-                >
-                  {item}
-                </a>
-              </li>
-            )
+          {["Beranda", "Tentang", "konten 1", "konten 2", "konsultasi", "FAQ"].map(
+            (item) => {
+              const id = item.toLowerCase(); // bikin id lowercase biar konsisten
+              return (
+                <li key={item}>
+                  <a
+                    href={`#${id}`}
+                    className="relative transition duration-300 hover:text-[#84441E] 
+          after:content-[''] after:absolute after:left-0 after:-bottom-1 
+          after:h-[2px] after:w-0 after:bg-[#84441E] after:transition-all 
+          after:duration-300 hover:after:w-full"
+                  >
+                    {item}
+                  </a>
+                </li>
+              );
+            }
           )}
         </ul>
 
