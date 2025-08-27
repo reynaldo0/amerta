@@ -22,7 +22,7 @@ const Navbar = () => {
       >
         {/* Logo */}
         <div className="flex items-center space-x-2">
-          <img src="/logo.svg" alt="Logo" className="w-8 h-8 object-contain" />
+          <img src="/logo.png" alt="Logo" className="w-8 h-8 object-contain" />
           <span className="font-bold text-gray-900 drop-shadow-sm">Amerta</span>
         </div>
 
@@ -52,7 +52,7 @@ const Navbar = () => {
           className="hidden md:inline bg-[#84441E] hover:bg-[#6e3717] text-white font-bold 
             px-5 py-2 rounded-full transition duration-300 shadow-md"
         >
-          Dashboard
+          Buat Akun
         </a>
 
         {/* Hamburger Button (Mobile) pakai Heroicons */}
@@ -100,7 +100,7 @@ const Navbar = () => {
           className="bg-[#84441E] hover:bg-[#6e3717] text-white font-bold 
             px-5 py-2 rounded-full transition duration-300 shadow-md"
         >
-          Dashboard
+          Buat Akun
         </a>
       </div>
     </nav>
