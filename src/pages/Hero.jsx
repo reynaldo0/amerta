@@ -10,7 +10,11 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative h-screen w-full bg-gray-200 overflow-hidden">
+    <section className="relative h-screen w-full bg-white overflow-hidden">
+      <div
+        className="absolute inset-0 bg-[url('/wave.svg')] bg-cover bg-center opacity-10"
+        style={{ backgroundAttachment: "fixed" }}
+      />
       {/* Background Layer + Blur */}
       <div
         className="absolute inset-0 bg-cover bg-center"
@@ -71,7 +75,7 @@ export default function Hero() {
           style={{
             transform:
               offsetY > 0
-                ? `translateY(${Math.min(offsetY * 0.2, 80)}px)`
+                ? `translateY(${Math.min(offsetY * 0.5, 80)}px)`
                 : "translateY(0)", // posisi awal tetap bottom-0
             transition: "transform 0.15s ease-out",
           }}
