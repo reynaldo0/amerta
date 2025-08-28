@@ -10,3 +10,72 @@
     transform: translateY(0);
   }
 }
+
+.map-container {
+  width: 100%;
+  max-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.indonesia {
+  width: 100%;
+  /* SVG mengikuti lebar kontainer */
+  height: auto;
+  /* Tinggi otomatis agar proporsional */
+  display: block;
+}
+
+.indonesia path {
+  fill: #3a2315;
+  transition: fill 0.6s;
+}
+
+.pulau_active path:hover {
+  fill: #6e3717;
+  cursor: pointer;
+}
+
+.pulau_nonactive path:hover {
+  fill: red;
+  cursor: pointer;
+}
+
+#tooltip {
+  position: absolute;
+  z-index: 10;
+  background-color: #6e3717;
+  color: #fff;
+  padding: 10px 30px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+/* pesawat animasi open  */
+/* Peta.css */
+
+/* Animasi pesawat terbang kanan → kiri */
+@keyframes plane-flight {
+  0% {
+    transform: translateX(120vw) translateY(0);
+  }
+  50% {
+    transform: translateX(40vw) translateY(-20px);
+  }
+  100% {
+    transform: translateX(-20%) translateY(0);
+  }
+}
+
+/* Kelas animasi pesawat */
+.animate-plane-flight {
+  animation: plane-flight 20s linear infinite;
+  will-change: transform;
+}
+
+/* pesawat animasi close */
