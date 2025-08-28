@@ -67,6 +67,7 @@ export default function Hero() {
       </div>
 
       {/* Wave Parallax */}
+      {/* Wave Parallax */}
       <div className="absolute bottom-0 w-full overflow-hidden leading-[0] z-20">
         <img
           src="/wave.svg"
@@ -75,8 +76,8 @@ export default function Hero() {
           style={{
             transform:
               offsetY > 0
-                ? `translateY(${Math.min(offsetY * 0.5, 80)}px)`
-                : "translateY(0)", // posisi awal tetap bottom-0
+                ? `translateY(${offsetY * 0.5}px)` // Hapus Math.min supaya bisa terus turun
+                : "translateY(0)",
             transition: "transform 0.15s ease-out",
           }}
         />

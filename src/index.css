@@ -2,10 +2,14 @@
 
 @theme {
   /* Colors */
-  --color-primary-200: #84441E;
-  
+  --color-primary-200: #84441e;
+
   --color-secondary-200: #f5a100;
   --color-secondary-300: #f5a100;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 @keyframes fadeInUp {
