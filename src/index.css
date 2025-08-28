@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+@theme {
+  /* Colors */
+  --color-primary-200: #84441E;
+  
+  --color-secondary-200: #f5a100;
+  --color-secondary-300: #f5a100;
+}
+
 @keyframes fadeInUp {
   0% {
     opacity: 0;

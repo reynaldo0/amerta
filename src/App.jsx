@@ -1,17 +1,22 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import FeaturesSection from "./pages/Feature";
-import Hero from "./pages/Hero";
-import Peta from "./pages/Peta";
+import FeaturesSection from "./pages/home/Feature";
+import Peta from "./pages/home/Peta";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Quiz from "./pages/quiz/question";
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <Navbar />
-      <Hero />
-      <FeaturesSection />
-      <Peta />
-      <div className="h-[500px] bg-white"></div>
-    </>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/beranda" element={<Home />} />
+        <Route path="/tentang" element={<About />} />
+        <Route path="/kuis" element={<Quiz />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

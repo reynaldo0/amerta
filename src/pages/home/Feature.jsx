@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function FeaturesSection() {
+export default function Features() {
   const [offsetY, setOffsetY] = useState(0);
 
   useEffect(() => {
@@ -49,6 +49,7 @@ export default function FeaturesSection() {
         style={{ backgroundAttachment: "fixed" }}
       />
 
+      {/* Wave atas */}
       <div className="absolute top-0 w-full overflow-hidden leading-[0] z-20">
         <img
           src="/wave-top.svg"
@@ -67,11 +68,11 @@ export default function FeaturesSection() {
           className="text-4xl md:text-6xl font-extrabold text-[#84441E] mb-6 tracking-tight"
           style={{
             transform:
-              offsetY > 500 
+              offsetY > 500
                 ? `translateY(${(offsetY - 400) * 0.25}px) scale(${
                     1 + (offsetY - 200) * -0.0003
-                  }) `
-                : "translateY(30px) scale(0.98) rotate(0deg)",
+                  })`
+                : "translateY(30px) scale(0.98)",
             opacity: offsetY > 200 ? Math.min((offsetY - 200) / 200, 1) : 0,
             transition: "transform 0.8s ease-out, opacity 0.8s ease-out",
           }}
@@ -83,7 +84,7 @@ export default function FeaturesSection() {
           className="text-[#84441E] mb-20 max-w-2xl mx-auto text-lg"
           style={{
             transform:
-              offsetY > 250 
+              offsetY > 250
                 ? `translateY(${(offsetY - 250) * 0.18}px) scale(${
                     1 + (offsetY - 250) * -0.0002
                   })`
@@ -96,28 +97,40 @@ export default function FeaturesSection() {
           satu ekosistem budaya digital.
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className="group relative rounded-2xl p-8 bg-white shadow-md border border-[#84441E]/40 
+        {/* Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 pb-10">
+          {features.map((feature, index) => {
+            // Parallax depth effect
+            const depth = (index % 3) * 15 + 10; // beda setiap kolom
+            const translateY =
+              window.innerWidth < 768
+                ? offsetY * 0.08
+                : offsetY * (depth / 300);
+
+            return (
+              <div
+                key={index}
+                className="group relative rounded-2xl p-8 bg-white shadow-md border border-[#84441E]/40 
                          transition-all duration-500 ease-out cursor-pointer
                          hover:-translate-y-4 hover:scale-105 hover:rotate-1 hover:shadow-2xl hover:border-[#84441E]"
-              style={{
-                transform: `translateY(${offsetY * 0.08}px)`, 
-              }}
-            >
-              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 bg-gradient-to-br from-[#84441E]/10 to-transparent blur-2xl transition duration-500"></div>
+                style={{
+                  transform: `translateY(${translateY}px)`,
+                }}
+              >
+                {/* Glow Hover */}
+                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 bg-gradient-to-br from-[#84441E]/20 to-transparent blur-2xl transition duration-500"></div>
 
-              <div className="relative z-10 text-5xl mb-6 text-[#84441E]">
-                {feature.icon}
+                {/* Icon */}
+                <div className="relative z-10 text-5xl mb-6 text-[#84441E]">
+                  {feature.icon}
+                </div>
+                <h3 className="relative z-10 text-2xl font-bold text-[#84441E] mb-3">
+                  {feature.title}
+                </h3>
+                <p className="relative z-10 text-[#84441E]">{feature.desc}</p>
               </div>
-              <h3 className="relative z-10 text-2xl font-bold text-[#84441E] mb-3">
-                {feature.title}
-              </h3>
-              <p className="relative z-10 text-[#84441E]">{feature.desc}</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

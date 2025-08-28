@@ -7,8 +7,8 @@ const Navbar = () => {
   const menuItems = [
     "Beranda",
     "Tentang",
-    "Konten 1",
-    "Konten 2",
+    "Budaya",
+    "Kuis",
     "Konsultasi",
     "FAQ",
   ];
@@ -33,7 +33,7 @@ const Navbar = () => {
             return (
               <li key={item}>
                 <a
-                  href={`#${id}`}
+                  href={`${id}`}
                   className="relative transition duration-300 hover:text-[#84441E] 
                   after:content-[''] after:absolute after:left-0 after:-bottom-1 
                   after:h-[2px] after:w-0 after:bg-[#84441E] after:transition-all 
@@ -84,7 +84,7 @@ const Navbar = () => {
           return (
             <a
               key={item}
-              href={`#${id}`}
+              href={`${id}`}
               onClick={() => setIsOpen(false)}
               className="text-gray-900 font-medium hover:text-[#84441E] transition"
             >
