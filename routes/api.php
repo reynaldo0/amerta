@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LibraryItemController;
 use App\Models\LibraryItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -15,7 +16,7 @@ Route::prefix('v1')->group(function() {
         Route::post('/register', 'register');
     });
 
-    Route::controller(LibraryItem::class)->prefix('item')->group(function() {
+    Route::controller(LibraryItemController::class)->group(function() {
             Route::get('/items', 'index');
     });
 
@@ -24,11 +25,13 @@ Route::prefix('v1')->group(function() {
             Route::post('/logout', 'logout');
         });
 
-        Route::controller(LibraryItem::class)->prefix('item')->group(function() {
-            Route::get('/item/{id}', 'show');
-            Route::post('/item', 'store');
-            Route::put('/item/{id}', 'update');
-            Route::delete('/item/{id}', 'destroy');
+        Route::controller(LibraryItemController::class)->prefix('item')->group(function() {
+            Route::get('/{id}', 'show');
+            Route::post('/', 'store');
+            Route::put('/{id}', 'update');
+            Route::delete('/{id}', 'destroy');
         });
+
+
     });
 });

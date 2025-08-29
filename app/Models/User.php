@@ -13,11 +13,12 @@ use App\Models\UserQuiz;
 use App\Models\Registration;
 use App\Models\Comment;
 use App\Models\Report;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasApiTokens;
     // use SoftDeletes; // Uncomment if users table uses soft deletes
 
     protected $table = 'users';
