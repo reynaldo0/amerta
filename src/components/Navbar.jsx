@@ -1,16 +1,17 @@
 import React, { useState } from "react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid"; 
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const menuItems = [
-    "Beranda",
-    "Tentang",
-    "Budaya",
-    "Kuis",
-    "Konsultasi",
-    "FAQ",
+    { name: "Beranda", path: "/" },
+    { name: "Tentang", path: "/tentang" },
+    { name: "Budaya", path: "/budaya" },
+    { name: "Kuis", path: "/kuis" },
+    { name: "Konsultasi", path: "/konsultasi" },
+    { name: "FAQ", path: "/faq" },
   ];
 
   return (
@@ -28,34 +29,31 @@ const Navbar = () => {
 
         {/* Menu Desktop */}
         <ul className="hidden md:flex space-x-6 text-gray-900 font-medium">
-          {menuItems.map((item) => {
-            const id = item.toLowerCase().replace(/\s+/g, "-"); // spasi → dash
-            return (
-              <li key={item}>
-                <a
-                  href={`${id}`}
-                  className="relative transition duration-300 hover:text-[#84441E] 
+          {menuItems.map((item) => (
+            <li key={item.name}>
+              <Link
+                to={item.path}
+                className="relative transition duration-300 hover:text-[#84441E] 
                   after:content-[''] after:absolute after:left-0 after:-bottom-1 
                   after:h-[2px] after:w-0 after:bg-[#84441E] after:transition-all 
                   after:duration-300 hover:after:w-full"
-                >
-                  {item}
-                </a>
-              </li>
-            );
-          })}
+              >
+                {item.name}
+              </Link>
+            </li>
+          ))}
         </ul>
 
         {/* Tombol Dashboard Desktop */}
-        <a
-          href="#dashboard"
+        <Link
+          to="/dashboard"
           className="hidden md:inline bg-[#84441E] hover:bg-[#6e3717] text-white font-bold 
             px-5 py-2 rounded-full transition duration-300 shadow-md"
         >
           Buat Akun
-        </a>
+        </Link>
 
-        {/* Hamburger Button (Mobile) pakai Heroicons */}
+        {/* Hamburger Button (Mobile) */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="md:hidden w-8 h-8 flex items-center justify-center text-gray-900 focus:outline-none"
@@ -68,7 +66,7 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile Menu (kecil di kanan) */}
+      {/* Mobile Menu */}
       <div
         className={`md:hidden fixed top-20 right-4 w-56 bg-white/80 backdrop-blur-md 
         shadow-lg rounded-xl px-6 py-4 flex flex-col items-center space-y-4 
@@ -79,29 +77,26 @@ const Navbar = () => {
             : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
         }`}
       >
-        {menuItems.map((item) => {
-          const id = item.toLowerCase().replace(/\s+/g, "-");
-          return (
-            <a
-              key={item}
-              href={`${id}`}
-              onClick={() => setIsOpen(false)}
-              className="text-gray-900 font-medium hover:text-[#84441E] transition"
-            >
-              {item}
-            </a>
-          );
-        })}
+        {menuItems.map((item) => (
+          <Link
+            key={item.name}
+            to={item.path}
+            onClick={() => setIsOpen(false)}
+            className="text-gray-900 font-medium hover:text-[#84441E] transition"
+          >
+            {item.name}
+          </Link>
+        ))}
 
         {/* Tombol Dashboard (Mobile) */}
-        <a
-          href="#dashboard"
+        <Link
+          to="/dashboard"
           onClick={() => setIsOpen(false)}
           className="bg-[#84441E] hover:bg-[#6e3717] text-white font-bold 
             px-5 py-2 rounded-full transition duration-300 shadow-md"
         >
           Buat Akun
-        </a>
+        </Link>
       </div>
     </nav>
   );
