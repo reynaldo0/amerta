@@ -29,8 +29,9 @@ export default function Hero() {
       {/* <div className="absolute inset-0 bg-black/40" /> */}
 
       {/* Parallax Object 1 */}
-      <div
-        className="absolute left-0 top-1/3 w-48 h-48 bg-[#84441E] rounded-full opacity-70"
+      <img
+        className="absolute left-0 top-1/3 rounded-full opacity-70"
+        src="/illustrasi/batik2.svg" 
         style={{
           transform: `translateX(${offsetY * 0.4}px) translateY(${
             offsetY * 0.2
@@ -40,8 +41,10 @@ export default function Hero() {
       />
 
       {/* Parallax Object 2 */}
-      <div
-        className="absolute right-0 top-1/2 w-56 h-56 bg-[#84441E] rounded-full opacity-70"
+      <img
+        src="/illustrasi/batik2.svg" // ganti dengan path svg kamu
+        alt="Circle Parallax"
+        className="absolute right-0 top-1/2 w-56 h-56 opacity-70"
         style={{
           transform: `translateX(-${offsetY * 0.5}px) translateY(${
             offsetY * 0.3
@@ -70,9 +73,9 @@ export default function Hero() {
       {/* Wave Parallax */}
       <div className="absolute bottom-0 w-full overflow-hidden leading-[0] z-20">
         <img
-          src="/wave.svg"
+          src="/wave/hero.png"
           alt="Wave"
-          className="w-full h-56 md:h-72 object-cover"
+          className="w-full h-56 md:h-full object-cover"
           style={{
             transform:
               offsetY > 0
