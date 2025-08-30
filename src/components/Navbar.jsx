@@ -11,7 +11,7 @@ const Navbar = () => {
     { name: "Budaya", path: "/budaya" },
     { name: "Kuis", path: "/kuis" },
     { name: "Konsultasi", path: "/konsultasi" },
-    { name: "FAQ", path: "/faq" },
+    { name: "Komunitas", path: "/komunitas" },
   ];
 
   return (

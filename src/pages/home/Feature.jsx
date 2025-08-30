@@ -52,9 +52,9 @@ export default function Features() {
       {/* Wave atas */}
       <div className="absolute top-0 w-full overflow-hidden leading-[0] z-20">
         <img
-          src="/wave-top.svg"
+          src="/wave/feature.png"
           alt="Wave"
-          className="w-full h-56 md:h-96 object-cover"
+          className="w-full h-56 md:h-full object-cover"
           style={{
             transform: `translateY(${Math.min(offsetY * 0.4 - 200, 0)}px)`,
             transition: "transform 0.15s ease-out",
