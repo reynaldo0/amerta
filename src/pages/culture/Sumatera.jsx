@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Sumatera = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  return <div>Sumatera</div>;
+};
 
-export default Sumatera
+export default Sumatera;
