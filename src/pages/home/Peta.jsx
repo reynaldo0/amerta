@@ -33,7 +33,7 @@ const Peta = () => {
           <div className="hidden md:block mb-4 animate-horizontal-bounce hover:scale-105 transition-transform duration-300">
             <span className="font-bold text-lg">
               Arahkan Kursor ke{" "}
-              <span className="text-[#6e3717] text-xl">Daerah Anda</span>
+              <span className="text-[#594537] text-xl">Daerah Anda</span>
             </span>
           </div>
           <div className="w-full">
