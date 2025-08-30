@@ -2,7 +2,9 @@
 
 @theme {
   /* Colors */
-  --color-primary-200: #84441e;
+  --color-primary-100: #594537;
+  --color-primary-200: #4f3e31;
+  --color-primary-300: #84441e;
 
   --color-secondary-200: #f5a100;
   --color-secondary-300: #f5a100;
@@ -46,7 +48,7 @@ html {
 }
 
 .pulau_active path:hover {
-  fill: #6e3717;
+  fill: #4f3e31;
   cursor: pointer;
 }
 

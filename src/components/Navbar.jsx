@@ -47,7 +47,7 @@ const Navbar = () => {
         {/* Tombol Dashboard Desktop */}
         <Link
           to="/dashboard"
-          className="hidden md:inline bg-[#594537] hover:bg-[#6e3717] text-white font-bold 
+          className="hidden md:inline bg-primary-100 hover:bg-primary-200 text-white font-bold 
             px-5 py-2 rounded-full transition duration-300 shadow-md"
         >
           Buat Akun

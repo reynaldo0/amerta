@@ -61,10 +61,10 @@ export default function Hero() {
           transition: "transform 0.1s ease-out",
         }}
       >
-        <h1 className="text-5xl md:text-6xl text-[#594537] font-extrabold tracking-wide">
+        <h1 className="text-5xl md:text-6xl text-primary-100 font-extrabold tracking-wide">
           Keindahan Budaya Nusantara
         </h1>
-        <p className="mt-6 text-lg md:text-2xl text-[#594537] max-w-2xl">
+        <p className="mt-6 text-lg md:text-2xl text-primary-100 max-w-2xl">
           Menyelami ragam budaya dan tradisi yang membentuk identitas bangsa.
         </p>
       </div>

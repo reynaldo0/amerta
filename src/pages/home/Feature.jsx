@@ -65,7 +65,7 @@ export default function Features() {
       <div className="relative max-w-7xl mx-auto px-6 text-center z-20">
         {/* Title */}
         <h2
-          className="text-4xl md:text-6xl font-extrabold text-[#594537] mb-6 tracking-tight"
+          className="text-4xl md:text-6xl font-extrabold text-primary-100 mb-6 tracking-tight"
           style={{
             transform:
               offsetY > 500
@@ -81,7 +81,7 @@ export default function Features() {
         </h2>
 
         <p
-          className="text-[#594537] mb-20 max-w-2xl mx-auto text-lg"
+          className="text-primary-100 mb-20 max-w-2xl mx-auto text-lg"
           style={{
             transform:
               offsetY > 250
@@ -110,24 +110,24 @@ export default function Features() {
             return (
               <div
                 key={index}
-                className="group relative rounded-2xl p-8 bg-white shadow-md border border-[#594537]/40 
+                className="group relative rounded-2xl p-8 bg-white shadow-md border border-pritext-primary-100/40 
                          transition-all duration-500 ease-out cursor-pointer
-                         hover:-translate-y-4 hover:scale-105 hover:rotate-1 hover:shadow-2xl hover:border-[#594537]"
+                         hover:-translate-y-4 hover:scale-105 hover:rotate-1 hover:shadow-2xl hover:border-pritext-primary-100"
                 style={{
                   transform: `translateY(${translateY}px)`,
                 }}
               >
                 {/* Glow Hover */}
-                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 bg-gradient-to-br from-[#594537]/20 to-transparent blur-2xl transition duration-500"></div>
+                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 bg-gradient-to-br from-[#84441E]/20 to-transparent blur-2xl transition duration-500"></div>
 
                 {/* Icon */}
-                <div className="relative z-10 text-5xl mb-6 text-[#594537]">
+                <div className="relative z-10 text-5xl mb-6 text-primary-100">
                   {feature.icon}
                 </div>
-                <h3 className="relative z-10 text-2xl font-bold text-[#594537] mb-3">
+                <h3 className="relative z-10 text-2xl font-bold text-primary-100 mb-3">
                   {feature.title}
                 </h3>
-                <p className="relative z-10 text-[#594537]">{feature.desc}</p>
+                <p className="relative z-10 text-primary-100">{feature.desc}</p>
               </div>
             );
           })}
