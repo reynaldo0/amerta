@@ -13,7 +13,7 @@ const Peta = () => {
         style={{ backgroundAttachment: "fixed" }}
       />
 
-      <div className="absolute top-0 w-full overflow-hidden leading-[0] z-20 will-change-transform">
+      <div className="absolute top-0 w-full overflow-hidden leading-[0]  z-20 will-change-transform">
         <img
           src="/wave/map.png"
           alt="Wave"
@@ -26,7 +26,8 @@ const Peta = () => {
         <img
           src="/illustrasi/pesawat.png"
           alt="Pesawat"
-          className="w-full md:w-[450px] h-auto animate-plane-flight"
+          draggable="false"
+          className="w-full md:w-[600px] h-auto animate-plane-flight"
         />
       </div>
 

@@ -83,13 +83,13 @@ html {
     transform: translateX(40vw) translateY(-20px);
   }
   100% {
-    transform: translateX(-20%) translateY(0);
+    transform: translateX(-100%) translateY(0);
   }
 }
 
 /* Kelas animasi pesawat */
 .animate-plane-flight {
-  animation: plane-flight 20s linear infinite;
+  animation: plane-flight 10s linear infinite;
   will-change: transform;
 }
 

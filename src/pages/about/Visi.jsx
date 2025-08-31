@@ -9,8 +9,16 @@ export default function VisiMisi() {
   ];
 
   return (
-    <section className="bg-primary-100 text-white py-20 px-6 md:px-16">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+    <section className="bg-primary-100 text-white ">
+      <img
+        src="/wave/map.png"
+        alt="Wave"
+        className="w-full h-56 md:h-full object-cover will-change-transform"
+      />
+      <h2 className="text-4xl md:text-6xl font-extrabold text-white text-center mb-6 tracking-tight will-change-transform">
+        Jelajahi Kekayaan Budaya Nusantara
+      </h2>
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center py-20 px-6 md:px-16">
         {/* Visi */}
         <div className="space-y-6 animate-slideInLeft">
           <h2 className="text-4xl font-bold border-l-4 border-secondary-200 pl-4">
@@ -35,7 +43,7 @@ export default function VisiMisi() {
                 className="relative p-6 bg-gray-800/50 rounded-2xl shadow-lg hover:scale-105 transform transition duration-300 border border-gray-700 hover:border-secondary-200"
               >
                 {/* Nomor di kanan atas */}
-                <div className="absolute -top-3 -right-3 w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-r from-secondary-200 to-primary-100 text-white font-bold shadow-lg">
+                <div className="absolute -top-3 -right-3 w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-r from-secondary-200 to-secondary-400 text-white font-bold shadow-lg">
                   {idx + 1}
                 </div>
                 <p className="text-gray-200">{item}</p>

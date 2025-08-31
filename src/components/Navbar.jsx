@@ -33,9 +33,9 @@ const Navbar = () => {
             <li key={item.name}>
               <Link
                 to={item.path}
-                className="relative transition duration-300 hover:text-[#84441E] 
+                className="relative transition duration-300 hover:text-secondary-300 
                   after:content-[''] after:absolute after:left-0 after:-bottom-1 
-                  after:h-[2px] after:w-0 after:bg-[#84441E] after:transition-all 
+                  after:h-[2px] after:w-0 after:bg-secondary-300 after:transition-all 
                   after:duration-300 hover:after:w-full"
               >
                 {item.name}
@@ -47,7 +47,7 @@ const Navbar = () => {
         {/* Tombol Dashboard Desktop */}
         <Link
           to="/dashboard"
-          className="hidden md:inline bg-primary-100 hover:bg-primary-200 text-white font-bold 
+          className="hidden md:inline bg-secondary-300 hover:bg-secondary-300/80 text-white font-bold 
             px-5 py-2 rounded-full transition duration-300 shadow-md"
         >
           Buat Akun
@@ -59,9 +59,9 @@ const Navbar = () => {
           className="md:hidden w-8 h-8 flex items-center justify-center text-gray-900 focus:outline-none"
         >
           {isOpen ? (
-            <XMarkIcon className="h-7 w-7 text-[#84441E] transition duration-300" />
+            <XMarkIcon className="h-7 w-7 text-secondary-300 transition duration-300" />
           ) : (
-            <Bars3Icon className="h-7 w-7 text-[#84441E] transition duration-300" />
+            <Bars3Icon className="h-7 w-7 text-secondary-300 transition duration-300" />
           )}
         </button>
       </div>
@@ -82,7 +82,7 @@ const Navbar = () => {
             key={item.name}
             to={item.path}
             onClick={() => setIsOpen(false)}
-            className="text-gray-900 font-medium hover:text-[#84441E] transition"
+            className="text-gray-900 font-medium hover:text-secondary-300 transition"
           >
             {item.name}
           </Link>
