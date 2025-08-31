@@ -99,7 +99,7 @@ export default function Budaya() {
         {/* Left side - Text */}
         <div className="space-y-3 text-left flex flex-col items-center md:items-start">
           <img
-            src="/illustrasi/peta/wayang.png"
+            src="/illustrasi/peta/budaya.png"
             alt="Budaya Nusantara Illustration"
             className="w-52 h-auto mb-4 object-contain"
           />
