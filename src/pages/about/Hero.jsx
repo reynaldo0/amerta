@@ -32,9 +32,13 @@ const HeroAbout = () => {
 
   return (
     <div
-      className="flex pt-32 flex-col-reverse md:pt-28 md:flex-row items-center justify-center md:py-24 md:space-y-0 md:space-x-8 bg-white md:bg-transparent relative overflow-hidden"
+      className="flex pt-32 flex-col-reverse md:pt-28 md:flex-row items-center justify-center md:py-24 bg-white md:bg-transparent relative overflow-hidden"
       id="about"
     >
+      <div
+        className="absolute inset-0 bg-[url('/wave/bg-about.png')] bg-cover bg-center opacity-10 will-change-transform"
+        style={{ backgroundAttachment: "fixed" }}
+      />
       {/* Left Section */}
       <div className="bg-primary-100 rounded-t-3xl text-white p-6 md:p-12 md:rounded-r-[40px] flex flex-col items-start space-y-4 md:space-y-6 relative z-10">
         <h2
