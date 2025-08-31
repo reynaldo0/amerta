@@ -72,33 +72,24 @@ html {
 
 /* pesawat animasi open  */
 /* Peta.css */
-@keyframes flyAndShake {
+
+/* Animasi pesawat terbang kanan → kiri */
+@keyframes plane-flight {
   0% {
-    transform: translateX(100vw) translateY(0);
-  }
-  40% {
-    transform: translateX(0) translateY(0); /* berhenti di tengah */
-  }
-  45% {
-    transform: translateX(0) translateY(-3px);
+    transform: translateX(120vw) translateY(0);
   }
   50% {
-    transform: translateX(0) translateY(3px);
-  }
-  55% {
-    transform: translateX(0) translateY(-3px);
-  }
-  60% {
-    transform: translateX(0) translateY(0); /* selesai getar */
+    transform: translateX(40vw) translateY(-20px);
   }
   100% {
-    transform: translateX(-100vw) translateY(0); /* keluar ke kiri */
+    transform: translateX(-20%) translateY(0);
   }
 }
 
-.animate-fly-shake {
-  display: inline-block;
-  animation: flyAndShake 12s ease-in-out infinite;
+/* Kelas animasi pesawat */
+.animate-plane-flight {
+  animation: plane-flight 20s linear infinite;
+  will-change: transform;
 }
 
 /* pesawat animasi close */

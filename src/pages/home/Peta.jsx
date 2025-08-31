@@ -18,7 +18,7 @@ const Peta = () => {
         <img
           src="/illustrasi/pesawat.png"
           alt="Pesawat"
-          className="w-full md:w-[450px] h-auto animate-fly-shake"
+          className="w-full md:w-[450px] h-auto animate-plane-flight"
         />
       </div>
 
