@@ -32,14 +32,11 @@ const HeroAbout = () => {
 
   return (
     <div
-      className="flex pt-16 flex-col md:pt-28 md:flex-row items-center justify-center md:py-24 space-y-8 md:space-y-0 md:space-x-8 bg-primary-100 md:bg-transparent relative overflow-hidden"
+      className="flex pt-32 flex-col-reverse md:pt-28 md:flex-row items-center justify-center md:py-24 md:space-y-0 md:space-x-8 bg-white md:bg-transparent relative overflow-hidden"
       id="about"
     >
       {/* Left Section */}
-        
-      <div className="bg-primary-100 text-white p-6 md:p-12 rounded-b-[20px] md:rounded-r-[40px] flex flex-col items-start space-y-4 md:space-y-6 relative z-10">
-        {/* Parallax Object 1 */}
-
+      <div className="bg-primary-100 rounded-t-3xl text-white p-6 md:p-12 md:rounded-r-[40px] flex flex-col items-start space-y-4 md:space-y-6 relative z-10">
         <h2
           className="text-xl md:text-5xl font-serif leading-tight text-left"
           data-aos="fade-up"
@@ -71,30 +68,30 @@ const HeroAbout = () => {
           ref={canvasRef}
           className="w-full h-[200px] scale-125 md:scale-100 mr-32 md:mr-0 md:h-[500px]"
         >
-            <img
-          className="absolute md:left-0 left-10 -bottom-10 md:bottom-10 w-56 h-56 rounded-full opacity-70"
-          src="/illustrasi/batik.png"
-          alt="Batik Left"
-          style={{
-            transform: `translateX(${offsetY * 0.4}px) translateY(${
-              offsetY * 0.2
-            }px)`,
-            filter: `blur(${Math.min(offsetY * 0.015, 6)}px)`,
-          }}
-        />
+          <img
+            className="absolute md:left-0 left-10 -bottom-10 md:bottom-10 w-56 h-56 rounded-full opacity-70"
+            src="/illustrasi/batik.png"
+            alt="Batik Left"
+            style={{
+              transform: `translateX(${offsetY * 0.4}px) translateY(${
+                offsetY * 0.2
+              }px)`,
+              filter: `blur(${Math.min(offsetY * 0.015, 6)}px)`,
+            }}
+          />
 
-        {/* Parallax Object 2 */}
-        <img
-          src="/illustrasi/batik2.png"
-          alt="Batik Right"
-          className="absolute -right-20 -top-20 md:right-0 md:top-0 w-56 h-56 opacity-70"
-          style={{
-            transform: `translateX(-${offsetY * 0.5}px) translateY(${
-              offsetY * 0.3
-            }px)`,
-            filter: `blur(${Math.min(offsetY * 0.015, 6)}px)`,
-          }}
-        />
+          {/* Parallax Object 2 */}
+          <img
+            src="/illustrasi/batik2.png"
+            alt="Batik Right"
+            className="absolute -right-20 -top-20 md:right-0 md:top-0 w-56 h-56 opacity-70"
+            style={{
+              transform: `translateX(-${offsetY * 0.5}px) translateY(${
+                offsetY * 0.3
+              }px)`,
+              filter: `blur(${Math.min(offsetY * 0.015, 6)}px)`,
+            }}
+          />
           <Canvas
             className="md:pt-24"
             camera={{ position: [0, 1, 3], fov: 50 }}

@@ -13,42 +13,44 @@ export default function VisiMisi() {
       <img
         src="/wave/map.png"
         alt="Wave"
-        className="w-full h-56 md:h-full object-cover will-change-transform"
+        className="hidden md:block w-full h-56 md:h-full object-cover will-change-transform"
       />
-      <h2 className="text-4xl md:text-6xl font-extrabold text-white text-center mb-6 tracking-tight will-change-transform">
-        Jelajahi Kekayaan Budaya Nusantara
-      </h2>
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center py-20 px-6 md:px-16">
-        {/* Visi */}
-        <div className="space-y-6 animate-slideInLeft">
-          <h2 className="text-4xl font-bold border-l-4 border-secondary-200 pl-4">
-            Visi
-          </h2>
-          <p className="text-lg leading-relaxed text-gray-300">
-            Menjadi organisasi yang inovatif, adaptif, dan inspiratif dalam
-            membangun generasi yang unggul, kreatif, dan berdampak positif bagi
-            masyarakat serta lingkungan sekitar.
-          </p>
-        </div>
+      <div className="py-20 px-6 md:px-16">
+        <h2 className="text-4xl md:text-6xl mb-10 font-bold text-white text-center tracking-tight will-change-transform">
+          Jelajahi Kekayaan Budaya Nusantara
+        </h2>
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center ">
+          {/* Visi */}
+          <div className="space-y-6 animate-slideInLeft">
+            <h2 className="text-4xl font-bold border-l-4 border-secondary-200 pl-4">
+              Visi
+            </h2>
+            <p className="text-lg leading-relaxed text-gray-300">
+              Menjadi organisasi yang inovatif, adaptif, dan inspiratif dalam
+              membangun generasi yang unggul, kreatif, dan berdampak positif
+              bagi masyarakat serta lingkungan sekitar.
+            </p>
+          </div>
 
-        {/* Misi */}
-        <div className="space-y-6 animate-slideInRight">
-          <h2 className="text-4xl font-bold border-l-4 border-secondary-200 pl-4">
-            Misi
-          </h2>
-          <div className="grid gap-6 sm:grid-cols-2">
-            {misi.map((item, idx) => (
-              <div
-                key={idx}
-                className="relative p-6 bg-gray-800/50 rounded-2xl shadow-lg hover:scale-105 transform transition duration-300 border border-gray-700 hover:border-secondary-200"
-              >
-                {/* Nomor di kanan atas */}
-                <div className="absolute -top-3 -right-3 w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-r from-secondary-200 to-secondary-400 text-white font-bold shadow-lg">
-                  {idx + 1}
+          {/* Misi */}
+          <div className="space-y-6 animate-slideInRight">
+            <h2 className="text-4xl font-bold border-l-4 border-secondary-200 pl-4">
+              Misi
+            </h2>
+            <div className="grid gap-6 sm:grid-cols-2">
+              {misi.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="relative p-6 bg-gray-800/50 rounded-2xl shadow-lg hover:scale-105 transform transition duration-300 border border-gray-700 hover:border-secondary-200"
+                >
+                  {/* Nomor di kanan atas */}
+                  <div className="absolute -top-3 -right-3 w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-r from-secondary-200 to-secondary-400 text-white font-bold shadow-lg">
+                    {idx + 1}
+                  </div>
+                  <p className="text-gray-200">{item}</p>
                 </div>
-                <p className="text-gray-200">{item}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
