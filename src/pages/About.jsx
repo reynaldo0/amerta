@@ -1,11 +1,12 @@
 import React from "react";
 import HeroAbout from "./about/Hero";
+import VisiMisi from "./about/Visi";
 
 const About = () => {
   return (
     <div>
       <HeroAbout />
-      <HeroAbout />
+      <VisiMisi />
     </div>
   );
 };
