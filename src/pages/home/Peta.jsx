@@ -13,8 +13,16 @@ const Peta = () => {
         style={{ backgroundAttachment: "fixed" }}
       />
 
+      <div className="absolute top-0 w-full overflow-hidden leading-[0] z-20 will-change-transform">
+        <img
+          src="/wave/map.png"
+          alt="Wave"
+          className="w-full h-56 md:h-full object-cover will-change-transform"
+        />
+      </div>
+
       {/* Pesawat */}
-      <div className="absolute top-10 left-0 w-full z-30 pointer-events-none">
+      <div className="absolute top-30 left-0 w-full z-30 pointer-events-none">
         <img
           src="/illustrasi/pesawat.png"
           alt="Pesawat"
@@ -29,7 +37,7 @@ const Peta = () => {
         data-aos-duration="800"
       >
         {/* Map Section */}
-        <div className="w-full flex flex-col items-center lg:items-start pt-20">
+        <div className="w-full flex flex-col items-center lg:items-start pt-40">
           <div className="mb-4 animate-horizontal-bounce hover:scale-105 transition-transform duration-300">
             <span className="font-bold text-lg text-white">
               Arahkan Kursor ke{" "}
