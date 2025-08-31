@@ -9,6 +9,7 @@ import Sumatera from "./pages/culture/Sumatera";
 import Home from "./pages/Home";
 import Komunitas from "./pages/Komunitas";
 import Quiz from "./pages/quiz/question";
+import Culture from "./pages/Culture";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/beranda" element={<Home />} />
         <Route path="/tentang" element={<About />} />
         <Route path="/komunitas" element={<Komunitas />} />
+        <Route path="/budaya" element={<Culture />} />
         <Route path="/kuis" element={<Quiz />} />
         <Route path="/budaya-sumatera" element={<Sumatera />} />
         <Route path="/budaya-jawa" element={<Jawa />} />
