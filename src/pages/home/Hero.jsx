@@ -1,65 +1,64 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 export default function Hero() {
-  const [offsetY, setOffsetY] = useState(0);
+  const [rawOffsetY, setRawOffsetY] = useState(0);
+  const [smoothOffsetY, setSmoothOffsetY] = useState(0);
+  const rafRef = useRef(null);
 
   useEffect(() => {
-    const handleScroll = () => setOffsetY(window.scrollY);
-    window.addEventListener("scroll", handleScroll);
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setRawOffsetY(window.scrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Animate smoothOffsetY supaya mengejar rawOffsetY dengan easing (lerp)
+  useEffect(() => {
+    const lerp = (start, end, factor) => start + (end - start) * factor;
+
+    const update = () => {
+      setSmoothOffsetY((prev) => {
+        const next = lerp(prev, rawOffsetY, 0.1); // 0.1 = smoothing factor (semakin kecil semakin smooth)
+        return Math.abs(next - rawOffsetY) < 0.1 ? rawOffsetY : next;
+      });
+      rafRef.current = requestAnimationFrame(update);
+    };
+
+    rafRef.current = requestAnimationFrame(update);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [rawOffsetY]);
+
   return (
     <section className="relative h-screen w-full bg-white overflow-hidden">
+      {/* Background */}
       <div
-        className="absolute inset-0 bg-[url('/wave.svg')] bg-cover bg-center opacity-10"
+        className="absolute inset-0 bg-[url('/wave/bg.svg')] bg-cover bg-center opacity-10 will-change-transform"
         style={{ backgroundAttachment: "fixed" }}
       />
+
       {/* Background Layer + Blur */}
       <div
-        className="absolute inset-0 bg-cover bg-center"
+        className="absolute inset-0 bg-cover bg-center will-change-transform"
         style={{
-          transform: `translateY(${offsetY * 0.5}px)`,
-          filter: `blur(${Math.min(offsetY * 0.02, 10)}px)`,
-          transition: "transform 0.1s ease-out, filter 0.1s ease-out",
+          transform: `translateY(${smoothOffsetY * 0.5}px)`,
+          filter: `blur(${Math.min(smoothOffsetY * 0.02, 10)}px)`,
         }}
       />
 
-      {/* Overlay Gelap */}
-      {/* <div className="absolute inset-0 bg-black/40" /> */}
-
-      {/* Parallax Object 1 */}
-      <img
-        className="absolute left-0 top-1/3 rounded-full opacity-70"
-        src="/illustrasi/batik2.svg" 
-        style={{
-          transform: `translateX(${offsetY * 0.4}px) translateY(${
-            offsetY * 0.2
-          }px)`,
-          filter: `blur(${Math.min(offsetY * 0.015, 6)}px)`,
-        }}
-      />
-
-      {/* Parallax Object 2 */}
-      <img
-        src="/illustrasi/batik2.svg" // ganti dengan path svg kamu
-        alt="Circle Parallax"
-        className="absolute right-0 top-1/2 w-56 h-56 opacity-70"
-        style={{
-          transform: `translateX(-${offsetY * 0.5}px) translateY(${
-            offsetY * 0.3
-          }px)`,
-          filter: `blur(${Math.min(offsetY * 0.015, 6)}px)`,
-        }}
-      />
-
-      {/* Text Layer */}
+      {/* Text Layer (pakai smoothOffsetY biar lembut) */}
       <div
-        className="relative z-10 flex flex-col justify-center items-center h-full text-center px-4"
-        style={{
-          transform: `translateY(${offsetY * 0.6}px)`,
-          transition: "transform 0.1s ease-out",
-        }}
+        className="relative z-10 flex flex-col justify-center items-center h-full text-center px-4 will-change-transform"
+        style={{ transform: `translateY(${smoothOffsetY * 0.3}px)` }}
       >
         <h1 className="text-5xl md:text-6xl text-primary-100 font-extrabold tracking-wide">
           Keindahan Budaya Nusantara
@@ -70,18 +69,16 @@ export default function Hero() {
       </div>
 
       {/* Wave Parallax */}
-      {/* Wave Parallax */}
-      <div className="absolute bottom-0 w-full overflow-hidden leading-[0] z-20">
+      <div className="absolute bottom-0 w-full overflow-hidden leading-[0] z-20 will-change-transform">
         <img
           src="/wave/hero.png"
           alt="Wave"
-          className="w-full h-56 md:h-full object-cover"
+          className="w-full h-56 md:h-full object-cover will-change-transform"
           style={{
             transform:
-              offsetY > 0
-                ? `translateY(${offsetY * 0.5}px)` // Hapus Math.min supaya bisa terus turun
+              smoothOffsetY > 0
+                ? `translateY(${smoothOffsetY * 0.5}px)`
                 : "translateY(0)",
-            transition: "transform 0.15s ease-out",
           }}
         />
       </div>

@@ -9,16 +9,16 @@ const Peta = () => {
     >
       {/* Background Parallax */}
       <div
-        className="absolute inset-0 bg-[url('/wave.svg')] bg-cover bg-center opacity-10"
+        className="absolute inset-0 bg-[url('/wave/bg.svg')] bg-cover bg-center opacity-10"
         style={{ backgroundAttachment: "fixed" }}
       />
 
       {/* Pesawat */}
       <div className="absolute top-10 left-0 w-full z-30 pointer-events-none">
         <img
-          src="/pesawat.png" // ganti dengan gambar pesawatmu
+          src="/illustrasi/pesawat.png"
           alt="Pesawat"
-          className="w-32 md:w-96 h-auto animate-plane-flight"
+          className="w-full md:w-[450px] h-auto animate-fly-shake"
         />
       </div>
 
@@ -29,8 +29,8 @@ const Peta = () => {
         data-aos-duration="800"
       >
         {/* Map Section */}
-        <div className="w-full flex flex-col items-center lg:items-start">
-          <div className="hidden md:block mb-4 animate-horizontal-bounce hover:scale-105 transition-transform duration-300">
+        <div className="w-full flex flex-col items-center lg:items-start pt-20">
+          <div className="mb-4 animate-horizontal-bounce hover:scale-105 transition-transform duration-300">
             <span className="font-bold text-lg">
               Arahkan Kursor ke{" "}
               <span className="text-primary-100 text-xl">Daerah Anda</span>
