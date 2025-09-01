@@ -8,8 +8,8 @@ import Sulawesi from "./pages/culture/Sulawesi";
 import Sumatera from "./pages/culture/Sumatera";
 import Home from "./pages/Home";
 import Komunitas from "./pages/Komunitas";
-import Quiz from "./pages/quiz/question";
 import Culture from "./pages/Culture";
+import Quiz from "./pages/Quiz";
 
 function App() {
   return (

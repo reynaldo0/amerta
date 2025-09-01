@@ -94,26 +94,30 @@ function TiltCard({ island }) {
 
 export default function Budaya() {
   return (
-    <section className="bg-gradient-to-b from-gray-50 to-gray-100 py-20 px-6">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-start">
+    <section id="pulau" className="bg-primary-100 relative min-h-screen py-20 px-6">
+      <div
+        className="absolute inset-0 bg-[url('/wave/bg.svg')] bg-cover bg-center opacity-10 will-change-transform"
+        style={{ backgroundAttachment: "fixed" }}
+      />
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-start z-20">
         {/* Left side - Text */}
         <div className="space-y-3 text-left flex flex-col items-center md:items-start">
           <img
-            src="/illustrasi/peta/budaya.png"
+            src="/illustrasi/budaya/pulau.png"
             alt="Budaya Nusantara Illustration"
             className="w-52 h-auto mb-4 object-contain"
           />
-          <h2 className="text-4xl font-extrabold text-gray-800 leading-snug">
+          <h2 className="text-4xl font-extrabold text-white leading-snug">
             Budaya Nusantara
           </h2>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-white">
             Menjelajahi kekayaan budaya dari pulau-pulau besar di Indonesia.
             Setiap pulau menyimpan cerita unik, tradisi luhur, dan keindahan
             budaya yang patut dijaga.
           </p>
           <a
             href="#"
-            className="inline-block mt-4 px-6 py-3 bg-primary-100 text-white rounded-lg shadow-md hover:bg-primary-200 transition"
+            className="inline-block z-10 mt-4 px-6 py-3 bg-secondary-300 text-white rounded-xl shadow-md hover:bg-secondary-300/80 transition"
           >
             Jelajahi Semua →
           </a>

@@ -39,7 +39,7 @@ const Form = () => {
 
   return (
     <section className="bg-white relative min-h-screen py-24 flex lg:pb-40">
-        <div
+      <div
         className="absolute inset-0 bg-[url('/wave/bg.svg')] bg-cover bg-center opacity-10 will-change-transform"
         style={{ backgroundAttachment: "fixed" }}
       />

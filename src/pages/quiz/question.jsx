@@ -3,7 +3,7 @@ import Star from "/illustrasi/star.svg"; // Pastikan path benar
 import Cross from "/illustrasi/salah.svg"; // Atau buat ikon khusus untuk 0 skor
 import questions from "../../docs/questionData";
 
-const Quiz = () => {
+const Questions = () => {
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState(null);
   const [answers, setAnswers] = useState([]);
@@ -221,4 +221,4 @@ const Quiz = () => {
   );
 };
 
-export default Quiz;
+export default Questions;
