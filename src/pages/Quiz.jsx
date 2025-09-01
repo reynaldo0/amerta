@@ -5,7 +5,6 @@ import Questions from "./quiz/question";
 const Quiz = () => {
   return (
     <>
-      <HeroQuiz />
       <Questions />
     </>
   );
