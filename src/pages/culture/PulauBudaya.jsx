@@ -11,25 +11,25 @@ const islands = [
     name: "Pulau Sumatera",
     description:
       "Pulau dengan kekayaan budaya Aceh, Minangkabau, Batak, dan Melayu. Sumatera juga dikenal dengan keindahan alamnya yang luas.",
-    image: "/illustrasi/budaya/peta/jawa.png",
+    image: "/illustrasi/budaya/peta/sumatera.png",
   },
   {
     name: "Pulau Kalimantan",
     description:
       "Budaya Dayak dengan rumah panjang, tarian tradisional, dan kekayaan hutan tropis terbesar di Indonesia.",
-    image: "/illustrasi/budaya/peta/jawa.png",
+    image: "/illustrasi/budaya/peta/kalimantan.png",
   },
   {
     name: "Pulau Sulawesi",
     description:
       "Budaya Toraja, Minahasa, Bugis, dan Mandar yang penuh warna serta keindahan lautnya yang mendunia.",
-    image: "/illustrasi/budaya/peta/jawa.png",
+    image: "/illustrasi/budaya/peta/sulawesi.png",
   },
   {
     name: "Pulau Papua",
     description:
       "Tradisi suku Dani, Asmat, serta kekayaan seni ukir dan tari khas Papua yang mendalam.",
-    image: "/illustrasi/budaya/peta/jawa.png",
+    image: "/illustrasi/budaya/peta/papua.png",
   },
 ];
 
@@ -69,7 +69,7 @@ function TiltCard({ island }) {
         <img
           src={island.image}
           alt={island.name}
-          className="w-3/4 opacity-50 group-hover:opacity-20 transition duration-500 object-contain"
+          className="w-3/4 opacity-20 group-hover:opacity-20 transition duration-500 object-contain"
         />
       </div>
 
@@ -94,12 +94,20 @@ function TiltCard({ island }) {
 
 export default function Budaya() {
   return (
-    <section id="pulau" className="bg-primary-100 relative min-h-screen py-20 px-6">
+    <section
+      id="pulau"
+      className="bg-primary-100 relative min-h-screen"
+    >
+      <img
+        src="/wave/map.png"
+        alt="Wave"
+        className="w-full h-56 md:h-full object-cover will-change-transform"
+      />
       <div
         className="absolute inset-0 bg-[url('/wave/bg.svg')] bg-cover bg-center opacity-10 will-change-transform"
         style={{ backgroundAttachment: "fixed" }}
       />
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-start z-20">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-start z-20 ">
         {/* Left side - Text */}
         <div className="space-y-3 text-left flex flex-col items-center md:items-start">
           <img
