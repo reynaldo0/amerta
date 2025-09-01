@@ -5,31 +5,31 @@ const islands = [
     name: "Pulau Jawa",
     description:
       "Salah satu pulau terbesar di Indonesia dan merupakan pusat kehidupan sosial, ekonomi, dan budaya. Pulau memiliki populasi sekitar 56% dari total penduduk Indonesia. Pulau Jawa terletak di Kepulauan Sunda Besar dan dikelilingi oleh beberapa pulau besar.",
-    image: "/illustrasi/peta/jawa.png",
+    image: "/illustrasi/budaya/peta/jawa.png",
   },
   {
     name: "Pulau Sumatera",
     description:
       "Pulau dengan kekayaan budaya Aceh, Minangkabau, Batak, dan Melayu. Sumatera juga dikenal dengan keindahan alamnya yang luas.",
-    image: "/illustrasi/peta/jawa.png",
+    image: "/illustrasi/budaya/peta/jawa.png",
   },
   {
     name: "Pulau Kalimantan",
     description:
       "Budaya Dayak dengan rumah panjang, tarian tradisional, dan kekayaan hutan tropis terbesar di Indonesia.",
-    image: "/illustrasi/peta/jawa.png",
+    image: "/illustrasi/budaya/peta/jawa.png",
   },
   {
     name: "Pulau Sulawesi",
     description:
       "Budaya Toraja, Minahasa, Bugis, dan Mandar yang penuh warna serta keindahan lautnya yang mendunia.",
-    image: "/illustrasi/peta/jawa.png",
+    image: "/illustrasi/budaya/peta/jawa.png",
   },
   {
     name: "Pulau Papua",
     description:
       "Tradisi suku Dani, Asmat, serta kekayaan seni ukir dan tari khas Papua yang mendalam.",
-    image: "/illustrasi/peta/jawa.png",
+    image: "/illustrasi/budaya/peta/jawa.png",
   },
 ];
 
