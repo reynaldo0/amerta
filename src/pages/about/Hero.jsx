@@ -59,10 +59,7 @@ const HeroAbout = () => {
           data-aos="fade-up"
           data-aos-duration="1000"
         >
-          Generasi muda merupakan fondasi untuk masa depan yang lebih baik.
-          Mereka akan menjadi sumber daya terpenting dalam menghadapi tantangan
-          global dan berperan aktif dalam memajukan berbagai sektor dan
-          menciptakan perubahan positif yang berkelanjutan.
+          Website kami berdedikasi untuk melestarikan, menjaga, dan mengembangkan warisan budaya Indonesia di era modern. Dengan semangat "Peluk Erat Tradisi, Gerakkan Teknologi", kami memanfaatkan kemajuan digital sebagai jembatan antara masa lalu dan masa depan, memastikan bahwa kekayaan budaya nusantara tetap hidup dan relevan untuk generasi mendatang.
         </p>
       </div>
 

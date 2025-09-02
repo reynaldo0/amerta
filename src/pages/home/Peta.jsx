@@ -13,13 +13,6 @@ const Peta = () => {
         style={{ backgroundAttachment: "fixed" }}
       />
 
-      <div className="absolute top-0 w-full overflow-hidden leading-[0] z-20 will-change-transform">
-        <img
-          src="/wave/map.png"
-          alt="Wave"
-          className="w-full h-56 md:h-full object-cover will-change-transform"
-        />
-      </div>
 
       {/* Pesawat */}
       <div className="absolute top-30 left-0 w-full z-30 pointer-events-none">

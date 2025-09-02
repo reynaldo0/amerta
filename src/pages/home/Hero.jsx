@@ -73,7 +73,7 @@ export default function Hero() {
         <img
           src="/wave/hero.png"
           alt="Wave"
-          className="w-full h-56 md:h-full object-cover will-change-transform"
+          className="w-full h-full object-cover will-change-transform"
           style={{
             transform:
               smoothOffsetY > 0

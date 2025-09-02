@@ -39,11 +39,21 @@ const Form = () => {
 
   return (
     <section className="bg-white relative min-h-screen py-24 flex lg:pb-40">
+      
       <div
         className="absolute inset-0 bg-[url('/wave/bg.svg')] bg-cover bg-center opacity-10 will-change-transform"
         style={{ backgroundAttachment: "fixed" }}
       />
-      <div className="flex flex-col-reverse xl:flex-row xl:gap-20 items-center justify-between px-8 md:px-24 xl:px-20">
+
+      <div className="absolute top-0 w-full overflow-hidden leading-[0] z-20 will-change-transform">
+        <img
+          src="/wave/coklatA.png"
+          alt="Wave"
+          className="w-full h-full object-cover will-change-transform"
+        />
+      </div>
+
+      <div className="flex flex-col-reverse xl:flex-row xl:gap-20 items-center justify-between px-8 md:px-24 xl:px-20 z-10">
         {/* Form Section */}
         <div className="space-y-6 flex-1 pt-16 xl:pt-0">
           <div className="px-4 py-3">

@@ -17,7 +17,7 @@ export default function VisiMisi() {
       <img
         src="/wave/map.png"
         alt="Wave"
-        className="hidden md:block w-full h-56 md:h-full object-cover will-change-transform"
+        className="hidden md:block w-full h-full object-cover will-change-transform"
       />
       <div className="">
         <h2 className="text-4xl md:text-6xl mb-10 font-bold text-white text-center tracking-tight will-change-transform">

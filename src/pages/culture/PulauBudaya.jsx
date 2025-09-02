@@ -101,7 +101,7 @@ export default function Budaya() {
       <img
         src="/wave/map.png"
         alt="Wave"
-        className="w-full h-56 md:h-full object-cover will-change-transform"
+        className="w-full h-full object-cover will-change-transform"
       />
       <div
         className="absolute inset-0 bg-[url('/wave/bg.svg')] bg-cover bg-center opacity-10 will-change-transform"

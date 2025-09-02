@@ -121,7 +121,16 @@ export default function Features() {
           ref={waveRef}
           src="/wave/feature.png"
           alt="Wave"
-          className="w-full h-56 md:h-full object-cover will-change-transform"
+          className="w-full h-full object-cover will-change-transform"
+        />
+      </div>
+
+      {/* wave  bawah*/}
+      <div className="absolute bottom-0 w-full overflow-hidden leading-[0] z-20 will-change-transform">
+        <img
+          src="/wave/coklatB.png"
+          alt="Wave"
+          className="w-full h-full object-cover will-change-transform"
         />
       </div>
 
