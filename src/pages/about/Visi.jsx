@@ -45,7 +45,9 @@ export default function VisiMisi() {
               {misi.map((item, idx) => (
                 <div
                   key={idx}
-                  className="relative p-6 bg-gray-800/50 rounded-2xl shadow-lg hover:scale-105 transform transition duration-300 border border-gray-700 hover:border-secondary-200"
+                  className="relative p-6 rounded-2xl shadow-lg hover:scale-105 transform transition duration-300 
+             border border-gray-700 hover:border-secondary-200 
+             bg-white/10 backdrop-blur-lg"
                 >
                   {/* Nomor di kanan atas */}
                   <div className="absolute -top-3 -right-3 w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-r from-secondary-200 to-secondary-400 text-white font-bold shadow-lg">

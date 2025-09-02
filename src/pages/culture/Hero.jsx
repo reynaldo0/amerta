@@ -43,7 +43,7 @@ export default function Hero() {
     <section className="relative w-full min-h-screen flex items-center text-white overflow-hidden">
       {/* Background pattern */}
       <div
-        className="absolute inset-0 bg-[url('/wave/bg.svg')] bg-cover bg-center opacity-10 will-change-transform"
+        className="absolute inset-0 bg-[url('/wave/budaya.png')] bg-cover bg-center opacity-10 will-change-transform"
         style={{ backgroundAttachment: "fixed" }}
       />
       {/* Decorations */}

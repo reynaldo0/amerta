@@ -104,7 +104,7 @@ export default function Budaya() {
         className="w-full h-full object-cover will-change-transform"
       />
       <div
-        className="absolute inset-0 bg-[url('/wave/bg.svg')] bg-cover bg-center opacity-10 will-change-transform"
+        className="absolute inset-0 bg-[url('/wave/budayaw.png')] bg-cover bg-center opacity-10 will-change-transform"
         style={{ backgroundAttachment: "fixed" }}
       />
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-start z-20 ">

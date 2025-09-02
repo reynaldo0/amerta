@@ -1,11 +1,11 @@
 import React from "react";
 import Budaya from "./culture/PulauBudaya";
-import HeroCulture from "./culture/HeroCulture";
+import Hero from "./culture/Hero";
 
 const Culture = () => {
   return (
     <div>
-      <HeroCulture />
+      <Hero />
       <Budaya />
     </div>
   );
