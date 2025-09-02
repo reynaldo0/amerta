@@ -1,6 +1,21 @@
 import React, { useState, useEffect, Suspense, useMemo } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Experience } from "../../components/models/Experience";
+import { Html, useProgress } from "@react-three/drei";
+
+// Loader Component
+function Loader() {
+  const { progress } = useProgress();
+  return (
+    <Html center>
+      <div className="flex flex-col items-center justify-center text-white">
+        <div className="w-12 h-12 border-4 border-t-transparent border-secondary-300 rounded-full animate-spin mb-4"></div>
+        <p className="text-lg font-semibold text-primary-200 animate-bounce">{progress.toFixed(0)}%</p>
+        <span className="text-sm text-primary-200 animate-pulse">Loading</span>
+      </div>
+    </Html>
+  );
+}
 
 export default function Hero() {
   const [windowWidth, setWindowWidth] = useState(
@@ -53,7 +68,10 @@ export default function Hero() {
             Jelajahi ragam{" "}
             <span className="text-secondary-300 font-semibold">tradisi</span>,
             <span className="text-secondary-300 font-semibold"> seni</span>, dan
-            <span className="text-secondary-300 font-semibold"> kearifan lokal</span>{" "}
+            <span className="text-secondary-300 font-semibold">
+              {" "}
+              kearifan lokal
+            </span>{" "}
             dari Sabang sampai Merauke. Temukan cerita unik yang membentuk
             identitas bangsa Indonesia.
           </p>
@@ -80,11 +98,11 @@ export default function Hero() {
               camera={{ position: [0, 1, 3], fov: 45 }}
               style={{ height: canvasSize.height }}
             >
-              <group position={[canvasSize.posX, 0, 0]}>
-                <Suspense fallback={null}>
+              <Suspense fallback={<Loader />}>
+                <group position={[canvasSize.posX, 0, 0]}>
                   <Experience />
-                </Suspense>
-              </group>
+                </group>
+              </Suspense>
             </Canvas>
           </div>
         </div>
