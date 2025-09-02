@@ -29,6 +29,6 @@ Route::middleware('auth')->group(function() {
 
     Route::controller(LibraryItemController::class)->group(function() {
         Route::post('/create/item', 'store');
-        Route::delete('/item/{item}', 'destroy');
+        Route::delete('/item/{id}', 'destroy');
     });
 });

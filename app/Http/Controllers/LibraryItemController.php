@@ -14,9 +14,9 @@ class LibraryItemController extends Controller
      */
     public function index()
     {
-        $item = LibraryItem::all();
+        $items = LibraryItem::all();
         return response()->json([
-            'item' => $item
+            'items' => $items
         ], 200);
     }
 
@@ -30,7 +30,7 @@ class LibraryItemController extends Controller
             'description' => 'required|string',
             'category'    => 'required|string',
             'province_id' => 'required|exists:provinces,id',
-            'file'        => 'nullable|file|mimes:jpg,jpeg,png,mp4,mov,webm|max:51200', // support image & video
+            'file'        => 'nullable|file|mimes:jpg,jpeg,png,pdf,mp3,mp4,mov,webm|max:51200',
             'file_url'    => 'nullable|url',
             'metadata'    => 'nullable|json'
         ]);
@@ -39,58 +39,45 @@ class LibraryItemController extends Controller
             return redirect()->back()->withErrors($vld)->withInput();
         }
 
-        $fileUrl = null ?? 'none';
+        $filePath = null;
         $metadata = [];
 
-        // Ambil metadata manual dari textarea
+        // Metadata manual dari textarea
         if ($request->metadata) {
             $metadata = json_decode($request->metadata, true) ?? [];
         }
 
-        // Jika upload file
+        // Upload file
         if ($request->hasFile('file')) {
             $file     = $request->file('file');
             $path     = $file->store('library_items', 'public');
-            $fileUrl  = Storage::url($path);
+            $filePath = Storage::url($path);
 
-            // Tambahkan metadata otomatis
             $metadata['file_name']   = $file->getClientOriginalName();
-            $metadata['file_type']   = $file->getClientMimeType();
+            $metadata['mime']        = $file->getClientMimeType();
             $metadata['file_size']   = $file->getSize();
+            $metadata['file_type']   = $file->getClientOriginalExtension();
             $metadata['uploaded_at'] = now()->toDateTimeString();
         } elseif ($request->file_url) {
-            $fileUrl = $request->file_url;
+            $filePath = $request->file_url;
 
-            // Tambahkan metadata otomatis untuk URL
-            $metadata['file_name']   = basename($fileUrl);
-            $metadata['file_type']   = 'external_url';
+            $metadata['file_name']   = basename($filePath);
+            $metadata['mime']        = 'external_url';
+            $metadata['file_type']   = pathinfo($filePath, PATHINFO_EXTENSION) ?: 'url';
             $metadata['uploaded_at'] = now()->toDateTimeString();
         }
-
 
         LibraryItem::create([
             'title'       => $request->title,
             'description' => $request->description,
             'category'    => $request->category,
             'province_id' => $request->province_id,
-            'file_url'    => $fileUrl,
+            'file_url'        => $filePath,
             'metadata'    => json_encode($metadata),
             'uploaded_by' => auth()->id(),
         ]);
 
         return redirect()->back()->with('success', 'Item berhasil ditambahkan!');
-    }
-
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        $item = LibraryItem::findOrFail($id);
-        return response()->json([
-            'item' => $item
-        ], 200);
     }
 
     /**
@@ -105,7 +92,7 @@ class LibraryItemController extends Controller
             'description' => 'sometimes|required|string',
             'category'    => 'sometimes|required|string',
             'province_id' => 'sometimes|required|exists:provinces,id',
-            'file'        => 'nullable|file|mimes:jpg,jpeg,png,mp4,mov,webm|max:51200', // support image & video
+            'file'        => 'nullable|file|mimes:jpg,jpeg,png,pdf,mp3,mp4,mov,webm|max:51200',
             'file_url'    => 'nullable|url',
             'metadata'    => 'nullable|json'
         ]);
@@ -114,36 +101,37 @@ class LibraryItemController extends Controller
             return redirect()->back()->withErrors($vld)->withInput();
         }
 
-        // Ambil metadata lama
         $metadata = $item->metadata ? json_decode($item->metadata, true) : [];
 
-        // Merge metadata manual dari textarea
+        // Merge metadata manual
         if ($request->metadata) {
             $metadata = array_merge($metadata, json_decode($request->metadata, true) ?? []);
         }
 
-        // Jika upload file baru
+        // Upload file baru
         if ($request->hasFile('file')) {
-            if ($item->file_url && str_starts_with($item->file_url, '/storage/')) {
-                $oldPath = str_replace('/storage/', '', $item->file_url);
+            if ($item->file && str_starts_with($item->file, '/storage/')) {
+                $oldPath = str_replace('/storage/', '', $item->file);
                 Storage::disk('public')->delete($oldPath);
             }
 
             $file     = $request->file('file');
             $path     = $file->store('library_items', 'public');
-            $fileUrl  = Storage::url($path);
+            $filePath = Storage::url($path);
 
             $metadata['file_name']   = $file->getClientOriginalName();
-            $metadata['file_type']   = $file->getClientMimeType();
+            $metadata['mime']        = $file->getClientMimeType();
             $metadata['file_size']   = $file->getSize();
+            $metadata['file_type']   = $file->getClientOriginalExtension();
             $metadata['updated_at']  = now()->toDateTimeString();
 
-            $item->file_url = $fileUrl;
+            $item->file = $filePath;
         } elseif ($request->file_url) {
-            $item->file_url = $request->file_url;
+            $item->file = $request->file_url;
 
             $metadata['file_name']   = basename($request->file_url);
-            $metadata['file_type']   = 'external_url';
+            $metadata['mime']        = 'external_url';
+            $metadata['file_type']   = pathinfo($request->file_url, PATHINFO_EXTENSION) ?: 'url';
             $metadata['updated_at']  = now()->toDateTimeString();
         }
 
@@ -154,7 +142,6 @@ class LibraryItemController extends Controller
 
         return redirect()->back()->with('success', 'Item berhasil diperbarui!');
     }
-
 
     /**
      * Remove the specified resource from storage.
@@ -172,22 +159,22 @@ class LibraryItemController extends Controller
             return redirect()->back()->with('error', 'Tidak punya akses untuk menghapus!');
         }
 
-        // Hapus file dari storage jika memang file upload lokal
-        if ($item->file_url && str_starts_with($item->file_url, '/storage/')) {
-            $oldPath = str_replace('/storage/', '', $item->file_url);
+        // Hapus file fisik jika ada
+        if ($item->file && str_starts_with($item->file, '/storage/')) {
+            $oldPath = str_replace('/storage/', '', $item->file);
             Storage::disk('public')->delete($oldPath);
         }
 
-        // Update metadata sebelum dihapus (opsional, jika soft delete)
+        // Simpan metadata deleted_at sebelum dihapus
         $metadata = $item->metadata ? json_decode($item->metadata, true) : [];
         $metadata['deleted_at'] = now()->toDateTimeString();
         $item->metadata = json_encode($metadata);
 
-        // Kalau pakai soft delete
+        // Jika soft delete aktif
         $item->save();
         $item->delete();
 
-        // Kalau hard delete
+        // Jika hard delete
         // $item->delete();
 
         return redirect()->back()->with('success', 'Item berhasil dihapus!');
