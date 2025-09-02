@@ -4,77 +4,82 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    public function register(Request $request) {
+    public function showRegisterForm()
+    {
+        return view('auth.register');
+    }
+
+    public function register(Request $request)
+    {
         $vld = Validator::make($request->all(), [
             'name' => 'required',
-            'email' => 'required|unique:users,email',
-            'password' => 'required|min:6',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6|confirmed', // use password_confirmation field
         ]);
 
-        if($vld->fails()) {
-            return response()->json([
-                'message' => 'Invalid field',
-                'errors' => $vld->messages()
-            ], 422);
+        if ($vld->fails()) {
+            return redirect()->back()
+                ->withErrors($vld)
+                ->withInput();
         }
 
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
+            'name'     => $request->name,
+            'email'    => $request->email,
             'password' => Hash::make($request->password),
-            'role' => 'user',
-            'status' => 'active'
+            'role'     => 'user',
+            'status'   => 'active',
         ]);
 
-        $token = $user->createToken('userToken')->plainTextToken;
+        Auth::login($user);
 
-        return response()->json([
-            'message' => 'register success',
-            'token' => $token,
-            'user' => $user
-        ], 201);
-        
+        return redirect()->route('dashboard')
+            ->with('success', 'Registration successful! Welcome, ' . $user->name);
     }
 
-    public function login(Request $request) {
+    public function showLoginForm()
+    {
+        return view('auth.login');
+    }
+
+    public function login(Request $request)
+    {
         $vld = Validator::make($request->all(), [
-            'email' => 'required',
-            'password' => 'required'
-        ]); 
+            'email'    => 'required|email',
+            'password' => 'required',
+        ]);
 
-        if($vld->fails()) {
-            return response()->json([
-                'message' => 'Invalid field',
-                'error' => $vld->messages()
-            ], 422);
+        if ($vld->fails()) {
+            return redirect()->back()
+                ->withErrors($vld)
+                ->withInput();
         }
 
-        $user = User::where('email', $request->email)->first();
-        if(!$user || ! Hash::check($request->password, $user->password)){
-            return response()->json([
-                'message' => 'Wrong email or password'
-            ], 401);
+        $credentials = $request->only('email', 'password');
+
+        if (!Auth::attempt($credentials)) {
+            return redirect()->back()
+                ->withErrors(['email' => 'Invalid credentials.'])
+                ->withInput();
         }
 
-        $token = $user->createToken('myToken')->plainTextToken;
-
-        return response()->json([
-            'message' => 'login success',
-            'token' => $token,
-            'user' => $user
-        ], 200);
+        return redirect()->route('dashboard')
+            ->with('success', 'Login successful!');
     }
 
-    public function logout(Request $request){
-        $user = $request->user();
-        $user->currentAccessToken()->delete();
-        return response()->json([
-            'message' => 'Logout Success'
-        ], 200);
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login')
+            ->with('success', 'Logged out successfully!');
     }
 }

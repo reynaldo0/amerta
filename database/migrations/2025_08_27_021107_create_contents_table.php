@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('body');
+            $table->string('slug');
             $table->enum('type', ['artikel', 'quiz', 'poster', 'event', 'map_asset', 'submission']);
             $table->foreignId('author_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();

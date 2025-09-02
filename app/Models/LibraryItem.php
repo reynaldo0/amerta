@@ -14,10 +14,12 @@ class LibraryItem extends Model
 
     protected $fillable = [
         'title',
+        'description',
         'file_url',
         'category',
         'metadata',
         'uploaded_by',
+        'province_id',
     ];
 
     public function uploader()
