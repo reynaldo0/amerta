@@ -23,41 +23,21 @@ const CanvasPage = () => {
   const positionX = windowWidth < 768 ? -0.1 : 0;
 
   return (
-    <section className="relative py-10 px-5">
-      <div className="text-center mb-8">
-        <p
-          className="text-primary mb-4 text-xl md:text-2xl"
-          data-aos="fade-up"
-          data-aos-duration="900"
+    <section className="relative flex justify-center items-center py-10">
+      <div style={{ maxWidth: canvasWidth }} className="relative w-full">
+        <Canvas
+          shadows
+          camera={{ position: [0, 1, 3], fov: 45 }}
+          style={{ height: canvasHeight }}
         >
-          Jelajahi Budaya Nusantara dalam 3D
-        </p>
-        <p
-          className="font-bold text-4xl md:text-6xl"
-          data-aos="fade-up"
-          data-aos-duration="1100"
-        >
-          Buku Budaya Interaktif
-        </p>
-      </div>
+          <group position={[positionX, 0, 0]}>
+            <Suspense fallback={null}>
+              <Experience />
+            </Suspense>
+          </group>
+        </Canvas>
 
-      <div className="relative">
-        <div
-          className="relative mx-auto w-full"
-          style={{ maxWidth: canvasWidth }}
-        >
-          <Canvas
-            shadows
-            camera={{ position: [0, 1, 3], fov: 45 }}
-            style={{ height: canvasHeight }}
-          >
-            <group position={[positionX, 0, 0]}>
-              <Suspense fallback={null}>
-                <Experience />
-              </Suspense>
-            </group>
-          </Canvas>
-        </div>
+        {/* UI Overlay (button halaman, dsb) */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <UI />
         </div>

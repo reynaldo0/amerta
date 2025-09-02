@@ -188,8 +188,8 @@ const Form = () => {
               src="/illustrasi/form.png"
               draggable="false"
               alt="Tari Nusantara"
-              className="w-80 md:w-[600px] h-auto object-contain"
-            />
+              className="w-80 md:w-[600px] h-auto object-contain animate-float hover:scale-105 transition-transform duration-300 hover:rotate-10 hover:translate-y-1"
+            /> 
           </div>
           <div className="absolute top-4 left-4">
             <div className="w-6 h-6 border-[2px] border-gray-400 rounded-full"></div>
