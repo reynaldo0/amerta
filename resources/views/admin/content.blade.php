@@ -17,6 +17,21 @@
             </button>
         </div>
 
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 animate__animated animate__fadeInDown animate__faster"
+                    role="alert">
+                    <span class="font-medium">{{ $error }}</span>
+                </div>
+            @endforeach
+        @endif
+        @if (session('success'))
+            <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 animate__animated animate__fadeInDown animate__faster"
+                role="alert">
+                <span class="font-medium">Sukses!</span> {{ session('success') }}
+            </div>
+        @endif
+
         <!-- Stats Cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-6 rounded-2xl text-white">

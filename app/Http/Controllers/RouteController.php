@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class RouteController extends Controller
 {
+    public function dashboard() {
+        return view('admin.dashboard');
+    }
+
     public function content() {
         $contents = Content::latest()->paginate(10);
         $total = Content::all()->count();

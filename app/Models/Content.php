@@ -16,6 +16,7 @@ class Content extends Model
         'title',
         'body',
         'type',
+        'slug',
         'author_id',
         'status',
         'updated_at'

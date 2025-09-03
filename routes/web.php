@@ -18,8 +18,9 @@ Route::controller(AuthController::class)->group(function() {
 
 Route::middleware('auth')->group(function() {
     Route::controller(RouteController::class)->group(function() {
-        Route::get('/contents', 'content');
-        Route::get('/items', 'item');
+        Route::get('/admin/dashboard', 'dashboard');
+        Route::get('/admin/contents', 'content');
+        Route::get('/admin/items', 'item');
     });
 
     Route::controller(ContentController::class)->group(function() {

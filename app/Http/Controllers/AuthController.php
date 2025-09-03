@@ -39,7 +39,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('dashboard')
+        return view('admin.dashboard')
             ->with('success', 'Registration successful! Welcome, ' . $user->name);
     }
 
@@ -69,7 +69,7 @@ class AuthController extends Controller
                 ->withInput();
         }
 
-        return redirect()->route('dashboard')
+        return view('admin.dashboard')
             ->with('success', 'Login successful!');
     }
 

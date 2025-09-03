@@ -100,7 +100,7 @@
                 <!-- Dashboard -->
                 <li>
                     <a href="/admin/dashboard"
-                        class="flex items-center p-3 text-gray-700 rounded-xl hover:bg-amerta-primary/10 hover:text-amerta-primary transition-all duration-200 group">
+                        class="flex items-center p-3 text-gray-700 rounded-xl hover:bg-amerta-primary/10 hover:text-amerta-secondary transition-all duration-200 group">
                         <i class="fas fa-chart-pie text-lg w-5"></i>
                         <span class="ml-4">Dashboard</span>
                     </a>
@@ -109,7 +109,7 @@
                 <!-- Inbox -->
                 <li>
                     <a href="/admin/inbox"
-                        class="flex items-center p-3 text-gray-700 rounded-xl hover:bg-amerta-primary/10 hover:text-amerta-primary transition-all duration-200 group">
+                        class="flex items-center p-3 text-gray-700 rounded-xl hover:bg-amerta-primary/10 hover:text-amerta-secondary transition-all duration-200 group">
                         <i class="fas fa-inbox text-lg w-5"></i>
                         <span class="ml-4">Pesan Masuk</span>
                         <span class="ml-auto bg-red-500 text-white text-xs rounded-full px-2 py-1">3</span>
@@ -122,24 +122,16 @@
                 </li>
                 
                 <li>
-                    <a href="/admin/activity"
-                        class="flex items-center p-3 text-gray-700 rounded-xl hover:bg-amerta-primary/10 hover:text-amerta-primary transition-all duration-200 group">
+                    <a href="/admin/contents"
+                        class="flex items-center p-3 text-gray-700 rounded-xl hover:bg-amerta-primary/10 hover:text-amerta-secondary transition-all duration-200 group">
                         <i class="fas fa-calendar-alt text-lg w-5"></i>
-                        <span class="ml-4">Kegiatan</span>
+                        <span class="ml-4">Content</span>
                     </a>
                 </li>
                 
                 <li>
-                    <a href="/admin/services"
-                        class="flex items-center p-3 text-gray-700 rounded-xl hover:bg-amerta-primary/10 hover:text-amerta-primary transition-all duration-200 group">
-                        <i class="fas fa-hands-helping text-lg w-5"></i>
-                        <span class="ml-4">Layanan</span>
-                    </a>
-                </li>
-                
-                <li>
-                    <a href="/admin/gallery"
-                        class="flex items-center p-3 text-gray-700 rounded-xl hover:bg-amerta-primary/10 hover:text-amerta-primary transition-all duration-200 group">
+                    <a href="/admin/items"
+                        class="flex items-center p-3 text-gray-700 rounded-xl hover:bg-amerta-primary/10 hover:text-amerta-secondary transition-all duration-200 group">
                         <i class="fas fa-images text-lg w-5"></i>
                         <span class="ml-4">Galeri Budaya</span>
                     </a>

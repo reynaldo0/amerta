@@ -49,19 +49,23 @@ class ContentController extends Controller
                 ->withInput();
         }
 
-        $data = $vld->validated();
-        $data['author_id'] = Auth::user()->id;
+        $user_id = Auth::user()->id;
 
         // Generate unique slug
-        $slug = Str::slug($data['title']);
+        $slug = Str::slug($request->title);
         $originalSlug = $slug;
         $i = 1;
         while (\App\Models\Content::where('slug', $slug)->exists()) {
             $slug = $originalSlug . '-' . $i++;
         }
-        $data['slug'] = $slug;
-
-        Content::create($data);
+        
+        Content::create([
+            'title' => $request->title,
+            'body' => $request->body,
+            'type' => $request->type,
+            'slug' => $slug,
+            'author_id' => $user_id
+        ]);
 
         return redirect()->back()
             ->with('success', 'Content created successfully!');
