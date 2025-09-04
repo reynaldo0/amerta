@@ -9,7 +9,6 @@ import Papua from "./pages/culture/Papua";
 import Sulawesi from "./pages/culture/Sulawesi";
 import Sumatera from "./pages/culture/Sumatera";
 import Home from "./pages/Home";
-import Quiz from "./pages/Quiz";
 
 function App() {
   return (
@@ -21,7 +20,6 @@ function App() {
         <Route path="/tentang" element={<About />} />
         <Route path="/komunitas" element={<Comunity />} />
         <Route path="/budaya" element={<Culture />} />
-        <Route path="/kuis" element={<Quiz />} />
         <Route path="/budaya-sumatera" element={<Sumatera />} />
         <Route path="/budaya-jawa" element={<Jawa />} />
         <Route path="/budaya-kalimantan" element={<Kalimantan />} />

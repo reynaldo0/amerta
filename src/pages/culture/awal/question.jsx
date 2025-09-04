@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import Star from "/illustrasi/star.svg"; // Pastikan path benar
 import Cross from "/illustrasi/salah.svg"; // Atau buat ikon khusus untuk 0 skor
-import questions from "../../docs/questionData";
+import questions from "../../../docs/questionData";
 
 const Questions = () => {
   const [current, setCurrent] = useState(0);

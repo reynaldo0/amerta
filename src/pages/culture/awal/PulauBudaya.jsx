@@ -40,12 +40,10 @@ function TiltCard({ island }) {
     const card = cardRef.current;
     const rect = card.getBoundingClientRect();
 
-    // posisi kursor relatif ke card
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    // normalisasi -0.5 sampai 0.5
-    const rotateY = (x / rect.width - 0.5) * 20; // max 20 derajat
+    const rotateY = (x / rect.width - 0.5) * 20;
     const rotateX = (y / rect.height - 0.5) * -20;
 
     card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
@@ -62,14 +60,15 @@ function TiltCard({ island }) {
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative group p-6 bg-white rounded-2xl shadow-md border border-gray-200 overflow-hidden transition-transform duration-300"
+      className="relative group p-6 bg-white rounded-2xl shadow-md border border-gray-200 overflow-hidden transition-transform duration-300 
+      animate-fadeUpSlow"
     >
       {/* Background Image */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <img
           src={island.image}
           alt={island.name}
-          className="w-3/4 opacity-20 group-hover:opacity-20 transition duration-500 object-contain"
+          className="w-3/4 opacity-20 group-hover:opacity-20 transition duration-500 object-contain animate-float"
         />
       </div>
 
@@ -92,11 +91,12 @@ function TiltCard({ island }) {
   );
 }
 
+
 export default function Budaya() {
   return (
     <section
       id="pulau"
-      className="bg-primary-100 relative min-h-screen"
+      className="bg-primary-100 relative min-h-screen pb-20"
     >
       <img
         src="/wave/map.png"

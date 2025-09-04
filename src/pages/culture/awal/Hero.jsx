@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Suspense, useMemo } from "react";
 import { Canvas } from "@react-three/fiber";
-import { Experience } from "../../components/models/Experience";
+import { Experience } from "../../../components/models/Experience";
 import { Html, useProgress } from "@react-three/drei";
 
 // Loader Component
