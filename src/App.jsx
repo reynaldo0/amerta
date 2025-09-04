@@ -9,7 +9,7 @@ import Papua from "./pages/culture/Papua";
 import Sulawesi from "./pages/culture/Sulawesi";
 import Sumatera from "./pages/culture/Sumatera";
 import Home from "./pages/Home";
-import Article from "./pages/article";
+import Article from "./pages/Article";
 import ArticleDetail from "./pages/artikel/ArticleDetail";
 
 function App() {
