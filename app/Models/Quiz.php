@@ -12,8 +12,20 @@ class Quiz extends Model
 
     protected $table = 'quizzes';
 
-    protected $fillable = [        
+    protected $fillable = [
+        'content_id',
+        'created_by'
     ];
+
+    // <-- tambahkan ini
+    protected $casts = [
+        'options' => 'array',
+        'correct_answer' => 'integer', // opsional tapi recommended
+    ];
+
+    public function questions() {
+        return $this->hasMany(Question::class, 'quiz_id');
+    }
 
     public function creator()
     {

@@ -4,6 +4,7 @@ use App\Http\Controllers\ContentController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LibraryItemController;
 use App\Http\Controllers\RouteController;
+use App\Http\Controllers\QuizController;
 use App\Models\LibraryItem;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,7 @@ Route::middleware('auth')->group(function() {
         Route::get('/admin/dashboard', 'dashboard');
         Route::get('/admin/contents', 'content');
         Route::get('/admin/items', 'item');
+        Route::get('/admin/quizzes', 'quiz');
     });
 
     Route::controller(ContentController::class)->group(function() {
@@ -31,5 +33,10 @@ Route::middleware('auth')->group(function() {
     Route::controller(LibraryItemController::class)->group(function() {
         Route::post('/create/item', 'store');
         Route::delete('/item/{id}', 'destroy');
+    });
+
+    Route::controller(QuizController::class)->group(function() {
+        Route::post('/create/quiz', 'store');
+        Route::delete('/quiz/{id}', 'destroy');
     });
 });

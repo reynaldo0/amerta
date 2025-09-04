@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Content;
 use App\Models\LibraryItem;
 use App\Models\Province;
+use App\Models\Quiz;
 use Illuminate\Http\Request;
 
 class RouteController extends Controller
@@ -33,6 +34,15 @@ class RouteController extends Controller
         return view('admin.item')->with([
             'items' => $items,
             'provinces' => $prov
+        ]);
+    }
+
+    public function quiz() {
+        $quizzes = Quiz::latest()->get();
+        $quiz = Content::where('type', 'quiz')->get();
+        return view('admin.quiz')->with([
+            'quiz' => $quiz,
+            'quizzes' => $quizzes,
         ]);
     }
 }

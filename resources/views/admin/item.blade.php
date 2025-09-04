@@ -531,18 +531,17 @@
                     <i class="fas fa-exclamation-triangle text-red-600 text-2xl"></i>
                 </div>
                 <h3 class="text-lg font-semibold text-gray-800 mb-2">Hapus Item?</h3>
-                <p class="text-gray-600 mb-6">Apakah Anda yakin ingin menghapus item ini?</p>
-
+                <p class="text-gray-600 mb-6">Apakah Anda yakin ingin menghapus item ini? File dan data tidak dapat
+                    dikembalikan.</p>
                 <div class="flex items-center justify-center space-x-3">
                     <button id="cancel-delete-item"
                         class="px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
                         Batal
                     </button>
-
                     <form id="delete-item-form" method="POST" action="" style="display:inline;">
                         @csrf
                         @method('DELETE')
-                        <button id="confirm-delete" type="submit"
+                        <button id="confirm-delete"
                             class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors">
                             Ya, Hapus
                         </button>
@@ -551,7 +550,6 @@
             </div>
         </div>
     </div>
-
 
     <!-- Preview Modal -->
     <div id="preview-modal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-90 flex items-center justify-center p-4">
@@ -808,14 +806,14 @@
             btn.addEventListener('click', function() {
                 deleteId = btn.getAttribute('data-id');
                 // Set form action dynamically if you use a form for delete
-                document.getElementById('delete-item-form').action = '/item/' + deleteId;
+                document.getElementById('delete-item-form').action = '/items/' + deleteId;
                 deleteItemModal.classList.remove('hidden');
             });
         });
         document.getElementById('confirm-delete-item').addEventListener('click', function() {
             if (deleteId) {
                 // Submit delete via form or AJAX
-                window.location.href = '/item/' + deleteId;
+                window.location.href = '/items/' + deleteId;
             }
         });
 
