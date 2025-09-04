@@ -99,7 +99,7 @@ export default function Budaya() {
       className="bg-primary-100 relative min-h-screen pb-20"
     >
       <img
-        src="/wave/map.png"
+        src="/wave/map2.png"
         alt="Wave"
         className="w-full h-full object-cover will-change-transform"
       />

@@ -10,7 +10,6 @@ function Loader() {
     <Html center>
       <div className="flex flex-col items-center justify-center text-white">
         <div className="w-12 h-12 border-4 border-t-transparent border-secondary-300 rounded-full animate-spin mb-4"></div>
-        <p className="text-lg font-semibold text-primary-200 animate-bounce">{progress.toFixed(0)}%</p>
         <span className="text-sm text-primary-200 animate-pulse">Loading</span>
       </div>
     </Html>
@@ -94,9 +93,10 @@ export default function Hero() {
             style={{ maxWidth: canvasSize.width }}
           >
             <Canvas
-              shadows
+              shadows={false}
               camera={{ position: [0, 1, 3], fov: 45 }}
               style={{ height: canvasSize.height }}
+              dpr={[1, 1.5]}
             >
               <Suspense fallback={<Loader />}>
                 <group position={[canvasSize.posX, 0, 0]}>

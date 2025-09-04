@@ -173,19 +173,28 @@ const Events = () => {
   };
 
   return (
-    <section className="py-16 md:px-10 relative w-full min-h-screen" id="events">
+    <section className="relative w-full min-h-screen bg-primary-200" id="events">
       {/* inject custom styles for animation */}
       <style>{styles}</style>
 
       <div
-        className="absolute inset-0 bg-[url('/wave/bg.svg')] bg-cover bg-center opacity-10"
+        className="absolute inset-0 bg-[url('/wave/komunitas.png')] bg-cover bg-center opacity-10"
         style={{ backgroundAttachment: "fixed" }}
       />
-      <div className="container mx-auto px-6 relative">
-        <h2 className="text-3xl md:text-4xl font-bold text text-center mb-8">
+      <div
+        className="absolute inset-0 bg-[url('/wave/komunitas.png')] bg-cover bg-center opacity-10"
+        style={{ backgroundAttachment: "fixed" }}
+      />
+      <img
+        src="/wave/map2.png"
+        alt="Wave"
+        className="w-full h-full object-cover will-change-transform"
+      />
+      <div className="container mx-auto px-6 relative py-16 md:px-10">
+        <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-8">
           Acara Komunitas Teknologi Hijau
         </h2>
-        <p className="text-lg text-center text-gray-700 mb-12 md:px-32">
+        <p className="text-lg text-center text-gray-200 mb-12 md:px-32">
           Ikuti berbagai acara komunitas kami untuk memperluas pengetahuan dan
           terhubung dengan orang-orang yang memiliki visi yang sama dalam
           teknologi hijau.
