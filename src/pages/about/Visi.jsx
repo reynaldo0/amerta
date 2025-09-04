@@ -6,23 +6,26 @@ export default function VisiMisi() {
     "Meningkatkan kolaborasi untuk inovasi dan solusi nyata.",
     "Mendorong kepedulian sosial dan keberlanjutan lingkungan.",
     "Menciptakan platform edukasi dan pengembangan diri.",
+    "Mendorong kepedulian sosial dan keberlanjutan lingkungan.",
+    "Menciptakan platform edukasi dan pengembangan diri.",
   ];
 
   return (
     <section className="relative bg-primary-100 text-white min-h-screen overflow-hidden">
+     {/* Background Parallax */}
       <div
-        className="absolute inset-0 bg-[url('/wave/bg-about.png')] bg-cover bg-center opacity-10 will-change-transform"
+        className="absolute inset-0 bg-[url('/wave/aboutw.png')] bg-cover bg-center opacity-10"
         style={{ backgroundAttachment: "fixed" }}
       />
       <img
-        src="/wave/map.png"
+        src="/wave/map2.png"
         alt="Wave"
         className="hidden md:block w-full h-full object-cover will-change-transform"
       />
-      <div className="">
-        <h2 className="text-4xl md:text-6xl mb-10 font-bold text-white text-center tracking-tight will-change-transform">
+        <h2 className="text-2xl md:text-5xl mb-10 font-bold text-white text-center tracking-tight will-change-transform">
           Jelajahi Kekayaan Budaya Nusantara
         </h2>
+      <div className="py-24">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center ">
           {/* Visi */}
           <div className="space-y-6 animate-slideInLeft">
@@ -47,7 +50,7 @@ export default function VisiMisi() {
                   key={idx}
                   className="relative p-6 rounded-2xl shadow-lg hover:scale-105 transform transition duration-300 
              border border-gray-700 hover:border-secondary-200 
-             bg-white/10 backdrop-blur-lg"
+             bg-secondary-300/40 backdrop-blur-lg"
                 >
                   {/* Nomor di kanan atas */}
                   <div className="absolute -top-3 -right-3 w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-r from-secondary-200 to-secondary-400 text-white font-bold shadow-lg">

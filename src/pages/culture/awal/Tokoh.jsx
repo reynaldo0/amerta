@@ -12,10 +12,10 @@ export default function Tokoh() {
       <img
         src="/wave/tokoh.png"
         alt="Wave"
-        className="hidden opacity-90 md:block w-full h-full object-cover will-change-transform"
+        className="hidden md:block w-full h-full object-cover will-change-transform"
       />
       <div
-        className="absolute inset-0 bg-[url('/wave/budaya.png')] bg-cover bg-center opacity-10 will-change-transform"
+        className="absolute inset-0 bg-[url('/wave/budaya.png')] bg-cover bg-center opacity-10"
         style={{ backgroundAttachment: "fixed" }}
       />
       <h2 className="text-4xl md:text-5xl font-extrabold text-center text-primary-200 tracking-tight">

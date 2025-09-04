@@ -13,7 +13,6 @@ const Peta = () => {
         style={{ backgroundAttachment: "fixed" }}
       />
 
-
       {/* Pesawat */}
       <div className="absolute top-30 left-0 w-full z-30 pointer-events-none">
         <img

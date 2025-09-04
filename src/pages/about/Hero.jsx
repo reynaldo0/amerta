@@ -36,7 +36,7 @@ const HeroAbout = () => {
       id="about"
     >
       <div
-        className="absolute inset-0 bg-[url('/wave/bg-about.png')] bg-cover bg-center opacity-10 will-change-transform"
+        className="absolute inset-0 bg-[url('/wave/about.png')] bg-cover bg-center opacity-10"
         style={{ backgroundAttachment: "fixed" }}
       />
       {/* Left Section */}

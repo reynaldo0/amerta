@@ -2,14 +2,19 @@ import React from "react";
 
 export default function HeroCommunity() {
   return (
-    <section className="w-full bg-gradient-to-br from-gray-50 to-gray-100 py-20">
+    <section className="w-full bg-white py-20">
+      {/* Background Parallax */}
+      <div
+        className="absolute inset-0 bg-[url('/wave/komunitas.png')] bg-cover bg-center opacity-10"
+        style={{ backgroundAttachment: "fixed" }}
+      />
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-6">
         {/* Left: Image */}
         <div className="relative group">
           <img
-            src="/illustrasi/wayang.png"
+            src="/illustrasi/komunitas.png"
             alt="Komunitas Budaya"
-            className="rounded-3xl shadow-2xl w-full object-cover transform group-hover:scale-105 transition duration-500"
+            className="rounded-3xl shadow-2xl bg-primary-200 w-full object-cover transform group-hover:scale-105 transition duration-500"
           />
           {/* Overlay effect */}
           <div className="absolute inset-0 bg-gradient-to-tr from-black/40 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition duration-500"></div>

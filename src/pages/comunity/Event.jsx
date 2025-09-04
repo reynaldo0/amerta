@@ -22,7 +22,7 @@ const events = [
     location: "Bandung, Indonesia",
     description:
       "Diskusikan inovasi teknologi ramah lingkungan dalam konferensi tahunan ini. Dampak positif terhadap masa depan dibahas.",
-  }
+  },
 ];
 
 // Modal Component
@@ -39,7 +39,7 @@ const Modal = ({ event, isOpen, onClose }) => {
     <div
       id="modalOverlay"
       onClick={handleOutsideClick}
-      className="fixed inset-0 bg-black/30 backdrop-blur-md flex items-center justify-center z-50 transition-opacity duration-300 animate-fadeIn"
+      className="fixed inset-0 bg-black/30 backdrop-blur-md flex items-center justify-center z-[9999] transition-opacity duration-300 animate-fadeIn"
     >
       <div className="bg-white/90 backdrop-blur-lg w-full max-w-lg p-6 rounded-2xl shadow-2xl relative transform transition-all duration-300 scale-95 opacity-0 animate-zoomIn">
         <button
@@ -149,7 +149,7 @@ const RegistrationForm = () => {
       />
       <button
         type="submit"
-        className="w-full bg-primary-300 text-white rounded-lg py-2 hover:bg-primary-400 transition-all"
+        className="w-full bg-primary-300 cursor-pointer text-white rounded-lg py-2 hover:bg-primary-400 transition-all"
       >
         Daftar Sekarang
       </button>
@@ -173,11 +173,15 @@ const Events = () => {
   };
 
   return (
-    <section className="py-16 md:px-10" id="events">
+    <section className="py-16 md:px-10 relative w-full min-h-screen" id="events">
       {/* inject custom styles for animation */}
       <style>{styles}</style>
 
-      <div className="container mx-auto px-6">
+      <div
+        className="absolute inset-0 bg-[url('/wave/bg.svg')] bg-cover bg-center opacity-10"
+        style={{ backgroundAttachment: "fixed" }}
+      />
+      <div className="container mx-auto px-6 relative">
         <h2 className="text-3xl md:text-4xl font-bold text text-center mb-8">
           Acara Komunitas Teknologi Hijau
         </h2>
@@ -205,7 +209,7 @@ const Events = () => {
               <p className="text-gray-700 mt-3">{event.description}</p>
               <button
                 onClick={() => openModal(event)}
-                className="mt-4 bg-primary-300 py-2 px-4 hover:bg-primary-400 rounded-xl text-white font-medium transition-all"
+                className="mt-4 bg-primary-300 cursor-pointer py-2 px-4 hover:bg-primary-400 rounded-xl text-white font-medium transition-all"
               >
                 Daftar Sekarang
               </button>
