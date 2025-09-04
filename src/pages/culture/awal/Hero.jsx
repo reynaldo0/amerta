@@ -1,11 +1,10 @@
 import React, { useState, useEffect, Suspense, useMemo } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Experience } from "../../../components/models/Experience";
-import { Html, useProgress } from "@react-three/drei";
+import { Html } from "@react-three/drei";
 
 // Loader Component
 function Loader() {
-  const { progress } = useProgress();
   return (
     <Html center>
       <div className="flex flex-col items-center justify-center text-white">

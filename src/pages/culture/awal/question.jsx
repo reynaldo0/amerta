@@ -88,8 +88,12 @@ const Questions = () => {
       <audio ref={wrongSound} src="/sound/salah.mp3" />
       <audio ref={resultSound} src="/sound/score.mp3" />
 
-      <section className="min-h-screen justify-center bg-[url('/illustrator/quiz.png')] bg-cover bg-center">
-        <div className="max-w-5xl pt-28 md:pt-32 mx-auto p-4">
+      <section className="min-h-screen justify-center relative bg-cover bg-center">
+        <div
+          className="absolute inset-0 bg-[url('/wave/budaya.png')] bg-cover bg-center opacity-10"
+          style={{ backgroundAttachment: "fixed" }}
+        />
+        <div className="max-w-5xl pt-28 md:pt-32 mx-auto p-4 relative z-10">
           <h1 className="text-3xl md:text-4xl font-bold text-center text-primary-200 mb-6">
             Kuis Budaya Nusantara
           </h1>
@@ -153,11 +157,7 @@ const Questions = () => {
                       />
                     )}
                     {selected !== null && isSelected && !isCorrect && (
-                      <img
-                        src="/illustrasi/salah.svg"
-                        alt="Salah"
-                        width={20}
-                      />
+                      <img src="/illustrasi/salah.svg" alt="Salah" width={20} />
                     )}
                   </button>
                 );

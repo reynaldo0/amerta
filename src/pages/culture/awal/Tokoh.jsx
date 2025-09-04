@@ -19,7 +19,7 @@ export default function Tokoh() {
         style={{ backgroundAttachment: "fixed" }}
       />
       <h2 className="text-4xl md:text-5xl font-extrabold text-center text-primary-200 tracking-tight">
-        Lorem Ipsum
+        Tokoh Budaya Nusantara
       </h2>
 
       <div className="flex items-center justify-center py-24 relative">
