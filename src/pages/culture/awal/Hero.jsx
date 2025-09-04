@@ -86,7 +86,7 @@ export default function Hero() {
         </div>
 
         {/* 3D Object */}
-        <div className="flex-1 flex justify-center relative w-full">
+        <div className="flex-1 flex justify-center relative w-full pt-20 md:pt-0">
           <div
             className="relative w-full max-w-full"
             style={{ maxWidth: canvasSize.width }}
