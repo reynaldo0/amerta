@@ -10,6 +10,7 @@ import Sulawesi from "./pages/culture/Sulawesi";
 import Sumatera from "./pages/culture/Sumatera";
 import Home from "./pages/Home";
 import Article from "./pages/article";
+import ArticleDetail from "./pages/artikel/ArticleDetail";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/beranda" element={<Home />} />
         <Route path="/tentang" element={<About />} />
         <Route path="/artikel" element={<Article />} />
+        <Route path="/artikel/:id" element={<ArticleDetail />} />
         <Route path="/komunitas" element={<Comunity />} />
         <Route path="/budaya" element={<Culture />} />
         <Route path="/budaya-sumatera" element={<Sumatera />} />
