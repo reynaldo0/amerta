@@ -31,16 +31,12 @@ export default function TujuanSection() {
   ];
 
   return (
-    <section className="relative bg-white py-20 px-6 overflow-hidden">
+    <section className="relative bg-white py-24 px-6 overflow-hidden min-h-screen">
       {/* Background Parallax */}
       <div
         className="absolute inset-0 bg-[url('/wave/about.png')] bg-cover bg-center opacity-10"
         style={{ backgroundAttachment: "fixed" }}
       />
-      {/* Background dekorasi */}
-      <div className="absolute -top-20 -left-20 w-72 h-72 bg-brown-400/20 rounded-full blur-3xl"></div>
-      <div className="absolute -bottom-20 -right-20 w-72 h-72 bg-yellow-300/20 rounded-full blur-3xl"></div>
-
       <div className="max-w-6xl mx-auto text-center relative z-10">
         <h2 className="text-4xl md:text-5xl font-extrabold text-primary-200 mb-4 tracking-tight">
           Tujuan Kami
@@ -71,8 +67,6 @@ export default function TujuanSection() {
             {/* Desc */}
             <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
 
-            {/* Accent line */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 group-hover:w-2/3 h-1 bg-brown-500 rounded-full transition-all duration-300"></div>
           </div>
         ))}
       </div>
