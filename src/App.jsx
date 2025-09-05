@@ -11,6 +11,7 @@ import Sumatera from "./pages/culture/Sumatera";
 import Home from "./pages/Home";
 import Article from "./pages/Article";
 import ArticleDetail from "./pages/artikel/ArticleDetail";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/budaya-sulawesi" element={<Sulawesi />} />
         <Route path="/budaya-papua" element={<Papua />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

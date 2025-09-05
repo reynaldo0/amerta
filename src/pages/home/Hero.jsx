@@ -40,6 +40,29 @@ export default function Hero() {
 
   return (
     <section className="relative h-screen w-full bg-white overflow-hidden">
+      <div className="hidden sm:block absolute top-30 right-10 rounded-3xl overflow-hidden transform scale-95 blur-sm opacity-60 transition-all duration-500 hover:translate-x-1 hover:translate-y-1">
+        <img
+          src="/logo.png"
+          alt="Amerta"
+          className="w-full h-full object-cover animate-float"
+        />
+      </div>
+      <div className="hidden sm:block absolute top-30 left-10 rounded-3xl overflow-hidden transform scale-95 blur-sm opacity-60 transition-all duration-500 hover:translate-x-1 hover:translate-y-1">
+        <img
+          src="/indonesia.png"
+          alt="Peta Indonesia"
+          className="w-full h-52 object-cover animate-float"
+        />
+      </div>
+
+      {/* Mobile */}
+      <div className="flex -top-90 sm:hidden absolute inset-0 justify-center items-center transform scale-95 blur-sm opacity-60">
+        <img
+          src="/logo.png"
+          alt="Budaya Sumatera 1"
+          className="w-32 h-32 object-cover animate-float"
+        />
+      </div>
       {/* Background */}
       <div
         className="absolute inset-0 bg-[url('/wave/bg.svg')] bg-cover bg-center opacity-10 will-change-transform"
@@ -60,9 +83,14 @@ export default function Hero() {
         className="relative z-10 flex flex-col justify-center items-center h-full text-center px-4 will-change-transform"
         style={{ transform: `translateY(${smoothOffsetY * 0.3}px)` }}
       >
-        <h1 className="text-5xl md:text-6xl text-primary-100 font-extrabold tracking-wide">
+        <h1
+          className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-wider 
+               bg-gradient-to-r from-primary-200 via-primary-300 to-primary-200 
+               bg-clip-text text-transparent drop-shadow-lg md:pb-3"
+        >
           Keindahan Budaya Nusantara
         </h1>
+
         <p className="mt-6 text-lg md:text-2xl text-primary-100 max-w-2xl">
           Menyelami ragam budaya dan tradisi yang membentuk identitas bangsa.
         </p>

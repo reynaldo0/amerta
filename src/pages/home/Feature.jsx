@@ -110,6 +110,14 @@ export default function Features() {
   return (
     <section className="relative py-40 bg-white overflow-hidden">
       {/* Background SVG */}
+      {/* wave  bawah*/}
+      <div className="absolute bottom-0 w-full overflow-hidden leading-[0] will-change-transform">
+        <img
+          src="/wave/FeatureB.png"
+          alt="Wave"
+          className="w-full h-full object-cover will-change-transform"
+        />
+      </div>
       <div
         className="absolute inset-0 bg-[url('/wave/bg.svg')] bg-cover bg-center opacity-10"
         style={{ backgroundAttachment: "fixed" }}
@@ -125,14 +133,6 @@ export default function Features() {
         />
       </div>
 
-      {/* wave  bawah*/}
-      <div className="absolute bottom-0 w-full overflow-hidden leading-[0] z-20 will-change-transform">
-        <img
-          src="/wave/coklatB.png"
-          alt="Wave"
-          className="w-full h-full object-cover will-change-transform"
-        />
-      </div>
 
       <div className="relative max-w-7xl mx-auto px-6 text-center z-20">
         {/* Title */}

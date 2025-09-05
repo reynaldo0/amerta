@@ -9,6 +9,10 @@ import {
 export default function BudayaSection() {
   return (
     <section className="w-full bg-white py-20 md:py-24 px-6 md:px-16">
+      <div
+        className="absolute inset-0 bg-[url('/wave/budaya.png')] bg-cover bg-center opacity-10"
+        style={{ backgroundAttachment: "fixed" }}
+      />
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
         {/* Left: Image */}
         <div className="relative group">

@@ -40,18 +40,18 @@ const Form = () => {
   return (
     <section className="bg-white relative min-h-screen py-24 flex lg:pb-40">
       {/* Background Parallax */}
+      <div className="absolute top-0 w-full overflow-hidden leading-[0] will-change-transform">
+        <img
+          src="/wave/form.png"
+          alt="Wave"
+          className="w-full h-full object-cover will-change-transform"
+        />
+      </div>
       <div
         className="absolute inset-0 bg-[url('/wave/bg.svg')] bg-cover bg-center opacity-10"
         style={{ backgroundAttachment: "fixed" }}
       />
 
-      <div className="absolute top-0 w-full overflow-hidden leading-[0] z-20 will-change-transform">
-        <img
-          src="/wave/coklatA.png"
-          alt="Wave"
-          className="w-full h-full object-cover will-change-transform"
-        />
-      </div>
 
       <div className="flex flex-col-reverse xl:flex-row xl:gap-20 items-center justify-between px-8 md:px-24 xl:px-20 z-10">
         {/* Form Section */}

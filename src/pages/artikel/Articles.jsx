@@ -32,7 +32,11 @@ const articles = [
 
 export default function Articles() {
   return (
-    <section className="w-full bg-gradient-to-b from-white to-gray-100 py-20 px-6 md:px-12">
+    <section className="w-full bg-white relative py-20 px-6 md:px-12">
+      <div
+        className="absolute inset-0 bg-[url('/wave/budaya.png')] bg-cover bg-center opacity-10"
+        style={{ backgroundAttachment: "fixed" }}
+      />
       <div className="max-w-7xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
           Artikel Budaya
