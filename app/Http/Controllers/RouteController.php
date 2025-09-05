@@ -43,6 +43,7 @@ class RouteController extends Controller
         return view('admin.quiz')->with([
             'quiz' => $quiz,
             'quizzes' => $quizzes,
+            'contents' => Content::where('type', 'quiz')->get()
         ]);
     }
 }

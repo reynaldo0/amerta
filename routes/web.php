@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function() {
 
     Route::controller(QuizController::class)->group(function() {
         Route::post('/create/quiz', 'store');
+        Route::post('/create/quiz/new', 'new');
         Route::delete('/quiz/{id}', 'destroy');
     });
 });

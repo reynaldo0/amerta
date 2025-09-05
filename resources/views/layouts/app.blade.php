@@ -137,6 +137,14 @@
                     </a>
                 </li>
 
+                <li>
+                    <a href="/admin/quizzes"
+                        class="flex items-center p-3 text-gray-700 rounded-xl hover:bg-amerta-primary/10 hover:text-amerta-secondary transition-all duration-200 group">
+                        <i class="fas fa-comments text-lg w-5"></i>
+                        <span class="ml-4">Quiz</span>
+                    </a>
+                </li>
+
                 <!-- Team & Settings -->
                 <li class="pt-4">
                     <h3 class="px-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">Pengaturan</h3>

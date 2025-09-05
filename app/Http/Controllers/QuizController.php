@@ -21,6 +21,16 @@ class QuizController extends Controller
         ], 200);
     }
 
+    public function new(Request $request) {
+        $quiz = Quiz::firstOrCreate(
+            ['content_id' => $request->content_id],
+            ['created_by' => auth()->id()]
+        );
+
+        return redirect()->back()->with('success', 'Quiz berhasil ditambahkan!');
+
+    }
+
     /**
      * Store a newly created resource in storage.
      */

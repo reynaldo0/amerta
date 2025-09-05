@@ -319,36 +319,20 @@
                 </div>
 
                 <!-- Modal Body -->
-                <form action="/create/quiz-new" method="POST" class="p-6 space-y-6">
+                <form action="/create/quiz/new" method="POST" class="p-6 space-y-6">
                     @csrf
-
                     <div>
-                        <label class="block text-amerta-dark font-semibold mb-2">Judul Quiz</label>
-                        <input type="text" name="title" required
-                            class="w-full border-2 border-amerta-accent/30 rounded-lg px-4 py-3 focus:border-amerta-secondary focus:ring-0 transition-colors"
-                            placeholder="Contoh: Kebudayaan Jawa Tengah">
-                    </div>
-
-                    <div>
-                        <label class="block text-amerta-dark font-semibold mb-2">Deskripsi (Opsional)</label>
-                        <textarea name="description" rows="3"
-                            class="w-full border-2 border-amerta-accent/30 rounded-lg px-4 py-3 focus:border-amerta-secondary focus:ring-0 transition-colors resize-none"
-                            placeholder="Jelaskan tentang quiz ini..."></textarea>
-                    </div>
-
-                    <div>
-                        <label class="block text-amerta-dark font-semibold mb-2">Kategori</label>
-                        <select name="category" required
+                        <label class="block text-amerta-dark font-semibold mb-2">Konten</label>
+                        <select name="content_id" required
                             class="w-full border-2 border-amerta-accent/30 rounded-lg px-4 py-3 focus:border-amerta-secondary focus:ring-0 transition-colors">
-                            <option value="">Pilih Kategori</option>
-                            <option value="budaya-tradisional">Budaya Tradisional</option>
-                            <option value="tarian-daerah">Tarian Daerah</option>
-                            <option value="makanan-khas">Makanan Khas</option>
-                            <option value="pakaian-adat">Pakaian Adat</option>
-                            <option value="rumah-adat">Rumah Adat</option>
-                            <option value="bahasa-daerah">Bahasa Daerah</option>
-                            <option value="upacara-adat">Upacara Adat</option>
-                            <option value="sejarah-budaya">Sejarah Budaya</option>
+                            <option value="">Pilih Konten</option>
+                            @if(isset($contents) && is_iterable($contents))
+                                @foreach ($contents as $content)
+                                    @if(is_object($content) && isset($content->id) && $content->type === 'quiz')
+                                        <option value="{{ $content->id }}">{{ $content->title }}</option>
+                                    @endif
+                                @endforeach
+                            @endif
                         </select>
                     </div>
 
