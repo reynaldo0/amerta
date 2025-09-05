@@ -26,7 +26,7 @@ const Footer = () => {
                 alt="FlowBite Logo"
               />
               <p className="text-2xl md:text-3xl tracking-wider text-white font-bold">
-                Futuron
+                Amerta
               </p>
             </a>
 
@@ -195,7 +195,7 @@ const Footer = () => {
         <hr className="my-6 border-gray-700 sm:mx-auto lg:my-8" />
         <div className="sm:flex sm:items-center sm:justify-between">
           <span className="text-center text-sm text-gray-300/90">
-            Dibuat oleh Reynaldo Yusellino
+            Dibuat oleh Tim Amerta
           </span>
         </div>
       </div>
