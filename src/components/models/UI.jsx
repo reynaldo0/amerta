@@ -24,7 +24,7 @@ const pictures = [
 export const pageAtom = atom(0);
 export const pages = [
   {
-    front: "art",
+    front: "budaya",
     back: pictures[0],
   },
 ];

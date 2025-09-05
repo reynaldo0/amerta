@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { Link } from "react-router-dom";
 
 const islands = [
   {
@@ -85,12 +86,12 @@ function TiltCard({ island }) {
         <p className="text-sm text-primary-100 group-hover:text-primary-300 mb-4">
           {island.description}
         </p>
-        <a
-          href={island.url}
+        <Link
+          to={island.url}
           className="inline-block text-secondary-200 font-semibold transition-all duration-300 group-hover:text-secondary-300 group-hover:translate-x-2"
         >
           Selengkapnya →
-        </a>
+        </Link>
       </div>
     </div>
   );
