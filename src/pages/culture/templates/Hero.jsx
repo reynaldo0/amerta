@@ -2,27 +2,28 @@ import React from "react";
 
 export default function HeroSumateraStacked() {
   return (
-    <section className="relative w-full min-h-screen overflow-hidden bg-gradient-to-br from-primary-200 via-primary-200 to-primary-300 py-32">
+    <section className="relative w-full min-h-screen overflow-hidden bg-white">
       {/* Background */}
-      <div className="absolute inset-0">
-        <img
-          src="/wave/budaya.png"
-          alt="Pulau Sumatera"
-          className="w-full h-full object-cover brightness-75"
-        />
-        <div className="absolute inset-0 bg-black/25 backdrop-blur-sm"></div>
-        {/* Floating shapes */}
-        <div className="absolute w-60 h-60 rounded-full bg-secondary-300 opacity-20 blur-3xl top-10 left-10 animate-pulse-slow"></div>
-        <div className="absolute w-80 h-80 rounded-full bg-secondary-300 opacity-20 blur-3xl bottom-10 right-10 animate-bounce-slow"></div>
-      </div>
+      <img
+        src="/wave/budayaB.png"
+        alt="Wave"
+        className="w-full h-full absolute bottom-0 "
+      />
+      <div
+        className="absolute inset-0 bg-[url('/wave/budaya.png')] bg-cover bg-center opacity-10"
+        style={{ backgroundAttachment: "fixed" }}
+      />
+      {/* Floating shapes */}
+      <div className="absolute w-60 h-60 rounded-full bg-secondary-300 opacity-20 blur-3xl top-10 left-10 animate-pulse-slow"></div>
+      <div className="absolute w-80 h-80 rounded-full bg-secondary-300 opacity-20 blur-3xl bottom-10 right-10 animate-bounce-slow"></div>
 
-      <div className="relative z-10 max-w-9xl mx-auto px-6 lg:px-16 flex flex-col lg:flex-row items-center gap-16">
+      <div className="relative py-26 z-10 mx-auto px-6 lg:px-16 flex flex-col-reverse lg:flex-row items-center gap-16">
         {/* Text */}
         <div className="flex-1 lg:order-2 text-center lg:text-left">
-          <h1 className="text-6xl md:text-7xl font-serif font-extrabold text-white leading-tight bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-300 to-orange-400 animate-fade-in-down">
+          <h1 className="text-4xl md:text-7xl font-serif font-extrabold text-black leading-tight bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-300 to-orange-400 animate-fade-in-down">
             Pulau Jawa
           </h1>
-          <p className="mt-6 text-xl md:text-2xl text-white max-w-xl mx-auto lg:mx-0 animate-fade-in-up delay-200">
+          <p className="mt-6 text-xl md:text-2xl text-black max-w-xl mx-auto lg:mx-0 animate-fade-in-up delay-200">
             Jelajahi <span className="font-semibold">tradisi</span>,{" "}
             <span className="font-semibold">seni</span>, dan{" "}
             <span className="font-semibold">kearifan lokal</span> dari Aceh
@@ -31,25 +32,25 @@ export default function HeroSumateraStacked() {
           </p>
           <a
             href="#highlights"
-            className="mt-8 inline-block px-10 py-4 rounded-3xl bg-white/20 backdrop-blur-lg text-white font-semibold shadow-lg hover:shadow-2xl hover:scale-110 transition-transform animate-fade-in-up delay-400 "
+            className="mt-8 inline-block px-10 py-4 rounded-3xl bg-secondary-300 backdrop-blur-lg text-white font-semibold  hover:bg-secondary-300/90 transition-transform animate-fade-in-up delay-400"
           >
             Jelajahi Budaya
           </a>
         </div>
+        <div className="absolute top-30 right-10 rounded-3xl overflow-hidden transform scale-95 blur-sm opacity-60 transition-all duration-500 hover:translate-x-1 hover:translate-y-1">
+          <img
+            src="/illustrasi/budaya/peta/jawa.png"
+            alt="Budaya Sumatera 1"
+            className="w-full h-full object-cover"
+          />
+        </div>
 
         {/* Stacked Cards */}
-        <div className="flex-1 flex justify-center lg:justify-end items-center relative w-full h-[36rem] perspective-1000">
+        <div className="flex-1 flex py-24 md:py-0 justify-center lg:justify-end items-center relative w-full h-[36rem] ">
           {/* Back Card */}
-          <div className="absolute top-10 left-10 w-72 h-[28rem] rounded-3xl overflow-hidden shadow-lg transform scale-95 blur-sm opacity-60 transition-all duration-500 hover:translate-x-1 hover:translate-y-1">
-            <img
-              src="/illustrasi/komunitas.png"
-              alt="Budaya Sumatera 1"
-              className="w-full h-full object-cover"
-            />
-          </div>
 
           {/* Front Card */}
-          <div className="absolute w-80 h-[32rem] rounded-3xl overflow-hidden shadow-2xl transform transition-transform duration-500 hover:scale-105 hover:-translate-y-3 hover:rotate-1">
+          <div className="absolute rounded-3xl overflow-hidden shadow-2xl transform transition-transform duration-500 hover:scale-105 hover:-translate-y-3 hover:rotate-1">
             <img
               src="/illustrasi/komunitas.png"
               alt="Budaya Sumatera"

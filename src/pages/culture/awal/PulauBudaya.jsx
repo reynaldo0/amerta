@@ -6,30 +6,35 @@ const islands = [
     description:
       "Salah satu pulau terbesar di Indonesia dan merupakan pusat kehidupan sosial, ekonomi, dan budaya. Pulau memiliki populasi sekitar 56% dari total penduduk Indonesia. Pulau Jawa terletak di Kepulauan Sunda Besar dan dikelilingi oleh beberapa pulau besar.",
     image: "/illustrasi/budaya/peta/jawa.png",
+    url: "/budaya-jawa",
   },
   {
     name: "Pulau Sumatera",
     description:
       "Pulau dengan kekayaan budaya Aceh, Minangkabau, Batak, dan Melayu. Sumatera juga dikenal dengan keindahan alamnya yang luas.",
     image: "/illustrasi/budaya/peta/sumatera.png",
+    url: "/budaya-sumatera",
   },
   {
     name: "Pulau Kalimantan",
     description:
       "Budaya Dayak dengan rumah panjang, tarian tradisional, dan kekayaan hutan tropis terbesar di Indonesia.",
     image: "/illustrasi/budaya/peta/kalimantan.png",
+    url: "/budaya-kalimantan",
   },
   {
     name: "Pulau Sulawesi",
     description:
       "Budaya Toraja, Minahasa, Bugis, dan Mandar yang penuh warna serta keindahan lautnya yang mendunia.",
     image: "/illustrasi/budaya/peta/sulawesi.png",
+    url: "/budaya-sulawesi",
   },
   {
     name: "Pulau Papua",
     description:
       "Tradisi suku Dani, Asmat, serta kekayaan seni ukir dan tari khas Papua yang mendalam.",
     image: "/illustrasi/budaya/peta/papua.png",
+    url: "/budaya-papua",
   },
 ];
 
@@ -81,7 +86,7 @@ function TiltCard({ island }) {
           {island.description}
         </p>
         <a
-          href="#"
+          href={island.url}
           className="inline-block text-secondary-200 font-semibold transition-all duration-300 group-hover:text-secondary-300 group-hover:translate-x-2"
         >
           Selengkapnya →
@@ -91,13 +96,9 @@ function TiltCard({ island }) {
   );
 }
 
-
 export default function Budaya() {
   return (
-    <section
-      id="pulau"
-      className="bg-primary-100 relative min-h-screen pb-20"
-    >
+    <section id="pulau" className="bg-primary-100 relative min-h-screen pb-20">
       <img
         src="/wave/map2.png"
         alt="Wave"
