@@ -177,18 +177,18 @@ const Events = () => {
       {/* inject custom styles for animation */}
       <style>{styles}</style>
 
-      <div
-        className="absolute inset-0 bg-[url('/wave/komunitas.png')] bg-cover bg-center opacity-10"
-        style={{ backgroundAttachment: "fixed" }}
-      />
-      <div
-        className="absolute inset-0 bg-[url('/wave/komunitas.png')] bg-cover bg-center opacity-10"
-        style={{ backgroundAttachment: "fixed" }}
-      />
       <img
         src="/wave/map2.png"
         alt="Wave"
         className="w-full h-full object-cover will-change-transform"
+      />
+      <div
+        className="absolute inset-0 bg-[url('/wave/komunitas.png')] bg-cover bg-center opacity-10"
+        style={{ backgroundAttachment: "fixed" }}
+      />
+      <div
+        className="absolute inset-0 bg-[url('/wave/komunitas.png')] bg-cover bg-center opacity-10"
+        style={{ backgroundAttachment: "fixed" }}
       />
       <div className="container mx-auto px-6 relative py-16 md:px-10">
         <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-8">

@@ -10,7 +10,7 @@ const team = [
   {
     name: "Bekhyun Aditya",
     role: "Leader, Illustrator, Data Analyst",
-    image: "/images/akmal.jpg",
+    image: "/team/adit.jpeg",
     github: "https://github.com/",
     linkedin: "https://linkedin.com/",
     instagram: "https://instagram.com/",
@@ -18,7 +18,7 @@ const team = [
   {
     name: "Reynaldo Yusellino",
     role: "Creative Designer, Frontend Developer",
-    image: "/images/reynaldo.jpg",
+    image: "/team/aldo.png",
     github: "https://github.com/reynaldo0",
     linkedin: "https://linkedin.com/reynaldoyusellino",
     instagram: "https://instagram.com/rynldysllino",
@@ -26,7 +26,7 @@ const team = [
   {
     name: "Naufal Aqil Nasrullah",
     role: "Backend Developer",
-    image: "/images/salman.jpg",
+    image: "/team/aqil.png",
     github: "https://github.com/",
     linkedin: "https://linkedin.com/",
     instagram: "https://instagram.com/",
@@ -61,7 +61,7 @@ export default function TeamSection() {
               </div>
 
               {/* Nama & Role */}
-              <h3 className="mt-6 text-lg font-semibold text-gray-900 group-hover:text-orange-500 transition">
+              <h3 className="mt-6 text-lg font-semibold text-gray-900 group-hover:text-secondary-300 transition">
                 {member.name}
               </h3>
               <p className="text-sm text-gray-500">{member.role}</p>

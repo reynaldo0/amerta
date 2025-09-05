@@ -1,3 +1,5 @@
+import Articles from "./artikel/Articles";
+import Events from "./comunity/Event";
 import Features from "./home/Feature";
 import Form from "./home/Form";
 import Hero from "./home/Hero";
@@ -10,6 +12,8 @@ const Home = () => {
       <Features />
       <Peta />
       <Form />
+      <Events />
+      <Articles />
     </>
   );
 };
