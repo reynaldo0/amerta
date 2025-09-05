@@ -37,12 +37,12 @@ export default function Articles() {
         className="absolute inset-0 bg-[url('/wave/budaya.png')] bg-cover bg-center opacity-10"
         style={{ backgroundAttachment: "fixed" }}
       />
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto relative">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
           Artikel Budaya
         </h2>
 
-        <div className="grid gap-10 md:grid-cols-3">
+        <div className="grid gap-10 md:grid-cols-3 relative">
           {articles.map((article) => (
             <div
               key={article.id}

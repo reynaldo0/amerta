@@ -13,7 +13,7 @@ export default function BudayaSection() {
         className="absolute inset-0 bg-[url('/wave/budaya.png')] bg-cover bg-center opacity-10"
         style={{ backgroundAttachment: "fixed" }}
       />
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center relative">
         {/* Left: Image */}
         <div className="relative group">
           <img
@@ -85,7 +85,7 @@ export default function BudayaSection() {
           </div>
 
           {/* Button */}
-          <button className="bg-secondary-300 text-white px-6 py-3 rounded-full font-semibold hover:bg-secondary-300/90 transition">
+          <button className="bg-secondary-300 cursor-pointer text-white px-6 py-3 rounded-full font-semibold hover:bg-secondary-300/90 transition">
             Baca Selengkapnya
           </button>
         </div>

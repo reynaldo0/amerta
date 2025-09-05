@@ -58,7 +58,11 @@ export default function ArticleDetailBudaya() {
   }
 
   return (
-    <div className="bg-gradient-to-b from-amber-50 to-orange-50 min-h-screen">
+    <div className="bg-white relative min-h-screen">
+      <div
+        className="absolute inset-0 bg-[url('/wave/budaya.png')] bg-cover bg-center opacity-10"
+        style={{ backgroundAttachment: "fixed" }}
+      />
       {/* Hero Section */}
       <div className="relative w-full h-72 md:h-96 overflow-hidden">
         <img
@@ -136,7 +140,7 @@ export default function ArticleDetailBudaya() {
               {articles.map((a) => (
                 <Link
                   key={a.id}
-                  to={`/articles/${a.id}`}
+                  to={`/artikel/${a.id}`}
                   className="block p-3 rounded-lg hover:bg-amber-50 transition"
                 >
                   <p className="text-sm font-medium text-gray-800">{a.title}</p>

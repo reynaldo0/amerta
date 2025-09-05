@@ -13,7 +13,7 @@ export default function Kekayaan() {
         className="absolute inset-0 bg-[url('/wave/budaya.png')] bg-cover bg-center opacity-10"
         style={{ backgroundAttachment: "fixed" }}
       />
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center relative">
         {/* Left Content */}
         <div>
           <p className="text-secondary-300 font-semibold uppercase mb-3">
@@ -61,7 +61,7 @@ export default function Kekayaan() {
           </div>
 
           {/* CTA Button */}
-          <button className="bg-secondary-300 text-white px-6 py-3 rounded-full font-semibold hover:scale-105 transition duration-300">
+          <button className="bg-secondary-300 cursor-pointer text-white px-6 py-3 rounded-full font-semibold hover:scale-105 transition duration-300">
             Jelajahi Artikel
           </button>
         </div>

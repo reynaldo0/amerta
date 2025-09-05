@@ -31,7 +31,7 @@ export default function TujuanSection() {
   ];
 
   return (
-    <section className="relative bg-gradient-to-br from-white via-gray-50 to-gray-100 py-20 px-6 overflow-hidden">
+    <section className="relative bg-white py-20 px-6 overflow-hidden">
       {/* Background Parallax */}
       <div
         className="absolute inset-0 bg-[url('/wave/about.png')] bg-cover bg-center opacity-10"
