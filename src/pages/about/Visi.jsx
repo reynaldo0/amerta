@@ -2,29 +2,29 @@ import React from "react";
 
 export default function VisiMisi() {
   const misi = [
-    "Mengembangkan sumber daya manusia yang kreatif dan kompetitif.",
-    "Meningkatkan kolaborasi untuk inovasi dan solusi nyata.",
-    "Mendorong kepedulian sosial dan keberlanjutan lingkungan.",
-    "Menciptakan platform edukasi dan pengembangan diri.",
-    "Mendorong kepedulian sosial dan keberlanjutan lingkungan.",
-    "Menciptakan platform edukasi dan pengembangan diri.",
+    "Melestarikan dan mempromosikan kekayaan budaya lokal melalui edukasi dan kegiatan kreatif.",
+    "Mendorong kolaborasi antar komunitas untuk inovasi budaya dan solusi kreatif.",
+    "Meningkatkan kesadaran sosial dan keberlanjutan melalui praktik budaya yang bertanggung jawab.",
+    "Menyediakan platform edukasi dan pengembangan diri berbasis budaya untuk generasi muda.",
+    "Mendorong partisipasi aktif masyarakat dalam menjaga dan mengembangkan tradisi budaya.",
+    "Mengintegrasikan teknologi dengan budaya untuk menciptakan pengalaman belajar yang interaktif dan menarik.",
   ];
 
   return (
     <section className="relative bg-primary-100 text-white min-h-screen overflow-hidden">
-     {/* Background Parallax */}
-     <img
-       src="/wave/map2.png"
-       alt="Wave"
-       className="hidden md:block w-full h-full object-cover will-change-transform"
-     />
+      {/* Background Parallax */}
+      <img
+        src="/wave/map2.png"
+        alt="Wave"
+        className="hidden md:block w-full h-full object-cover will-change-transform"
+      />
       <div
         className="absolute inset-0 bg-[url('/wave/aboutw.png')] bg-cover bg-center opacity-10"
         style={{ backgroundAttachment: "fixed" }}
       />
-        <h2 className="text-2xl md:text-5xl mb-10 font-bold text-white text-center tracking-tight will-change-transform">
-          Jelajahi Kekayaan Budaya Nusantara
-        </h2>
+      <h2 className="text-2xl md:text-5xl mb-10 font-bold text-white text-center tracking-tight will-change-transform">
+        Jelajahi Kekayaan Budaya Nusantara
+      </h2>
       <div className="py-24">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center ">
           {/* Visi */}
@@ -33,9 +33,9 @@ export default function VisiMisi() {
               Visi
             </h2>
             <p className="text-lg leading-relaxed text-gray-300">
-              Menjadi organisasi yang inovatif, adaptif, dan inspiratif dalam
-              membangun generasi yang unggul, kreatif, dan berdampak positif
-              bagi masyarakat serta lingkungan sekitar.
+              Menjadi pusat inspirasi dan edukasi budaya, yang memberdayakan
+              masyarakat untuk melestarikan dan mengembangkan warisan budaya
+              Indonesia secara kreatif dan inovatif
             </p>
           </div>
 
