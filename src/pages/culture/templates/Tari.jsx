@@ -15,12 +15,12 @@ export default function PinterestBlogModern() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch data dari backend Laravel
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const res = await axios.get("http://127.0.0.1:8000/api/v1/items"); // sesuaikan endpoint
-        setItems(res.data.items);
+        const res = await axios.get("http://127.0.0.1:8000/api/v1/items");
+        // Pastikan API mengembalikan array items
+        setItems(res.data.items || []);
       } catch (err) {
         console.error("Gagal fetch data:", err);
       } finally {
@@ -48,8 +48,8 @@ export default function PinterestBlogModern() {
               Koleksi Budaya
             </h2>
             <p className="text-gray-600 mb-6">
-              Jelajahi budaya keseharian, kebiasaan, serta tari dari Sumatera,
-              Jawa, Kalimantan, Sulawesi, dan Papua.
+              Jelajahi budaya keseharian, kebiasaan, serta tari dari seluruh
+              provinsi di Indonesia.
             </p>
             <button className="bg-secondary-300 text-white px-6 py-3 rounded-full font-semibold hover:bg-secondary-400 transition shadow-md hover:shadow-xl">
               Lihat semua koleksi
@@ -83,11 +83,13 @@ export default function PinterestBlogModern() {
               <SwiperSlide key={index}>
                 <div className="bg-white m-5 rounded-3xl shadow-xl hover:shadow-2xl overflow-hidden flex flex-col h-full transition-transform duration-500 hover:scale-105">
                   <div className="relative w-full h-56 md:h-64">
-                    <img
-                      src={item.file_url}
-                      alt={item.title}
-                      className="w-full h-full object-cover"
-                    />
+                    {item.file_url && (
+                      <img
+                        src={`http://localhost:8000${item.file_url}`} 
+                        alt={item.title}
+                        className="w-full h-full object-cover"
+                      />
+                    )}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
                   </div>
                   <div className="p-6 flex flex-col flex-grow">
@@ -100,18 +102,20 @@ export default function PinterestBlogModern() {
                     <p className="text-gray-700 text-sm mt-2 flex-grow">
                       {item.description}
                     </p>
-                    <a
-                      href={item.file_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-4 inline-flex items-center gap-2 font-semibold text-secondary-300 hover:text-secondary-400 transition"
-                    >
-                      <FontAwesomeIcon
-                        icon={faArrowUpRightFromSquare}
-                        className="w-4 h-4"
-                      />
-                      Lihat detail
-                    </a>
+                    {item.file_url && (
+                      <a
+                        href={item.file_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-4 inline-flex items-center gap-2 font-semibold text-secondary-300 hover:text-secondary-400 transition"
+                      >
+                        <FontAwesomeIcon
+                          icon={faArrowUpRightFromSquare}
+                          className="w-4 h-4"
+                        />
+                        Lihat File
+                      </a>
+                    )}
                   </div>
                 </div>
               </SwiperSlide>

@@ -44,7 +44,7 @@ export default function Hero() {
         <img
           src="/indonesia.png"
           alt="Peta Indonesia"
-          className="w-full h-52 object-cover animate-float"
+          className="w-full h-72 object-cover animate-float"
         />
       </div>
 
@@ -52,7 +52,7 @@ export default function Hero() {
       <div className="flex -top-90 sm:hidden absolute inset-0 justify-center items-center transform scale-95 blur-sm opacity-60">
         <img
           src="/indonesia.png"
-          alt="Budaya Sumatera 1"
+          alt="Peta Indoensia"
           className="w-full object-cover animate-float"
         />
       </div>
