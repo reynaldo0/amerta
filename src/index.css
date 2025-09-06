@@ -174,3 +174,26 @@ html {
 .animation-delay-700 {
   animation-delay: 0.7s;
 }
+
+/* ChatBot Button  */
+.chat-btn {
+  animation: brutalPulse 1.5s infinite;
+}
+
+@keyframes brutalPulse {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.2) rotate(5deg);
+    box-shadow: 0 0 15px #fcd34d, 0 0 40px #f5a100;
+  }
+  50% {
+    transform: scale(1.1) rotate(-5deg);
+  }
+  75% {
+    transform: scale(1.25) rotate(8deg);
+    box-shadow: 0 0 30px #fcd34d, 0 0 50px #f5a100;
+  }
+}

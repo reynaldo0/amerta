@@ -90,7 +90,7 @@ Jawaban maksimal 4 paragraf, gunakan emoji yang relevan untuk memperkaya teks. g
       {/* Floating Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 bg-primary-200 hover:scale-110 transition-transform duration-300 text-white p-4 rounded-full shadow-lg z-[99999999]"
+        className="fixed bottom-6 right-6 bg-secondary-300 text-white p-4 rounded-full shadow-lg z-[99999999] transform transition-transform duration-300 hover:scale-125 hover:rotate-12 chat-btn"
       >
         <FontAwesomeIcon icon={faCommentDots} size="lg" />
       </button>
