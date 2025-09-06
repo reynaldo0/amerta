@@ -17,6 +17,7 @@ class Content extends Model
         'body',
         'type',
         'slug',
+        'media',
         'author_id',
         'status',
         'updated_at'
@@ -25,10 +26,6 @@ class Content extends Model
     public function author()
     {
         return $this->belongsTo(User::class, 'author_id');
-    }
-
-    public function medias() {
-        return $this->hasMany(Media::class, 'content_id');
     }
     
     public function quiz() {

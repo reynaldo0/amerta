@@ -151,28 +151,38 @@
                             <tr class="hover:bg-gray-50 transition-colors">
                                 <td class="px-6 py-4">
                                     <div class="flex items-start space-x-4">
+                                        {{-- Media preview --}}
                                         <div
-                                            class="w-12 h-12 bg-gradient-to-r {{ $content->type === 'artikel'
-                                                ? 'from-blue-500 to-blue-600'
-                                                : ($content->type === 'quiz'
-                                                    ? 'from-green-500 to-green-600'
-                                                    : ($content->type === 'poster'
-                                                        ? 'from-amber-500 to-amber-600'
-                                                        : ($content->type === 'event'
-                                                            ? 'from-purple-500 to-purple-600'
-                                                            : 'from-gray-400 to-gray-500'))) }} rounded-lg flex items-center justify-center">
-                                            <i class=""
-                                                {{ $content->type === 'artikel'
-                                                    ? 'fas fa-newspaper'
-                                                    : ($content->type === 'quiz'
-                                                        ? 'fas fa-question-circle'
-                                                        : ($content->type === 'poster'
-                                                            ? 'fas fa-image'
-                                                            : ($content->type === 'event'
-                                                                ? 'fas fa-calendar-alt'
-                                                                : 'fas fa-file-alt'))) }}
-                                                text-white"></i>
+                                            class="w-16 h-16 flex items-center justify-center rounded-lg overflow-hidden bg-gray-200">
+                                            @if ($content->media)
+                                                @php
+                                                    $ext = strtolower(pathinfo($content->media, PATHINFO_EXTENSION));
+                                                @endphp
+
+                                                @if (in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'webp']))
+                                                    <img src="{{ asset('storage/' . $content->media) }}" alt="thumbnail"
+                                                        class="w-full h-full object-cover">
+                                                @elseif (in_array($ext, ['mp4', 'mov', 'avi', 'mkv']))
+                                                    <video class="w-full h-full object-cover" controls>
+                                                        <source src="{{ asset('storage/' . $content->media) }}"
+                                                            type="video/{{ $ext }}">
+                                                        Browser tidak mendukung video.
+                                                    </video>
+                                                @elseif (in_array($ext, ['mp3', 'wav', 'ogg']))
+                                                    <audio controls class="w-full">
+                                                        <source src="{{ asset('storage/' . $content->media) }}"
+                                                            type="audio/{{ $ext }}">
+                                                        Browser tidak mendukung audio.
+                                                    </audio>
+                                                @else
+                                                    <i class="fas fa-file-alt text-gray-500 text-lg"></i>
+                                                @endif
+                                            @else
+                                                <i class="fas fa-file-alt text-gray-500 text-lg"></i>
+                                            @endif
                                         </div>
+
+                                        {{-- Title & Body --}}
                                         <div class="flex-1 min-w-0">
                                             <h4 class="text-sm font-semibold text-gray-900 truncate">
                                                 {{ $content->title }}
@@ -183,32 +193,36 @@
                                         </div>
                                     </div>
                                 </td>
+
+                                {{-- Type badge --}}
                                 <td class="px-6 py-4">
                                     <span
                                         class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium 
-                                    {{ $content->type === 'artikel'
-                                        ? 'bg-blue-100 text-blue-800'
-                                        : ($content->type === 'quiz'
-                                            ? 'bg-green-100 text-green-800'
-                                            : ($content->type === 'poster'
-                                                ? 'bg-amber-100 text-amber-800'
-                                                : ($content->type === 'event'
-                                                    ? 'bg-purple-100 text-purple-800'
-                                                    : 'bg-gray-100 text-gray-800'))) }}">
+                {{ $content->type === 'artikel'
+                    ? 'bg-blue-100 text-blue-800'
+                    : ($content->type === 'quiz'
+                        ? 'bg-green-100 text-green-800'
+                        : ($content->type === 'poster'
+                            ? 'bg-amber-100 text-amber-800'
+                            : ($content->type === 'event'
+                                ? 'bg-purple-100 text-purple-800'
+                                : 'bg-gray-100 text-gray-800'))) }}">
                                         <i
                                             class="
-                                        {{ $content->type === 'artikel'
-                                            ? 'fas fa-newspaper mr-1'
-                                            : ($content->type === 'quiz'
-                                                ? 'fas fa-question-circle mr-1'
-                                                : ($content->type === 'poster'
-                                                    ? 'fas fa-image mr-1'
-                                                    : ($content->type === 'event'
-                                                        ? 'fas fa-calendar-alt mr-1'
-                                                        : 'fas fa-file-alt mr-1'))) }}"></i>
+                    {{ $content->type === 'artikel'
+                        ? 'fas fa-newspaper mr-1'
+                        : ($content->type === 'quiz'
+                            ? 'fas fa-question-circle mr-1'
+                            : ($content->type === 'poster'
+                                ? 'fas fa-image mr-1'
+                                : ($content->type === 'event'
+                                    ? 'fas fa-calendar-alt mr-1'
+                                    : 'fas fa-file-alt mr-1'))) }}"></i>
                                         {{ ucfirst($content->type) }}
                                     </span>
                                 </td>
+
+                                {{-- Author --}}
                                 <td class="px-6 py-4">
                                     <div class="flex items-center space-x-2">
                                         <div
@@ -220,17 +234,21 @@
                                         <span class="text-sm text-gray-900">{{ $content->author->name ?? 'Admin' }}</span>
                                     </div>
                                 </td>
+
+                                {{-- Date --}}
                                 <td class="px-6 py-4 text-sm text-gray-500">
                                     <div>{{ \Carbon\Carbon::parse($content->created_at)->format('d M Y') }}</div>
                                     <div class="text-xs text-gray-400">
-                                        {{ \Carbon\Carbon::parse($content->created_at)->format('H:i') }} WIB</div>
+                                        {{ \Carbon\Carbon::parse($content->created_at)->format('H:i') }} WIB
+                                    </div>
                                 </td>
+
+                                {{-- Action buttons --}}
                                 <td class="px-6 py-4">
                                     <div class="flex items-center space-x-2">
                                         <button class="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                                             title="Edit" data-id="{{ $content->id }}"
-                                            data-title="{{ $content->title }}"
-                                            data-type="{{ $content->type }}"
+                                            data-title="{{ $content->title }}" data-type="{{ $content->type }}"
                                             data-body="{{ htmlentities($content->body) }}">
                                             <i class="fas fa-edit"></i>
                                         </button>
@@ -247,6 +265,7 @@
                                 </td>
                             </tr>
                         @endforeach
+
                     </tbody>
                 </table>
             </div>
@@ -268,7 +287,8 @@
     <!-- Create Modal -->
     <div id="content-create-modal"
         class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 flex items-center justify-center p-4">
-        <form action="/create/content" method="POST" id="content-create-form" class="space-y-6">
+        <form action="/create/content" method="POST" id="content-create-form" enctype="multipart/form-data"
+            class="space-y-6">
             <div class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden">
                 <!-- Modal Header -->
                 <div class="px-6 py-4 border-b border-gray-100 bg-gray-50">
@@ -280,6 +300,7 @@
                         </button>
                     </div>
                 </div>
+
                 <!-- Modal Body -->
                 <div class="p-6 overflow-y-auto max-h-[calc(90vh-140px)]">
                     @csrf
@@ -319,6 +340,23 @@
                             class="bg-white px-4 py-3 border border-gray-200 rounded-xl"></div>
                         <input type="hidden" id="create-body" name="body" required>
                     </div>
+
+                    <!-- Media Upload -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">
+                            Media (opsional)
+                        </label>
+                        <input type="file" id="create-media" name="media"
+                            class="w-full px-4 py-2 border border-gray-200 rounded-xl" accept="image/*,video/*,audio/*">
+
+                        <!-- Preview -->
+                        <div id="media-preview" class="mt-3 hidden">
+                            <p class="text-sm text-gray-500 mb-2">Preview:</p>
+                            <div id="preview-container"
+                                class="w-40 h-40 rounded-lg overflow-hidden bg-gray-100 flex items-center justify-center">
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Modal Footer -->
@@ -334,12 +372,44 @@
         </form>
     </div>
 
+    <script>
+        // Preview media sebelum upload
+        document.getElementById('create-media').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            const previewContainer = document.getElementById('preview-container');
+            const previewWrapper = document.getElementById('media-preview');
+
+            previewContainer.innerHTML = "";
+            if (file) {
+                const ext = file.name.split('.').pop().toLowerCase();
+                const url = URL.createObjectURL(file);
+
+                if (['jpg', 'jpeg', 'png', 'gif', 'webp'].includes(ext)) {
+                    previewContainer.innerHTML = `<img src="${url}" class="w-full h-full object-cover rounded-lg">`;
+                } else if (['mp4', 'mov', 'avi', 'mkv'].includes(ext)) {
+                    previewContainer.innerHTML =
+                        `<video src="${url}" controls class="w-full h-full object-cover rounded-lg"></video>`;
+                } else if (['mp3', 'wav', 'ogg'].includes(ext)) {
+                    previewContainer.innerHTML = `<audio src="${url}" controls class="w-full"></audio>`;
+                } else {
+                    previewContainer.innerHTML = `<i class="fas fa-file-alt text-gray-500 text-3xl"></i>`;
+                }
+
+                previewWrapper.classList.remove('hidden');
+            } else {
+                previewWrapper.classList.add('hidden');
+            }
+        });
+    </script>
+
+
     <!-- Edit Modal -->
     <div id="content-edit-modal"
         class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 flex items-center justify-center p-4">
-        <form method="POST" id="content-edit-form" class="space-y-6">
+        <form method="POST" id="content-edit-form" enctype="multipart/form-data" class="space-y-6">
             @csrf
             <div class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden">
+                <!-- Header -->
                 <div class="px-6 py-4 border-b border-gray-100 bg-gray-50">
                     <div class="flex items-center justify-between">
                         <h2 class="text-xl font-bold text-gray-800">Edit Konten</h2>
@@ -349,15 +419,21 @@
                         </button>
                     </div>
                 </div>
+
+                <!-- Body -->
                 <div class="p-6 overflow-y-auto max-h-[calc(90vh-140px)]">
+                    <!-- Title -->
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-2">Judul Konten</label>
                         <input type="text" id="edit-title" name="title"
                             class="w-full px-4 py-3 border border-gray-200 rounded-xl" required>
                     </div>
+
+                    <!-- Type -->
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-2">Tipe Konten</label>
-                        <select id="edit-type" name="type" class="w-full px-4 py-3 border border-gray-200 rounded-xl" required>
+                        <select id="edit-type" name="type" class="w-full px-4 py-3 border border-gray-200 rounded-xl"
+                            required>
                             <option value="">Pilih tipe konten...</option>
                             <option value="artikel">📰 Artikel</option>
                             <option value="quiz">❓ Quiz</option>
@@ -367,13 +443,40 @@
                             <option value="submission">📝 Submission</option>
                         </select>
                     </div>
+
+                    <!-- Body -->
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-2">Konten</label>
                         <div id="quill-edit-body" style="height: 240px;"
                             class="bg-white px-4 py-3 border border-gray-200 rounded-xl"></div>
                         <input type="hidden" id="edit-body" name="body" required>
                     </div>
+
+                    <!-- Media lama -->
+                    <div id="current-media-wrapper" class="mt-4 hidden">
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Media Saat Ini</label>
+                        <div id="current-media"
+                            class="w-40 h-40 rounded-lg overflow-hidden bg-gray-100 flex items-center justify-center">
+                        </div>
+                    </div>
+
+                    <!-- Upload media baru -->
+                    <div class="mt-4">
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Ganti Media</label>
+                        <input type="file" id="edit-media" name="media"
+                            class="w-full px-4 py-2 border border-gray-200 rounded-xl" accept="image/*,video/*,audio/*">
+
+                        <!-- Preview baru -->
+                        <div id="edit-media-preview" class="mt-3 hidden">
+                            <p class="text-sm text-gray-500 mb-2">Preview Media Baru:</p>
+                            <div id="edit-preview-container"
+                                class="w-40 h-40 rounded-lg overflow-hidden bg-gray-100 flex items-center justify-center">
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Footer -->
                 <div class="px-6 py-4 border-t border-gray-100 bg-gray-50 flex items-center justify-end space-x-3">
                     <button type="button" id="cancel-edit-btn"
                         class="px-6 py-3 text-gray-700 bg-white border border-gray-200 rounded-xl">Batal</button>
@@ -384,6 +487,59 @@
             </div>
         </form>
     </div>
+
+    <script>
+        // Preview media lama (dipanggil saat buka modal edit)
+        function showCurrentMedia(url) {
+            const wrapper = document.getElementById('current-media-wrapper');
+            const container = document.getElementById('current-media');
+
+            container.innerHTML = '';
+            if (url) {
+                const ext = url.split('.').pop().toLowerCase();
+                if (['jpg', 'jpeg', 'png', 'gif', 'webp'].includes(ext)) {
+                    container.innerHTML = `<img src="${url}" class="w-full h-full object-cover rounded-lg">`;
+                } else if (['mp4', 'mov', 'avi', 'mkv'].includes(ext)) {
+                    container.innerHTML =
+                        `<video src="${url}" controls class="w-full h-full object-cover rounded-lg"></video>`;
+                } else if (['mp3', 'wav', 'ogg'].includes(ext)) {
+                    container.innerHTML = `<audio src="${url}" controls class="w-full"></audio>`;
+                } else {
+                    container.innerHTML = `<i class="fas fa-file-alt text-gray-500 text-3xl"></i>`;
+                }
+                wrapper.classList.remove('hidden');
+            } else {
+                wrapper.classList.add('hidden');
+            }
+        }
+
+        // Preview media baru sebelum upload
+        document.getElementById('edit-media').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            const previewWrapper = document.getElementById('edit-media-preview');
+            const previewContainer = document.getElementById('edit-preview-container');
+
+            previewContainer.innerHTML = "";
+            if (file) {
+                const ext = file.name.split('.').pop().toLowerCase();
+                const url = URL.createObjectURL(file);
+
+                if (['jpg', 'jpeg', 'png', 'gif', 'webp'].includes(ext)) {
+                    previewContainer.innerHTML = `<img src="${url}" class="w-full h-full object-cover rounded-lg">`;
+                } else if (['mp4', 'mov', 'avi', 'mkv'].includes(ext)) {
+                    previewContainer.innerHTML =
+                        `<video src="${url}" controls class="w-full h-full object-cover rounded-lg"></video>`;
+                } else if (['mp3', 'wav', 'ogg'].includes(ext)) {
+                    previewContainer.innerHTML = `<audio src="${url}" controls class="w-full"></audio>`;
+                } else {
+                    previewContainer.innerHTML = `<i class="fas fa-file-alt text-gray-500 text-3xl"></i>`;
+                }
+                previewWrapper.classList.remove('hidden');
+            } else {
+                previewWrapper.classList.add('hidden');
+            }
+        });
+    </script>
 
     <!-- Delete Confirmation Modal -->
     <div id="delete-modal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 flex items-center justify-center p-4">
@@ -417,298 +573,366 @@
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
 
-   <script>
-    // Modal functionality
-    const createBtn = document.getElementById('create-btn');
-    const contentCreateModal = document.getElementById('content-create-modal');
-    const contentEditModal = document.getElementById('content-edit-modal');
-    const deleteModal = document.getElementById('delete-modal');
-    const closeCreateModal = document.getElementById('close-create-modal');
-    const closeEditModal = document.getElementById('close-edit-modal');
-    const cancelCreateBtn = document.getElementById('cancel-create-btn');
-    const cancelEditBtn = document.getElementById('cancel-edit-btn');
-    const cancelDelete = document.getElementById('cancel-delete');
+    <script>
+        // Modal functionality
+        const createBtn = document.getElementById('create-btn');
+        const contentCreateModal = document.getElementById('content-create-modal');
+        const contentEditModal = document.getElementById('content-edit-modal');
+        const deleteModal = document.getElementById('delete-modal');
+        const closeCreateModal = document.getElementById('close-create-modal');
+        const closeEditModal = document.getElementById('close-edit-modal');
+        const cancelCreateBtn = document.getElementById('cancel-create-btn');
+        const cancelEditBtn = document.getElementById('cancel-edit-btn');
+        const cancelDelete = document.getElementById('cancel-delete');
 
-    // Open create modal
-    createBtn.addEventListener('click', function() {
-        document.getElementById('content-create-form').reset();
-        quillCreate.setContents([]);
-        contentCreateModal.classList.remove('hidden');
-    });
-
-    // Close modals
-    [closeCreateModal, cancelCreateBtn].forEach(btn => {
-        btn.addEventListener('click', function() {
-            contentCreateModal.classList.add('hidden');
+        // Open create modal
+        createBtn.addEventListener('click', function() {
+            document.getElementById('content-create-form').reset();
+            quillCreate.setContents([]);
+            contentCreateModal.classList.remove('hidden');
         });
-    });
 
-    [closeEditModal, cancelEditBtn].forEach(btn => {
-        btn.addEventListener('click', function() {
-            contentEditModal.classList.add('hidden');
+        // Close modals
+        [closeCreateModal, cancelCreateBtn].forEach(btn => {
+            btn.addEventListener('click', function() {
+                contentCreateModal.classList.add('hidden');
+            });
         });
-    });
 
-    cancelDelete.addEventListener('click', function() {
-        deleteModal.classList.add('hidden');
-    });
+        [closeEditModal, cancelEditBtn].forEach(btn => {
+            btn.addEventListener('click', function() {
+                contentEditModal.classList.add('hidden');
+            });
+        });
 
-    // Close modal on outside click
-    contentCreateModal.addEventListener('click', function(e) {
-        if (e.target === contentCreateModal) {
-            contentCreateModal.classList.add('hidden');
-        }
-    });
-
-    contentEditModal.addEventListener('click', function(e) {
-        if (e.target === contentEditModal) {
-            contentEditModal.classList.add('hidden');
-        }
-    });
-
-    deleteModal.addEventListener('click', function(e) {
-        if (e.target === deleteModal) {
+        cancelDelete.addEventListener('click', function() {
             deleteModal.classList.add('hidden');
-        }
-    });
-
-    // Edit buttons functionality
-    document.querySelectorAll('button[title="Edit"]').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const id = btn.getAttribute('data-id');
-            document.getElementById('edit-title').value = btn.getAttribute('data-title');
-            document.getElementById('edit-type').value = btn.getAttribute('data-type');
-            quillEdit.root.innerHTML = decodeHTMLEntities(btn.getAttribute('data-body'));
-            // Change action to /content/{id}/edit for POST
-            document.getElementById('content-edit-form').action = `/content/${id}/edit`;
-            contentEditModal.classList.remove('hidden');
         });
-    });
 
-    document.getElementById('content-edit-form').addEventListener('submit', function(e) {
-        document.getElementById('edit-body').value = quillEdit.root.innerHTML;
-    });
-
-    function decodeHTMLEntities(text) {
-        var txt = document.createElement('textarea');
-        txt.innerHTML = text;
-        return txt.value;
-    }
-
-    // Delete buttons functionality
-    let deleteId = null;
-    document.querySelectorAll('.btn-delete').forEach(btn => {
-        btn.addEventListener('click', function() {
-            deleteId = btn.getAttribute('data-id');
-            document.getElementById('delete-form').action = '/content/' + deleteId;
-            deleteModal.classList.remove('hidden');
-        });
-    });
-
-    // Confirm delete submits form
-    document.getElementById('confirm-delete').addEventListener('click', function() {
-        document.getElementById('delete-form').submit();
-    });
-
-    /* =========================
-       QuillJS setup untuk Create & Edit
-       ========================= */
-
-    // Create editor
-    const quillCreate = new Quill('#quill-create-body', {
-        theme: 'snow',
-        placeholder: 'Tulis konten di sini...',
-        modules: {
-            toolbar: [
-                [{ header: [1, 2, 3, false] }],
-                ['bold', 'italic', 'underline', 'strike'],
-                ['blockquote', 'code-block'],
-                [{ list: 'ordered' }, { list: 'bullet' }],
-                [{ 'align': [] }],
-                ['link', 'image'],
-                ['clean']
-            ]
-        }
-    });
-    const quillEdit = new Quill('#quill-edit-body', {
-        theme: 'snow',
-        placeholder: 'Tulis konten di sini...',
-        modules: {
-            toolbar: [
-                [{ header: [1, 2, 3, false] }],
-                ['bold', 'italic', 'underline', 'strike'],
-                ['blockquote', 'code-block'],
-                [{ list: 'ordered' }, { list: 'bullet' }],
-                [{ 'align': [] }],
-                ['link', 'image'],
-                ['clean']
-            ]
-        }
-    });
-
-    // Edit modal logic
-    [closeEditModal, cancelEditBtn].forEach(btn => {
-        btn.addEventListener('click', function() {
-            contentEditModal.classList.add('hidden');
-        });
-    });
-
-    document.querySelectorAll('button[title="Edit"]').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const id = btn.getAttribute('data-id');
-            document.getElementById('edit-title').value = btn.getAttribute('data-title');
-            document.getElementById('edit-type').value = btn.getAttribute('data-type');
-            quillEdit.root.innerHTML = decodeHTMLEntities(btn.getAttribute('data-body'));
-            document.getElementById('content-edit-form').action = `/content/${id}/edit`;
-            contentEditModal.classList.remove('hidden');
-        });
-    });
-
-    document.getElementById('content-edit-form').addEventListener('submit', function(e) {
-        document.getElementById('edit-body').value = quillEdit.root.innerHTML;
-    });
-
-    function decodeHTMLEntities(text) {
-        var txt = document.createElement('textarea');
-        txt.innerHTML = text;
-        return txt.value;
-    }
-
-
-    /* =========================
-       QuillJS setup untuk Create & Edit
-       ========================= */
-
-    // Create modal logic
-    createBtn.addEventListener('click', function() {
-        document.getElementById('content-create-form').reset();
-        quillCreate.setContents([]);
-        contentCreateModal.classList.remove('hidden');
-    });
-
-    [closeCreateModal, cancelCreateBtn].forEach(btn => {
-        btn.addEventListener('click', function() {
-            contentCreateModal.classList.add('hidden');
-        });
-    });
-
-    document.getElementById('content-create-form').addEventListener('submit', function(e) {
-        document.getElementById('create-body').value = quillCreate.root.innerHTML;
-    });
-
-    // Edit modal logic
-    [closeEditModal, cancelEditBtn].forEach(btn => {
-        btn.addEventListener('click', function() {
-            contentEditModal.classList.add('hidden');
-        });
-    });
-
-    document.querySelectorAll('form.content-edit-form').forEach(form => {
-        form.addEventListener('submit', function(e) {
-            const hiddenInput = form.querySelector('.edit-body-hidden');
-            const quillContainer = form.querySelector('.quill-edit-body');
-            if (hiddenInput && quillContainer) {
-                hiddenInput.value = quillEditInstances[quillContainer.id].root.innerHTML;
+        // Close modal on outside click
+        contentCreateModal.addEventListener('click', function(e) {
+            if (e.target === contentCreateModal) {
+                contentCreateModal.classList.add('hidden');
             }
         });
-    });
 
-    // Search functionality
-    document.getElementById('search-input').addEventListener('input', function(e) {
-        const searchTerm = e.target.value.toLowerCase();
-        console.log('Searching for:', searchTerm);
-    });
-
-    function filterContents() {
-        const searchTerm = document.getElementById('search-input').value.toLowerCase();
-        const filterType = document.getElementById('type-filter').value;
-        const filterAuthor = document.getElementById('author-filter').value;
-
-        document.querySelectorAll('.content-row').forEach(row => {
-            const title = row.getAttribute('data-title');
-            const type = row.getAttribute('data-type');
-            const author = row.getAttribute('data-author');
-
-            let visible = true;
-
-            if (searchTerm && !title.includes(searchTerm)) {
-                visible = false;
+        contentEditModal.addEventListener('click', function(e) {
+            if (e.target === contentEditModal) {
+                contentEditModal.classList.add('hidden');
             }
-            if (filterType && type !== filterType) {
-                visible = false;
-            }
-            if (filterAuthor && author !== filterAuthor) {
-                visible = false;
-            }
-
-            row.style.display = visible ? '' : 'none';
         });
-    }
 
-    document.getElementById('search-input').addEventListener('input', filterContents);
-    document.getElementById('type-filter').addEventListener('change', filterContents);
-    document.getElementById('author-filter').addEventListener('change', filterContents);
-
-    // Content type icon mapping for dynamic creation
-    const typeIcons = {
-        'artikel': { icon: 'fas fa-newspaper', color: 'from-blue-500 to-blue-600', badge: 'bg-blue-100 text-blue-800' },
-        'quiz': { icon: 'fas fa-question-circle', color: 'from-green-500 to-green-600', badge: 'bg-green-100 text-green-800' },
-        'poster': { icon: 'fas fa-image', color: 'from-amber-500 to-amber-600', badge: 'bg-amber-100 text-amber-800' },
-        'event': { icon: 'fas fa-calendar-alt', color: 'from-purple-500 to-purple-600', badge: 'bg-purple-100 text-purple-800' },
-        'map_asset': { icon: 'fas fa-map-marked-alt', color: 'from-teal-500 to-teal-600', badge: 'bg-teal-100 text-teal-800' },
-        'submission': { icon: 'fas fa-file-upload', color: 'from-indigo-500 to-indigo-600', badge: 'bg-indigo-100 text-indigo-800' }
-    };
-
-    // Update content type styling based on selection
-    document.getElementById('content-type').addEventListener('change', function(e) {
-        const selectedType = e.target.value;
-        if (selectedType && typeIcons[selectedType]) {
-            console.log('Selected content type:', selectedType);
-        }
-    });
-
-    // Quick actions for bulk operations
-    function bulkDelete() {
-        if (confirm('Apakah Anda yakin ingin menghapus semua konten yang dipilih?')) {
-            console.log('Bulk delete confirmed');
-        }
-    }
-
-    function exportContent() {
-        console.log('Exporting content...');
-    }
-
-    // Keyboard shortcuts
-    document.addEventListener('keydown', function(e) {
-        if ((e.ctrlKey || e.metaKey) && e.key === 'n') {
-            e.preventDefault();
-            createBtn.click();
-        }
-        if (e.key === 'Escape') {
-            contentCreateModal.classList.add('hidden');
-            contentEditModal.classList.add('hidden');
-            deleteModal.classList.add('hidden');
-        }
-    });
-
-    // Auto-save draft functionality (placeholder)
-    let draftTimer;
-    function saveDraft() {
-        const title = document.getElementById('title').value;
-        const body = document.getElementById('body').value;
-        const type = document.getElementById('content-type').value;
-
-        if (title || body || type) {
-            console.log('Auto-saving draft...');
-        }
-    }
-
-    ['title', 'body', 'content-type'].forEach(id => {
-        document.getElementById(id).addEventListener('input', function() {
-            clearTimeout(draftTimer);
-            draftTimer = setTimeout(saveDraft, 2000);
+        deleteModal.addEventListener('click', function(e) {
+            if (e.target === deleteModal) {
+                deleteModal.classList.add('hidden');
+            }
         });
-    });
-</script>
+
+        // Edit buttons functionality
+        document.querySelectorAll('button[title="Edit"]').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const id = btn.getAttribute('data-id');
+                document.getElementById('edit-title').value = btn.getAttribute('data-title');
+                document.getElementById('edit-type').value = btn.getAttribute('data-type');
+                quillEdit.root.innerHTML = decodeHTMLEntities(btn.getAttribute('data-body'));
+                document.getElementById('content-edit-form').action = `/content/${id}/edit`;
+
+                // Media preview for edit
+                let mediaUrl = '';
+                @foreach ($contents as $content)
+                    if (id == '{{ $content->id }}') {
+                        @if ($content->media)
+                            mediaUrl = "{{ asset('storage/' . $content->media) }}";
+                        @else
+                            mediaUrl = '';
+                        @endif
+                    }
+                @endforeach
+                showCurrentMedia(mediaUrl);
+
+                contentEditModal.classList.remove('hidden');
+            });
+        });
+
+        document.getElementById('content-edit-form').addEventListener('submit', function(e) {
+            document.getElementById('edit-body').value = quillEdit.root.innerHTML;
+        });
+
+        function decodeHTMLEntities(text) {
+            var txt = document.createElement('textarea');
+            txt.innerHTML = text;
+            return txt.value;
+        }
+
+        // Delete buttons functionality
+        let deleteId = null;
+        document.querySelectorAll('.btn-delete').forEach(btn => {
+            btn.addEventListener('click', function() {
+                deleteId = btn.getAttribute('data-id');
+                document.getElementById('delete-form').action = '/content/' + deleteId;
+                deleteModal.classList.remove('hidden');
+            });
+        });
+
+        // Confirm delete submits form
+        document.getElementById('confirm-delete').addEventListener('click', function() {
+            document.getElementById('delete-form').submit();
+        });
+
+        /* =========================
+           QuillJS setup untuk Create & Edit
+           ========================= */
+
+        // Create editor
+        const quillCreate = new Quill('#quill-create-body', {
+            theme: 'snow',
+            placeholder: 'Tulis konten di sini...',
+            modules: {
+                toolbar: [
+                    [{
+                        header: [1, 2, 3, false]
+                    }],
+                    ['bold', 'italic', 'underline', 'strike'],
+                    ['blockquote', 'code-block'],
+                    [{
+                        list: 'ordered'
+                    }, {
+                        list: 'bullet'
+                    }],
+                    [{
+                        'align': []
+                    }],
+                    ['link', 'image'],
+                    ['clean']
+                ]
+            }
+        });
+        const quillEdit = new Quill('#quill-edit-body', {
+            theme: 'snow',
+            placeholder: 'Tulis konten di sini...',
+            modules: {
+                toolbar: [
+                    [{
+                        header: [1, 2, 3, false]
+                    }],
+                    ['bold', 'italic', 'underline', 'strike'],
+                    ['blockquote', 'code-block'],
+                    [{
+                        list: 'ordered'
+                    }, {
+                        list: 'bullet'
+                    }],
+                    [{
+                        'align': []
+                    }],
+                    ['link', 'image'],
+                    ['clean']
+                ]
+            }
+        });
+
+        // Edit modal logic
+        [closeEditModal, cancelEditBtn].forEach(btn => {
+            btn.addEventListener('click', function() {
+                contentEditModal.classList.add('hidden');
+            });
+        });
+
+        document.querySelectorAll('button[title="Edit"]').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const id = btn.getAttribute('data-id');
+                document.getElementById('edit-title').value = btn.getAttribute('data-title');
+                document.getElementById('edit-type').value = btn.getAttribute('data-type');
+                quillEdit.root.innerHTML = decodeHTMLEntities(btn.getAttribute('data-body'));
+                document.getElementById('content-edit-form').action = `/content/${id}/edit`;
+
+                // Media preview for edit
+                let mediaUrl = '';
+                @foreach ($contents as $content)
+                    if (id == '{{ $content->id }}') {
+                        @if ($content->media)
+                            mediaUrl = "{{ asset('storage/' . $content->media) }}";
+                        @else
+                            mediaUrl = '';
+                        @endif
+                    }
+                @endforeach
+                showCurrentMedia(mediaUrl);
+
+                contentEditModal.classList.remove('hidden');
+            });
+        });
+
+        document.getElementById('content-edit-form').addEventListener('submit', function(e) {
+            document.getElementById('edit-body').value = quillEdit.root.innerHTML;
+        });
+
+        function decodeHTMLEntities(text) {
+            var txt = document.createElement('textarea');
+            txt.innerHTML = text;
+            return txt.value;
+        }
+
+
+        /* =========================
+           QuillJS setup untuk Create & Edit
+           ========================= */
+
+        // Create modal logic
+        createBtn.addEventListener('click', function() {
+            document.getElementById('content-create-form').reset();
+            quillCreate.setContents([]);
+            contentCreateModal.classList.remove('hidden');
+        });
+
+        [closeCreateModal, cancelCreateBtn].forEach(btn => {
+            btn.addEventListener('click', function() {
+                contentCreateModal.classList.add('hidden');
+            });
+        });
+
+        document.getElementById('content-create-form').addEventListener('submit', function(e) {
+            document.getElementById('create-body').value = quillCreate.root.innerHTML;
+        });
+
+        // Edit modal logic
+        [closeEditModal, cancelEditBtn].forEach(btn => {
+            btn.addEventListener('click', function() {
+                contentEditModal.classList.add('hidden');
+            });
+        });
+
+        document.querySelectorAll('form.content-edit-form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                const hiddenInput = form.querySelector('.edit-body-hidden');
+                const quillContainer = form.querySelector('.quill-edit-body');
+                if (hiddenInput && quillContainer) {
+                    hiddenInput.value = quillEditInstances[quillContainer.id].root.innerHTML;
+                }
+            });
+        });
+
+        // Search functionality
+        document.getElementById('search-input').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            console.log('Searching for:', searchTerm);
+        });
+
+        function filterContents() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const filterType = document.getElementById('type-filter').value;
+            const filterAuthor = document.getElementById('author-filter').value;
+
+            document.querySelectorAll('.content-row').forEach(row => {
+                const title = row.getAttribute('data-title');
+                const type = row.getAttribute('data-type');
+                const author = row.getAttribute('data-author');
+
+                let visible = true;
+
+                if (searchTerm && !title.includes(searchTerm)) {
+                    visible = false;
+                }
+                if (filterType && type !== filterType) {
+                    visible = false;
+                }
+                if (filterAuthor && author !== filterAuthor) {
+                    visible = false;
+                }
+
+                row.style.display = visible ? '' : 'none';
+            });
+        }
+
+        document.getElementById('search-input').addEventListener('input', filterContents);
+        document.getElementById('type-filter').addEventListener('change', filterContents);
+        document.getElementById('author-filter').addEventListener('change', filterContents);
+
+        // Content type icon mapping for dynamic creation
+        const typeIcons = {
+            'artikel': {
+                icon: 'fas fa-newspaper',
+                color: 'from-blue-500 to-blue-600',
+                badge: 'bg-blue-100 text-blue-800'
+            },
+            'quiz': {
+                icon: 'fas fa-question-circle',
+                color: 'from-green-500 to-green-600',
+                badge: 'bg-green-100 text-green-800'
+            },
+            'poster': {
+                icon: 'fas fa-image',
+                color: 'from-amber-500 to-amber-600',
+                badge: 'bg-amber-100 text-amber-800'
+            },
+            'event': {
+                icon: 'fas fa-calendar-alt',
+                color: 'from-purple-500 to-purple-600',
+                badge: 'bg-purple-100 text-purple-800'
+            },
+            'map_asset': {
+                icon: 'fas fa-map-marked-alt',
+                color: 'from-teal-500 to-teal-600',
+                badge: 'bg-teal-100 text-teal-800'
+            },
+            'submission': {
+                icon: 'fas fa-file-upload',
+                color: 'from-indigo-500 to-indigo-600',
+                badge: 'bg-indigo-100 text-indigo-800'
+            }
+        };
+
+        // Update content type styling based on selection
+        document.getElementById('content-type').addEventListener('change', function(e) {
+            const selectedType = e.target.value;
+            if (selectedType && typeIcons[selectedType]) {
+                console.log('Selected content type:', selectedType);
+            }
+        });
+
+        // Quick actions for bulk operations
+        function bulkDelete() {
+            if (confirm('Apakah Anda yakin ingin menghapus semua konten yang dipilih?')) {
+                console.log('Bulk delete confirmed');
+            }
+        }
+
+        function exportContent() {
+            console.log('Exporting content...');
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'n') {
+                e.preventDefault();
+                createBtn.click();
+            }
+            if (e.key === 'Escape') {
+                contentCreateModal.classList.add('hidden');
+                contentEditModal.classList.add('hidden');
+                deleteModal.classList.add('hidden');
+            }
+        });
+
+        // Auto-save draft functionality (placeholder)
+        let draftTimer;
+
+        function saveDraft() {
+            const title = document.getElementById('title').value;
+            const body = document.getElementById('body').value;
+            const type = document.getElementById('content-type').value;
+
+            if (title || body || type) {
+                console.log('Auto-saving draft...');
+            }
+        }
+
+        ['title', 'body', 'content-type'].forEach(id => {
+            document.getElementById(id).addEventListener('input', function() {
+                clearTimeout(draftTimer);
+                draftTimer = setTimeout(saveDraft, 2000);
+            });
+        });
+    </script>
 
 @endsection
