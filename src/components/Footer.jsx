@@ -101,18 +101,18 @@ const Footer = () => {
               <ul className="font-medium text-gray-300/90">
                 <li className="mb-4">
                   <a
-                    href="https://www.morfo.rest/"
+                    href="https://www.omahbse.com"
                     className="lowercase hover:underline"
                   >
-                    Mofro.rest
+                    omahbse.com
                   </a>
                 </li>
                 <li className="mb-4">
                   <a
-                    href="https://www.detik.com/"
+                    href="https://culture-indonesia-ku.blogspot.com"
                     className="lowercase hover:underline"
                   >
-                    detik.com
+                    culture-indonesia-ku
                   </a>
                 </li>
                 <li className="mb-4">
@@ -148,43 +148,8 @@ const Footer = () => {
               </h2>
               <ul className="font-medium text-gray-300/90">
                 <li className="mb-4">
-                  <a
-                    href="https://www.pinterest.com"
-                    className="hover:underline"
-                  >
-                    Pinterest
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a
-                    href="https://www.morfo.rest/article/drones-reforest"
-                    className="hover:underline"
-                  >
-                    Drone
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a
-                    href="https://www.exaputra.com/2024/03/chile-wind-energy.html"
-                    className="hover:underline"
-                  >
-                    Energy Angin
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a
-                    href="https://emerhub.com/indonesia/how-to-open-an-electric-vehicle-charging-station-in-indonesia/"
-                    className="hover:underline"
-                  >
-                    Mobil Listrik
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a
-                    href="https://www.linkedin.com/pulse/eliminasi-sampah-plastik-demi-lingkungan-yang-/"
-                    className="hover:underline"
-                  >
-                    Sampah Plastik
+                  <a href="https://www.canva.com/" className="hover:underline">
+                    Canva
                   </a>
                 </li>
               </ul>

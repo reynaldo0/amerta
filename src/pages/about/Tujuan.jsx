@@ -31,17 +31,17 @@ export default function TujuanSection() {
   ];
 
   return (
-    <section className="relative bg-white py-24 px-6 overflow-hidden min-h-screen">
+    <section className="relative bg-primary-100 pt-24 px-6 overflow-hidden min-h-screen mx-auto">
       {/* Background Parallax */}
       <div
-        className="absolute inset-0 bg-[url('/wave/about.png')] bg-cover bg-center opacity-10"
+        className="absolute inset-0 bg-[url('/wave/aboutw.png')] bg-cover bg-center opacity-10"
         style={{ backgroundAttachment: "fixed" }}
       />
       <div className="max-w-6xl mx-auto text-center relative z-10">
-        <h2 className="text-4xl md:text-5xl font-extrabold text-primary-200 mb-4 tracking-tight">
+        <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4 tracking-tight">
           Tujuan Kami
         </h2>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        <p className="text-lg text-gray-100 max-w-2xl mx-auto">
           Kami hadir dengan visi dan misi untuk memberikan dampak positif dan
           solusi terbaik melalui tujuan yang jelas.
         </p>

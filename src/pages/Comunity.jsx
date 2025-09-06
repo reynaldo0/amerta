@@ -1,13 +1,14 @@
-import React from "react";
+import CeritaRakyat from "./comunity/Cerita";
 import Events from "./comunity/Event";
-import HeroCommunity from "./comunity/Hero";
 import ForumSection from "./comunity/Forum";
+import HeroCommunity from "./comunity/Hero";
 
 const Comunity = () => {
   return (
     <>
       <HeroCommunity />
       <Events />
+      <CeritaRakyat />
       <ForumSection />
     </>
   );

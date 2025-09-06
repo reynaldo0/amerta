@@ -13,14 +13,14 @@ export default function VisiMisi() {
   return (
     <section className="relative bg-primary-100 text-white min-h-screen overflow-hidden">
      {/* Background Parallax */}
+     <img
+       src="/wave/map2.png"
+       alt="Wave"
+       className="hidden md:block w-full h-full object-cover will-change-transform"
+     />
       <div
         className="absolute inset-0 bg-[url('/wave/aboutw.png')] bg-cover bg-center opacity-10"
         style={{ backgroundAttachment: "fixed" }}
-      />
-      <img
-        src="/wave/map2.png"
-        alt="Wave"
-        className="hidden md:block w-full h-full object-cover will-change-transform"
       />
         <h2 className="text-2xl md:text-5xl mb-10 font-bold text-white text-center tracking-tight will-change-transform">
           Jelajahi Kekayaan Budaya Nusantara

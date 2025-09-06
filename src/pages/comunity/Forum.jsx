@@ -80,15 +80,10 @@ export default function ForumSection() {
   };
 
   return (
-    <section className="relative bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
+    <section className="relative bg-white py-24 min-h-screen">
       <div
         className="absolute inset-0 bg-[url('/wave/komunitas.png')] bg-cover bg-center opacity-10"
         style={{ backgroundAttachment: "fixed" }}
-      />
-      <img
-        src="/wave/forum.png"
-        alt="Wave"
-        className="w-full opacity-100 h-full object-cover will-change-transform"
       />
       <div className="max-w-5xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-primary-200">

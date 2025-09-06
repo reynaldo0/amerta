@@ -103,7 +103,7 @@ Jawaban maksimal 4 paragraf, gunakan emoji yang relevan untuk memperkaya teks. g
         >
           {/* Modal */}
           <div
-            className="w-[420px] h-[580px] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border transform transition-all duration-500 ease-out mb-24 mr-16"
+            className="w-[420px] h-[580px] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border transform transition-all duration-500 ease-out md:mb-24 md:mr-16 mx-7 mb-15"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
