@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import About from "./pages/About";
@@ -13,8 +14,22 @@ import Article from "./pages/Article";
 import ArticleDetail from "./pages/artikel/ArticleDetail";
 import Footer from "./components/Footer";
 import ChatBotModal from "./pages/ChatBot";
+import LoadingScreen from "./Loading";
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulasi loading selama 2 detik
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 3200);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) return <LoadingScreen />;
+
   return (
     <BrowserRouter>
       <Navbar />
