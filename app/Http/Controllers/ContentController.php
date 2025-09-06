@@ -111,7 +111,7 @@ class ContentController extends Controller
 
         $content->update($data);
 
-        return view('admin.content')
+        return redirect()->back()
             ->with('success', 'Content updated successfully!');
     }
 

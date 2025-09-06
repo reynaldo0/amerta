@@ -147,81 +147,105 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-100">
-                        @foreach($contents as $content)
-                        <tr class="hover:bg-gray-50 transition-colors">
-                            <td class="px-6 py-4">
-                                <div class="flex items-start space-x-4">
-                                    <div class="w-12 h-12 bg-gradient-to-r {{ 
-                                        $content->type === 'artikel' ? 'from-blue-500 to-blue-600' :
-                                        ($content->type === 'quiz' ? 'from-green-500 to-green-600' :
-                                        ($content->type === 'poster' ? 'from-amber-500 to-amber-600' :
-                                        ($content->type === 'event' ? 'from-purple-500 to-purple-600' :
-                                        'from-gray-400 to-gray-500'))) 
-                                    }} rounded-lg flex items-center justify-center">
-                                        <i class=""
-                                            {{ $content->type === 'artikel' ? 'fas fa-newspaper' : 
-                                               ($content->type === 'quiz' ? 'fas fa-question-circle' : 
-                                               ($content->type === 'poster' ? 'fas fa-image' : 
-                                               ($content->type === 'event' ? 'fas fa-calendar-alt' : 
-                                               'fas fa-file-alt'))) 
-                                            }} text-white"></i>
+                        @foreach ($contents as $content)
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-start space-x-4">
+                                        <div
+                                            class="w-12 h-12 bg-gradient-to-r {{ $content->type === 'artikel'
+                                                ? 'from-blue-500 to-blue-600'
+                                                : ($content->type === 'quiz'
+                                                    ? 'from-green-500 to-green-600'
+                                                    : ($content->type === 'poster'
+                                                        ? 'from-amber-500 to-amber-600'
+                                                        : ($content->type === 'event'
+                                                            ? 'from-purple-500 to-purple-600'
+                                                            : 'from-gray-400 to-gray-500'))) }} rounded-lg flex items-center justify-center">
+                                            <i class=""
+                                                {{ $content->type === 'artikel'
+                                                    ? 'fas fa-newspaper'
+                                                    : ($content->type === 'quiz'
+                                                        ? 'fas fa-question-circle'
+                                                        : ($content->type === 'poster'
+                                                            ? 'fas fa-image'
+                                                            : ($content->type === 'event'
+                                                                ? 'fas fa-calendar-alt'
+                                                                : 'fas fa-file-alt'))) }}
+                                                text-white"></i>
+                                        </div>
+                                        <div class="flex-1 min-w-0">
+                                            <h4 class="text-sm font-semibold text-gray-900 truncate">
+                                                {{ $content->title }}
+                                            </h4>
+                                            <p class="text-sm text-gray-500 mt-1 line-clamp-2">
+                                                {!! \Illuminate\Support\Str::limit(strip_tags($content->body), 80) !!}
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div class="flex-1 min-w-0">
-                                        <h4 class="text-sm font-semibold text-gray-900 truncate">
-                                            {{ $content->title }}
-                                        </h4>
-                                        <p class="text-sm text-gray-500 mt-1 line-clamp-2">
-                                            {!! \Illuminate\Support\Str::limit(strip_tags($content->body), 80) !!}
-                                        </p>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span
+                                        class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium 
+                                    {{ $content->type === 'artikel'
+                                        ? 'bg-blue-100 text-blue-800'
+                                        : ($content->type === 'quiz'
+                                            ? 'bg-green-100 text-green-800'
+                                            : ($content->type === 'poster'
+                                                ? 'bg-amber-100 text-amber-800'
+                                                : ($content->type === 'event'
+                                                    ? 'bg-purple-100 text-purple-800'
+                                                    : 'bg-gray-100 text-gray-800'))) }}">
+                                        <i
+                                            class="
+                                        {{ $content->type === 'artikel'
+                                            ? 'fas fa-newspaper mr-1'
+                                            : ($content->type === 'quiz'
+                                                ? 'fas fa-question-circle mr-1'
+                                                : ($content->type === 'poster'
+                                                    ? 'fas fa-image mr-1'
+                                                    : ($content->type === 'event'
+                                                        ? 'fas fa-calendar-alt mr-1'
+                                                        : 'fas fa-file-alt mr-1'))) }}"></i>
+                                        {{ ucfirst($content->type) }}
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center space-x-2">
+                                        <div
+                                            class="w-8 h-8 bg-amerta-primary rounded-full flex items-center justify-center">
+                                            <span class="text-white text-xs font-medium">
+                                                {{ strtoupper(substr($content->author->name ?? 'A', 0, 1)) }}
+                                            </span>
+                                        </div>
+                                        <span class="text-sm text-gray-900">{{ $content->author->name ?? 'Admin' }}</span>
                                     </div>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4">
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium 
-                                    {{ $content->type === 'artikel' ? 'bg-blue-100 text-blue-800' : 
-                                       ($content->type === 'quiz' ? 'bg-green-100 text-green-800' : 
-                                       ($content->type === 'poster' ? 'bg-amber-100 text-amber-800' : 
-                                       ($content->type === 'event' ? 'bg-purple-100 text-purple-800' : 
-                                       'bg-gray-100 text-gray-800'))) 
-                                    }}">
-                                    <i class="
-                                        {{ $content->type === 'artikel' ? 'fas fa-newspaper mr-1' : 
-                                           ($content->type === 'quiz' ? 'fas fa-question-circle mr-1' : 
-                                           ($content->type === 'poster' ? 'fas fa-image mr-1' : 
-                                           ($content->type === 'event' ? 'fas fa-calendar-alt mr-1' : 
-                                           'fas fa-file-alt mr-1'))) 
-                                    }}"></i>
-                                    {{ ucfirst($content->type) }}
-                                </span>
-                            </td>
-                            <td class="px-6 py-4">
-                                <div class="flex items-center space-x-2">
-                                    <div class="w-8 h-8 bg-amerta-primary rounded-full flex items-center justify-center">
-                                        <span class="text-white text-xs font-medium">
-                                            {{ strtoupper(substr($content->author->name ?? 'A', 0, 1)) }}
-                                        </span>
+                                </td>
+                                <td class="px-6 py-4 text-sm text-gray-500">
+                                    <div>{{ \Carbon\Carbon::parse($content->created_at)->format('d M Y') }}</div>
+                                    <div class="text-xs text-gray-400">
+                                        {{ \Carbon\Carbon::parse($content->created_at)->format('H:i') }} WIB</div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center space-x-2">
+                                        <button class="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                                            title="Edit" data-id="{{ $content->id }}"
+                                            data-title="{{ $content->title }}"
+                                            data-type="{{ $content->type }}"
+                                            data-body="{{ htmlentities($content->body) }}">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="p-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors"
+                                            title="Lihat" data-id="{{ $content->id }}">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button
+                                            class="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors btn-delete"
+                                            title="Hapus" data-id="{{ $content->id }}">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
                                     </div>
-                                    <span class="text-sm text-gray-900">{{ $content->author->name ?? 'Admin' }}</span>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 text-sm text-gray-500">
-                                <div>{{ \Carbon\Carbon::parse($content->created_at)->format('d M Y') }}</div>
-                                <div class="text-xs text-gray-400">{{ \Carbon\Carbon::parse($content->created_at)->format('H:i') }} WIB</div>
-                            </td>
-                            <td class="px-6 py-4">
-                                <div class="flex items-center space-x-2">
-                                    <button class="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors" title="Edit" data-id="{{ $content->id }}">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button class="p-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors" title="Lihat" data-id="{{ $content->id }}">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                    <button class="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors btn-delete" title="Hapus" data-id="{{ $content->id }}">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>
@@ -241,21 +265,21 @@
         </div>
     </div>
 
-    <!-- Create/Edit Modal -->
-    <div id="content-modal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 flex items-center justify-center p-4">
-        <form action="/create/content" method="POST" id="content-form" class="space-y-6">
+    <!-- Create Modal -->
+    <div id="content-create-modal"
+        class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 flex items-center justify-center p-4">
+        <form action="/create/content" method="POST" id="content-create-form" class="space-y-6">
             <div class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden">
                 <!-- Modal Header -->
                 <div class="px-6 py-4 border-b border-gray-100 bg-gray-50">
                     <div class="flex items-center justify-between">
-                        <h2 id="modal-title" class="text-xl font-bold text-gray-800">Tambah Konten Baru</h2>
-                        <button id="close-modal"
+                        <h2 class="text-xl font-bold text-gray-800">Tambah Konten Baru</h2>
+                        <button type="button" id="close-create-modal"
                             class="p-2 text-gray-400 hover:text-gray-600 rounded-lg transition-colors">
                             <i class="fas fa-times text-xl"></i>
                         </button>
                     </div>
                 </div>
-
                 <!-- Modal Body -->
                 <div class="p-6 overflow-y-auto max-h-[calc(90vh-140px)]">
                     @csrf
@@ -264,8 +288,8 @@
                         <label class="block text-sm font-semibold text-gray-700 mb-2">
                             Judul Konten
                         </label>
-                        <input type="text" id="title" name="title"
-                            class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amerta-primary/20 focus:border-amerta-primary transition-colors"
+                        <input type="text" id="create-title" name="title"
+                            class="w-full px-4 py-3 border border-gray-200 rounded-xl"
                             placeholder="Masukkan judul konten..." required>
                     </div>
 
@@ -274,9 +298,8 @@
                         <label class="block text-sm font-semibold text-gray-700 mb-2">
                             Tipe Konten
                         </label>
-                        <select id="content-type" name="type"
-                            class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amerta-primary/20 focus:border-amerta-primary transition-colors"
-                            required>
+                        <select id="create-type" name="type"
+                            class="w-full px-4 py-3 border border-gray-200 rounded-xl" required>
                             <option value="">Pilih tipe konten...</option>
                             <option value="artikel">📰 Artikel</option>
                             <option value="quiz">❓ Quiz</option>
@@ -292,36 +315,70 @@
                         <label class="block text-sm font-semibold text-gray-700 mb-2">
                             Konten
                         </label>
-                        <div id="quill-body" style="height: 240px;"
+                        <div id="quill-create-body" style="height: 240px;"
                             class="bg-white px-4 py-3 border border-gray-200 rounded-xl"></div>
-                        <input type="hidden" id="body" name="body" required>
+                        <input type="hidden" id="create-body" name="body" required>
                     </div>
-
-                    {{-- <!-- Author (if needed) -->
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">
-                        Penulis
-                    </label>
-                    <select id="author" name="author_id" 
-                        class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amerta-primary/20 focus:border-amerta-primary transition-colors" required>
-                        <option value="">Pilih penulis...</option>
-                        <option value="1" selected>Admin Utama</option>
-                        <option value="2">Editor Budaya</option>
-                        <option value="3">Kontributor</option>
-                    </select>
-                </div> --}}
                 </div>
 
                 <!-- Modal Footer -->
                 <div class="px-6 py-4 border-t border-gray-100 bg-gray-50 flex items-center justify-end space-x-3">
-                    <button id="cancel-btn" type="button"
-                        class="px-6 py-3 text-gray-700 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors">
-                        Batal
-                    </button>
-                    <button id="save-btn" type="submit" form="content-form"
-                        class="px-6 py-3 bg-amerta-primary hover:bg-amerta-dark text-white rounded-xl transition-colors">
+                    <button type="button" id="cancel-create-btn"
+                        class="px-6 py-3 text-gray-700 bg-white border border-gray-200 rounded-xl">Batal</button>
+                    <button type="submit" class="px-6 py-3 bg-amerta-primary hover:bg-amerta-dark text-white rounded-xl">
                         <i class="fas fa-save mr-2"></i>
                         Simpan Konten
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="content-edit-modal"
+        class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 flex items-center justify-center p-4">
+        <form method="POST" id="content-edit-form" class="space-y-6">
+            @csrf
+            <div class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden">
+                <div class="px-6 py-4 border-b border-gray-100 bg-gray-50">
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-xl font-bold text-gray-800">Edit Konten</h2>
+                        <button type="button" id="close-edit-modal"
+                            class="p-2 text-gray-400 hover:text-gray-600 rounded-lg transition-colors">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6 overflow-y-auto max-h-[calc(90vh-140px)]">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Judul Konten</label>
+                        <input type="text" id="edit-title" name="title"
+                            class="w-full px-4 py-3 border border-gray-200 rounded-xl" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Tipe Konten</label>
+                        <select id="edit-type" name="type" class="w-full px-4 py-3 border border-gray-200 rounded-xl" required>
+                            <option value="">Pilih tipe konten...</option>
+                            <option value="artikel">📰 Artikel</option>
+                            <option value="quiz">❓ Quiz</option>
+                            <option value="poster">🖼️ Poster</option>
+                            <option value="event">📅 Event</option>
+                            <option value="map_asset">🗺️ Aset Peta</option>
+                            <option value="submission">📝 Submission</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Konten</label>
+                        <div id="quill-edit-body" style="height: 240px;"
+                            class="bg-white px-4 py-3 border border-gray-200 rounded-xl"></div>
+                        <input type="hidden" id="edit-body" name="body" required>
+                    </div>
+                </div>
+                <div class="px-6 py-4 border-t border-gray-100 bg-gray-50 flex items-center justify-end space-x-3">
+                    <button type="button" id="cancel-edit-btn"
+                        class="px-6 py-3 text-gray-700 bg-white border border-gray-200 rounded-xl">Batal</button>
+                    <button type="submit" class="px-6 py-3 bg-amerta-primary hover:bg-amerta-dark text-white rounded-xl">
+                        <i class="fas fa-save mr-2"></i>Update Konten
                     </button>
                 </div>
             </div>
@@ -360,231 +417,298 @@
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
 
-    <script>
-        // Modal functionality
-        const createBtn = document.getElementById('create-btn');
-        const contentModal = document.getElementById('content-modal');
-        const deleteModal = document.getElementById('delete-modal');
-        const closeModal = document.getElementById('close-modal');
-        const cancelBtn = document.getElementById('cancel-btn');
-        const cancelDelete = document.getElementById('cancel-delete');
+   <script>
+    // Modal functionality
+    const createBtn = document.getElementById('create-btn');
+    const contentCreateModal = document.getElementById('content-create-modal');
+    const contentEditModal = document.getElementById('content-edit-modal');
+    const deleteModal = document.getElementById('delete-modal');
+    const closeCreateModal = document.getElementById('close-create-modal');
+    const closeEditModal = document.getElementById('close-edit-modal');
+    const cancelCreateBtn = document.getElementById('cancel-create-btn');
+    const cancelEditBtn = document.getElementById('cancel-edit-btn');
+    const cancelDelete = document.getElementById('cancel-delete');
 
-        // Open create modal
-        createBtn.addEventListener('click', function() {
-            document.getElementById('modal-title').textContent = 'Tambah Konten Baru';
-            document.getElementById('content-form').reset();
-            quill.setContents([]);
-            contentModal.classList.remove('hidden');
+    // Open create modal
+    createBtn.addEventListener('click', function() {
+        document.getElementById('content-create-form').reset();
+        quillCreate.setContents([]);
+        contentCreateModal.classList.remove('hidden');
+    });
+
+    // Close modals
+    [closeCreateModal, cancelCreateBtn].forEach(btn => {
+        btn.addEventListener('click', function() {
+            contentCreateModal.classList.add('hidden');
         });
+    });
 
-        // Close modals
-        [closeModal, cancelBtn].forEach(btn => {
-            btn.addEventListener('click', function() {
-                contentModal.classList.add('hidden');
-            });
+    [closeEditModal, cancelEditBtn].forEach(btn => {
+        btn.addEventListener('click', function() {
+            contentEditModal.classList.add('hidden');
         });
+    });
 
-        cancelDelete.addEventListener('click', function() {
+    cancelDelete.addEventListener('click', function() {
+        deleteModal.classList.add('hidden');
+    });
+
+    // Close modal on outside click
+    contentCreateModal.addEventListener('click', function(e) {
+        if (e.target === contentCreateModal) {
+            contentCreateModal.classList.add('hidden');
+        }
+    });
+
+    contentEditModal.addEventListener('click', function(e) {
+        if (e.target === contentEditModal) {
+            contentEditModal.classList.add('hidden');
+        }
+    });
+
+    deleteModal.addEventListener('click', function(e) {
+        if (e.target === deleteModal) {
             deleteModal.classList.add('hidden');
-        });
+        }
+    });
 
-        // Close modal on outside click
-        contentModal.addEventListener('click', function(e) {
-            if (e.target === contentModal) {
-                contentModal.classList.add('hidden');
+    // Edit buttons functionality
+    document.querySelectorAll('button[title="Edit"]').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const id = btn.getAttribute('data-id');
+            document.getElementById('edit-title').value = btn.getAttribute('data-title');
+            document.getElementById('edit-type').value = btn.getAttribute('data-type');
+            quillEdit.root.innerHTML = decodeHTMLEntities(btn.getAttribute('data-body'));
+            // Change action to /content/{id}/edit for POST
+            document.getElementById('content-edit-form').action = `/content/${id}/edit`;
+            contentEditModal.classList.remove('hidden');
+        });
+    });
+
+    document.getElementById('content-edit-form').addEventListener('submit', function(e) {
+        document.getElementById('edit-body').value = quillEdit.root.innerHTML;
+    });
+
+    function decodeHTMLEntities(text) {
+        var txt = document.createElement('textarea');
+        txt.innerHTML = text;
+        return txt.value;
+    }
+
+    // Delete buttons functionality
+    let deleteId = null;
+    document.querySelectorAll('.btn-delete').forEach(btn => {
+        btn.addEventListener('click', function() {
+            deleteId = btn.getAttribute('data-id');
+            document.getElementById('delete-form').action = '/content/' + deleteId;
+            deleteModal.classList.remove('hidden');
+        });
+    });
+
+    // Confirm delete submits form
+    document.getElementById('confirm-delete').addEventListener('click', function() {
+        document.getElementById('delete-form').submit();
+    });
+
+    /* =========================
+       QuillJS setup untuk Create & Edit
+       ========================= */
+
+    // Create editor
+    const quillCreate = new Quill('#quill-create-body', {
+        theme: 'snow',
+        placeholder: 'Tulis konten di sini...',
+        modules: {
+            toolbar: [
+                [{ header: [1, 2, 3, false] }],
+                ['bold', 'italic', 'underline', 'strike'],
+                ['blockquote', 'code-block'],
+                [{ list: 'ordered' }, { list: 'bullet' }],
+                [{ 'align': [] }],
+                ['link', 'image'],
+                ['clean']
+            ]
+        }
+    });
+    const quillEdit = new Quill('#quill-edit-body', {
+        theme: 'snow',
+        placeholder: 'Tulis konten di sini...',
+        modules: {
+            toolbar: [
+                [{ header: [1, 2, 3, false] }],
+                ['bold', 'italic', 'underline', 'strike'],
+                ['blockquote', 'code-block'],
+                [{ list: 'ordered' }, { list: 'bullet' }],
+                [{ 'align': [] }],
+                ['link', 'image'],
+                ['clean']
+            ]
+        }
+    });
+
+    // Edit modal logic
+    [closeEditModal, cancelEditBtn].forEach(btn => {
+        btn.addEventListener('click', function() {
+            contentEditModal.classList.add('hidden');
+        });
+    });
+
+    document.querySelectorAll('button[title="Edit"]').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const id = btn.getAttribute('data-id');
+            document.getElementById('edit-title').value = btn.getAttribute('data-title');
+            document.getElementById('edit-type').value = btn.getAttribute('data-type');
+            quillEdit.root.innerHTML = decodeHTMLEntities(btn.getAttribute('data-body'));
+            document.getElementById('content-edit-form').action = `/content/${id}/edit`;
+            contentEditModal.classList.remove('hidden');
+        });
+    });
+
+    document.getElementById('content-edit-form').addEventListener('submit', function(e) {
+        document.getElementById('edit-body').value = quillEdit.root.innerHTML;
+    });
+
+    function decodeHTMLEntities(text) {
+        var txt = document.createElement('textarea');
+        txt.innerHTML = text;
+        return txt.value;
+    }
+
+
+    /* =========================
+       QuillJS setup untuk Create & Edit
+       ========================= */
+
+    // Create modal logic
+    createBtn.addEventListener('click', function() {
+        document.getElementById('content-create-form').reset();
+        quillCreate.setContents([]);
+        contentCreateModal.classList.remove('hidden');
+    });
+
+    [closeCreateModal, cancelCreateBtn].forEach(btn => {
+        btn.addEventListener('click', function() {
+            contentCreateModal.classList.add('hidden');
+        });
+    });
+
+    document.getElementById('content-create-form').addEventListener('submit', function(e) {
+        document.getElementById('create-body').value = quillCreate.root.innerHTML;
+    });
+
+    // Edit modal logic
+    [closeEditModal, cancelEditBtn].forEach(btn => {
+        btn.addEventListener('click', function() {
+            contentEditModal.classList.add('hidden');
+        });
+    });
+
+    document.querySelectorAll('form.content-edit-form').forEach(form => {
+        form.addEventListener('submit', function(e) {
+            const hiddenInput = form.querySelector('.edit-body-hidden');
+            const quillContainer = form.querySelector('.quill-edit-body');
+            if (hiddenInput && quillContainer) {
+                hiddenInput.value = quillEditInstances[quillContainer.id].root.innerHTML;
             }
         });
+    });
 
-        deleteModal.addEventListener('click', function(e) {
-            if (e.target === deleteModal) {
-                deleteModal.classList.add('hidden');
+    // Search functionality
+    document.getElementById('search-input').addEventListener('input', function(e) {
+        const searchTerm = e.target.value.toLowerCase();
+        console.log('Searching for:', searchTerm);
+    });
+
+    function filterContents() {
+        const searchTerm = document.getElementById('search-input').value.toLowerCase();
+        const filterType = document.getElementById('type-filter').value;
+        const filterAuthor = document.getElementById('author-filter').value;
+
+        document.querySelectorAll('.content-row').forEach(row => {
+            const title = row.getAttribute('data-title');
+            const type = row.getAttribute('data-type');
+            const author = row.getAttribute('data-author');
+
+            let visible = true;
+
+            if (searchTerm && !title.includes(searchTerm)) {
+                visible = false;
             }
-        });
+            if (filterType && type !== filterType) {
+                visible = false;
+            }
+            if (filterAuthor && author !== filterAuthor) {
+                visible = false;
+            }
 
-        // Edit buttons functionality
-        document.querySelectorAll('button[title="Edit"]').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.getElementById('modal-title').textContent = 'Edit Konten';
-                // Here you would populate the form with existing data
-                contentModal.classList.remove('hidden');
-            });
+            row.style.display = visible ? '' : 'none';
         });
+    }
 
-        // Delete buttons functionality
-        let deleteId = null;
-        document.querySelectorAll('.btn-delete').forEach(btn => {
-            btn.addEventListener('click', function() {
-                deleteId = btn.getAttribute('data-id');
-                document.getElementById('delete-form').action = '/content/' + deleteId;
-                deleteModal.classList.remove('hidden');
-            });
-        });
+    document.getElementById('search-input').addEventListener('input', filterContents);
+    document.getElementById('type-filter').addEventListener('change', filterContents);
+    document.getElementById('author-filter').addEventListener('change', filterContents);
 
-        // Confirm delete submits form
-        document.getElementById('confirm-delete').addEventListener('click', function() {
-            document.getElementById('delete-form').submit();
-        });
+    // Content type icon mapping for dynamic creation
+    const typeIcons = {
+        'artikel': { icon: 'fas fa-newspaper', color: 'from-blue-500 to-blue-600', badge: 'bg-blue-100 text-blue-800' },
+        'quiz': { icon: 'fas fa-question-circle', color: 'from-green-500 to-green-600', badge: 'bg-green-100 text-green-800' },
+        'poster': { icon: 'fas fa-image', color: 'from-amber-500 to-amber-600', badge: 'bg-amber-100 text-amber-800' },
+        'event': { icon: 'fas fa-calendar-alt', color: 'from-purple-500 to-purple-600', badge: 'bg-purple-100 text-purple-800' },
+        'map_asset': { icon: 'fas fa-map-marked-alt', color: 'from-teal-500 to-teal-600', badge: 'bg-teal-100 text-teal-800' },
+        'submission': { icon: 'fas fa-file-upload', color: 'from-indigo-500 to-indigo-600', badge: 'bg-indigo-100 text-indigo-800' }
+    };
 
-        // Cancel delete
-        cancelDelete.addEventListener('click', function() {
+    // Update content type styling based on selection
+    document.getElementById('content-type').addEventListener('change', function(e) {
+        const selectedType = e.target.value;
+        if (selectedType && typeIcons[selectedType]) {
+            console.log('Selected content type:', selectedType);
+        }
+    });
+
+    // Quick actions for bulk operations
+    function bulkDelete() {
+        if (confirm('Apakah Anda yakin ingin menghapus semua konten yang dipilih?')) {
+            console.log('Bulk delete confirmed');
+        }
+    }
+
+    function exportContent() {
+        console.log('Exporting content...');
+    }
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'n') {
+            e.preventDefault();
+            createBtn.click();
+        }
+        if (e.key === 'Escape') {
+            contentCreateModal.classList.add('hidden');
+            contentEditModal.classList.add('hidden');
             deleteModal.classList.add('hidden');
-        });
-
-        // QuillJS setup
-        const quill = new Quill('#quill-body', {
-            theme: 'snow',
-            placeholder: 'Tulis konten di sini...',
-            modules: {
-                toolbar: [
-                    [{
-                        header: [1, 2, 3, false]
-                    }],
-                    ['bold', 'italic', 'underline', 'strike'],
-                    ['blockquote', 'code-block'],
-                    [{
-                        list: 'ordered'
-                    }, {
-                        list: 'bullet'
-                    }],
-                    [{
-                        'align': []
-                    }],
-                    ['link', 'image'],
-                    ['clean']
-                ]
-            }
-        });
-
-        // Sync Quill content to hidden input on form submit
-        document.getElementById('content-form').addEventListener('submit', function(e) {
-            document.getElementById('body').value = quill.root.innerHTML;
-        });
-
-        // Reset Quill content on modal open
-        createBtn.addEventListener('click', function() {
-            quill.setContents([]);
-            document.getElementById('body').value = '';
-        });
-
-        // If you want to populate Quill for edit, add:
-        document.querySelectorAll('button[title="Edit"]').forEach(btn => {
-            btn.addEventListener('click', function() {
-                // Example: quill.root.innerHTML = '<p>Isi konten lama...</p>';
-            });
-        });
-
-        // Search functionality
-        document.getElementById('search-input').addEventListener('input', function(e) {
-            const searchTerm = e.target.value.toLowerCase();
-            // Here you would implement search filtering
-            console.log('Searching for:', searchTerm);
-        });
-
-        // Filter functionality
-        document.getElementById('type-filter').addEventListener('change', function(e) {
-            const filterType = e.target.value;
-            // Here you would implement type filtering
-            console.log('Filtering by type:', filterType);
-        });
-
-        document.getElementById('author-filter').addEventListener('change', function(e) {
-            const filterAuthor = e.target.value;
-            // Here you would implement author filtering
-            console.log('Filtering by author:', filterAuthor);
-        });
-
-        // Content type icon mapping for dynamic creation
-        const typeIcons = {
-            'artikel': {
-                icon: 'fas fa-newspaper',
-                color: 'from-blue-500 to-blue-600',
-                badge: 'bg-blue-100 text-blue-800'
-            },
-            'quiz': {
-                icon: 'fas fa-question-circle',
-                color: 'from-green-500 to-green-600',
-                badge: 'bg-green-100 text-green-800'
-            },
-            'poster': {
-                icon: 'fas fa-image',
-                color: 'from-amber-500 to-amber-600',
-                badge: 'bg-amber-100 text-amber-800'
-            },
-            'event': {
-                icon: 'fas fa-calendar-alt',
-                color: 'from-purple-500 to-purple-600',
-                badge: 'bg-purple-100 text-purple-800'
-            },
-            'map_asset': {
-                icon: 'fas fa-map-marked-alt',
-                color: 'from-teal-500 to-teal-600',
-                badge: 'bg-teal-100 text-teal-800'
-            },
-            'submission': {
-                icon: 'fas fa-file-upload',
-                color: 'from-indigo-500 to-indigo-600',
-                badge: 'bg-indigo-100 text-indigo-800'
-            }
-        };
-
-        // Update content type styling based on selection
-        document.getElementById('content-type').addEventListener('change', function(e) {
-            const selectedType = e.target.value;
-            if (selectedType && typeIcons[selectedType]) {
-                console.log('Selected content type:', selectedType);
-                // You can add visual feedback here if needed
-            }
-        });
-
-        // Quick actions for bulk operations
-        function bulkDelete() {
-            if (confirm('Apakah Anda yakin ingin menghapus semua konten yang dipilih?')) {
-                console.log('Bulk delete confirmed');
-                // Implement bulk delete logic
-            }
         }
+    });
 
-        function exportContent() {
-            console.log('Exporting content...');
-            // Implement export functionality
+    // Auto-save draft functionality (placeholder)
+    let draftTimer;
+    function saveDraft() {
+        const title = document.getElementById('title').value;
+        const body = document.getElementById('body').value;
+        const type = document.getElementById('content-type').value;
+
+        if (title || body || type) {
+            console.log('Auto-saving draft...');
         }
+    }
 
-        // Keyboard shortcuts
-        document.addEventListener('keydown', function(e) {
-            // Ctrl/Cmd + N for new content
-            if ((e.ctrlKey || e.metaKey) && e.key === 'n') {
-                e.preventDefault();
-                createBtn.click();
-            }
-
-            // Escape to close modals
-            if (e.key === 'Escape') {
-                contentModal.classList.add('hidden');
-                deleteModal.classList.add('hidden');
-            }
+    ['title', 'body', 'content-type'].forEach(id => {
+        document.getElementById(id).addEventListener('input', function() {
+            clearTimeout(draftTimer);
+            draftTimer = setTimeout(saveDraft, 2000);
         });
-
-        // Auto-save draft functionality (placeholder)
-        let draftTimer;
-
-        function saveDraft() {
-            const title = document.getElementById('title').value;
-            const body = document.getElementById('body').value;
-            const type = document.getElementById('content-type').value;
-
-            if (title || body || type) {
-                console.log('Auto-saving draft...');
-                // Here you would implement auto-save to backend
-            }
-        }
-
-        // Set up auto-save on form input
-        ['title', 'body', 'content-type'].forEach(id => {
-            document.getElementById(id).addEventListener('input', function() {
-                clearTimeout(draftTimer);
-                draftTimer = setTimeout(saveDraft, 2000); // Save after 2 seconds of inactivity
-            });
-        });
-    </script>
+    });
+</script>
 
 @endsection

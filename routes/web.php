@@ -27,6 +27,7 @@ Route::middleware('auth')->group(function() {
 
     Route::controller(ContentController::class)->group(function() {
         Route::post('/create/content', 'store');
+        Route::post('/content/{content}/edit', 'update');
         Route::delete('/content/{content}', 'destroy');
     });
 

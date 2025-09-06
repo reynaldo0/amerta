@@ -408,18 +408,6 @@
                             placeholder="Atau masukkan URL file external...">
                     </div>
 
-                    <!-- Metadata -->
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">
-                            Metadata (JSON)
-                        </label>
-                        <textarea id="item-metadata" name="metadata" rows="6"
-                            class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amerta-primary/20 focus:border-amerta-primary transition-colors resize-y font-mono text-sm"
-                            placeholder='{"tags": ["batik", "cirebon"], "tahun": "2024", "sumber": "Keraton Kasepuhan"}'></textarea>
-                        <p class="text-xs text-gray-500 mt-1">Format JSON untuk informasi tambahan seperti tags, tahun,
-                            sumber, dll.</p>
-                    </div>
-
                     <!-- Uploader -->
                     {{-- <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-2">
