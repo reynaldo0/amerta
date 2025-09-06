@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\LibraryItemController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\QuizController;
 use App\Models\LibraryItem;
 use Illuminate\Http\Request;
@@ -25,5 +26,9 @@ Route::prefix('v1')->group(function () {
 
     Route::controller(QuizController::class)->group(function () {
         Route::get('/quiz/{id}', 'show');
+    });
+
+    Route::controller(MailController::class)->group(function () {
+        Route::post('/mail', 'store');
     });
 });

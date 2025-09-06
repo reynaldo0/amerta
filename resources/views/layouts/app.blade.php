@@ -108,7 +108,7 @@
                 
                 <!-- Inbox -->
                 <li>
-                    <a href="/admin/inbox"
+                    <a href="/admin/mails"
                         class="flex items-center p-3 text-gray-700 rounded-xl hover:bg-amerta-primary/10 hover:text-amerta-secondary transition-all duration-200 group">
                         <i class="fas fa-inbox text-lg w-5"></i>
                         <span class="ml-4">Pesan Masuk</span>

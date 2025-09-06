@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Content;
 use App\Models\LibraryItem;
+use App\Models\Mail;
 use App\Models\Province;
 use App\Models\Quiz;
 use Illuminate\Http\Request;
@@ -45,5 +46,11 @@ class RouteController extends Controller
             'quizzes' => $quizzes,
             'contents' => Content::where('type', 'quiz')->get()
         ]);
+    }
+
+    public function mail() {
+        $mails = Mail::latest()->get();
+
+        return view('admin.mail', compact('mails'));
     }
 }

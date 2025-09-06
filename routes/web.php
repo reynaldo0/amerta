@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function() {
         Route::get('/admin/contents', 'content');
         Route::get('/admin/items', 'item');
         Route::get('/admin/quizzes', 'quiz');
+        Route::get('/admin/mails', 'mail');
     });
 
     Route::controller(ContentController::class)->group(function() {
