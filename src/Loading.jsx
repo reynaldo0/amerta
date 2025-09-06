@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import loadingVideo from "/loading.mp4"; // path video
+import loadingGif from "/logo.gif"; // path video
 
 export default function LoadingScreen({ onLoaded }) {
   const [show, setShow] = useState(true);
@@ -50,14 +50,11 @@ export default function LoadingScreen({ onLoaded }) {
       ))}
 
       {/* Video tetap bersih, tanpa efek apapun */}
-      <video
-        src={loadingVideo}
-        autoPlay
-        loop
-        muted
-        className="w-32 h-32 object-contain"
+      <img
+        src={loadingGif}
+        alt="Loading..."
+        className="w-60 h-60 object-contain"
       />
-
       {/* Teks dengan animasi */}
       <p
         className="mt-4 text-gray-600 font-bold text-lg"
