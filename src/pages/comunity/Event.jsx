@@ -173,7 +173,10 @@ const Events = () => {
   };
 
   return (
-    <section className="relative w-full min-h-screen bg-primary-200" id="events">
+    <section
+      className="relative w-full min-h-screen bg-primary-200"
+      id="events"
+    >
       {/* inject custom styles for animation */}
       <style>{styles}</style>
 
@@ -192,12 +195,12 @@ const Events = () => {
       />
       <div className="container mx-auto px-6 relative py-16 md:px-10">
         <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-8">
-          Acara Komunitas Teknologi Hijau
+          Acara dan Festival Budaya Nusantara
         </h2>
         <p className="text-lg text-center text-gray-200 mb-12 md:px-32">
-          Ikuti berbagai acara komunitas kami untuk memperluas pengetahuan dan
-          terhubung dengan orang-orang yang memiliki visi yang sama dalam
-          teknologi hijau.
+          Ikuti berbagai acara budaya, festival, dan kegiatan seni dari seluruh
+          penjuru Indonesia untuk mengenal, merayakan, dan melestarikan kekayaan
+          budaya Nusantara.
         </p>
 
         <div className="grid gap-8 md:grid-cols-3">
@@ -218,7 +221,7 @@ const Events = () => {
               <p className="text-gray-700 mt-3">{event.description}</p>
               <button
                 onClick={() => openModal(event)}
-                className="mt-4 bg-primary-300 cursor-pointer py-2 px-4 hover:bg-primary-400 rounded-xl text-white font-medium transition-all"
+                className="mt-4 bg-secondary-300 hover:bg-secondary-300/90 cursor-pointer py-2 px-4 hover:bg-primary-400 rounded-xl text-white font-medium transition-all"
               >
                 Daftar Sekarang
               </button>

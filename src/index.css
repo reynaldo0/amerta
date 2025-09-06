@@ -127,11 +127,6 @@ html {
   display: block;
 }
 
-.indonesia path {
-  fill: #cc8400;
-  transition: fill 0.6s;
-}
-
 .pulau_active path:hover {
   fill: #996300;
   cursor: pointer;
