@@ -68,13 +68,16 @@ class QuizController extends Controller
      */
     public function show(string $id)
     {
-        $question = Question::with('quiz')->findOrFail($id);
+        // Find the quiz by id
+        $quiz = Quiz::with('questions')->findOrFail($id);
 
-        // decode options jadi array
-        $question->options = json_decode($question->options, true);
+        // Decode options for each question
+        foreach ($quiz->questions as $question) {
+            $question->options = json_decode($question->options, true);
+        }
 
         return response()->json([
-            'question' => $question
+            'quiz' => $quiz
         ], 200);
     }
 
