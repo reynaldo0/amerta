@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @theme {
+  --font-family-poppins: "poppins", sans-serif;
   /* Colors */
   --color-primary-100: #594537;
   --color-primary-200: #4f3e31;
@@ -13,6 +14,7 @@
 
 html {
   scroll-behavior: smooth;
+  font-family: poppins, sans-serif;
 }
 
 @keyframes fadeInUp {

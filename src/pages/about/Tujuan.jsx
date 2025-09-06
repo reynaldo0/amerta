@@ -60,7 +60,7 @@ export default function TujuanSection() {
             </div>
 
             {/* Title */}
-            <h3 className="text-xl font-semibold text-gray-800 mb-3 group-hover:text-brown-600 transition-colors duration-300">
+            <h3 className="text-xl text-gray-800 mb-3 group-hover:text-brown-600 transition-colors duration-300">
               {item.title}
             </h3>
 

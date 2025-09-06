@@ -42,7 +42,7 @@ const HeroAbout = () => {
       {/* Left Section */}
       <div className="bg-primary-100 rounded-t-3xl text-white p-6 md:p-12 md:rounded-r-[40px] flex flex-col items-start space-y-4 md:space-y-6 relative z-10">
         <h2
-          className="text-xl md:text-5xl font-serif leading-tight text-left"
+          className="text-xl md:text-5xl leading-tight text-left"
           data-aos="fade-up"
           data-aos-duration="800"
         >

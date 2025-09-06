@@ -23,7 +23,7 @@ const Navbar = () => {
         {/* Logo */}
         <div className="flex items-center space-x-2">
           <img src="/logo.png" alt="Logo" className="w-8 h-8 object-contain" />
-          <span className="font-bold text-gray-900 drop-shadow-sm">Amerta</span>
+          <span className="font-extrabold text-primary-200 drop-shadow-sm">Amerta</span>
         </div>
 
         {/* Menu Desktop */}

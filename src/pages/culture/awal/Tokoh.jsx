@@ -7,6 +7,53 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 export default function Tokoh() {
+  const tokohData = [
+    {
+      name: "Yuli Astuti",
+      description:
+        "Yuli Astuti adalah seorang pengusaha batik tulis dari Kudus yang berkomitmen untuk melestarikan warisan budaya batik tulis Indonesia. Dia mendirikan Muria Batik Kudus dengan tujuan menjaga keaslian batik tulis sebagai bagian dari identitas budaya lokal.",
+      born: "15 Desember 1978",
+      died: "2005",
+      images: ["/tokoh/yuli.png", "/tokoh/yuli2.png"],
+      gradient: "from-secondary-200 via-secondary-400 to-secondary-300",
+    },
+    {
+      name: "Gusti Kanjeng Ratu Hemas",
+      description:
+        " Tokoh perempuan yang berjasa besar dalam melestarikan batik Yogyakarta. Beliau tidak hanya mempromosikan batik sebagai warisan budaya Indonesia, tetapi juga berperan aktif dalam pengembangan dan inovasi desain batik modern.",
+      born: "15 Desember 1978",
+      died: "2002",
+      images: ["/tokoh/gusti.png", "/tokoh/gusti2.png"],
+      gradient: "from-secondary-200 via-secondary-400 to-secondary-300",
+    },
+    {
+      name: "Ida Royani",
+      description:
+        "Ida Royani adalah seorang seniman tari Indonesia yang dikenal sebagai “Ratu Tari Bali”. Ia telah menyumbangkan bakatnya dalam mempertahankan dan mengembangkan seni tari Bali baik di dalam maupun luar negeri.",
+      born: "24 Maret 1953",
+      died: "1960-an",
+      images: ["/tokoh/ida.png", "/tokoh/ida2.png"],
+      gradient: "from-secondary-200 via-secondary-400 to-secondary-300",
+    },
+    {
+      name: "Emha Ainun Nadjib",
+      description:
+        "Emha Ainun Nadjib atau yang lebih dikenal dengan nama Cak Nun, adalah seorang budayawan yang terkenal dengan karya-karyanya dalam bidang sastra dan musik tradisional Jawa. Ia juga sering memberikan ceramah dan pidato mengenai nilai-nilai budaya Indonesia.",
+      born: "27 Mei 1953",
+      died: "1977",
+      images: ["/tokoh/emha.png", "/tokoh/emha2.png"],
+      gradient: "from-secondary-200 via-secondary-400 to-secondary-300",
+    },
+    {
+      name: "Eko Supriyanto",
+      description:
+        "Eko Supriyanto telah menciptakan berbagai pertunjukan tari kontemporer yang mendapatkan pengakuan internasional, seperti \"Tari Bumi\" yang menggambarkan hubungan antara manusia dengan alam. Ia juga aktif dalam mendidik generasi muda tentang tari kontemporer melalui workshop-wokshop serta program pelatihan tari di berbagai institusi seni.",
+      born: "26 November 1970",
+      died: "2002",
+      images: ["/tokoh/eko.png", "/tokoh/eko2.png"],
+      gradient: "from-secondary-200 via-secondary-400 to-secondary-300",
+    },
+  ];
   return (
     <section className="relative w-full min-h-screen text-white overflow-hidden">
       <img
@@ -35,75 +82,48 @@ export default function Tokoh() {
           loop={true}
           className="max-w-6xl w-full"
         >
-          {/* Slide 1 */}
-          <SwiperSlide>
-            <div className="bg-primary-200/90 backdrop-blur-xl rounded-3xl shadow-2xl p-8 md:p-12 grid md:grid-cols-2 gap-8 border border-white/20">
-              <div className="grid grid-cols-2 gap-4">
-                <img
-                  src="/illustrasi/wayang.png"
-                  alt="Mona Lisa"
-                  className="rounded-2xl shadow-lg object-cover w-full h-48 md:h-64 transform transition-transform duration-500 hover:scale-105"
-                />
-                <img
-                  src="/illustrasi/wayang.png"
-                  alt="The Last Supper"
-                  className="rounded-2xl shadow-lg object-cover w-full h-48 md:h-64 transform transition-transform duration-500 hover:scale-105"
-                />
-              </div>
-
-              <div className="flex flex-col justify-center text-white">
-                <h1 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-secondary-200 via-secondary-400 to-secondary-300 bg-clip-text text-transparent">
-                  Leonardo Da Vinci
-                </h1>
-                <p className="mt-4 text-lg leading-relaxed text-gray-100">
-                  A Renaissance artist, inventor, and scientist who is regarded
-                  as one of the greatest minds in human history.
-                </p>
-                <div className="mt-6 grid grid-cols-2 gap-6 text-sm">
-                  <div>
-                    <p className="text-gray-300">Born</p>
-                    <p className="font-bold">April 15, 1452</p>
-                  </div>
-                  <div>
-                    <p className="text-gray-300">Died</p>
-                    <p className="font-bold">May 2, 1519</p>
-                  </div>
+          {tokohData.map((tokoh, index) => (
+            <SwiperSlide key={index}>
+              <div className="bg-primary-200/90 backdrop-blur-xl rounded-3xl shadow-2xl p-8 md:p-12 grid md:grid-cols-2 gap-8 border border-white/20">
+                {/* Gambar tokoh */}
+                <div className="grid grid-cols-2 gap-4">
+                  {tokoh.images.map((img, idx) => (
+                    <img
+                      key={idx}
+                      src={img}
+                      alt={tokoh.name + idx}
+                      className="rounded-2xl shadow-lg object-cover w-full h-48 md:h-64 transform transition-transform duration-500 hover:scale-105"
+                    />
+                  ))}
                 </div>
-                <a
-                  href="#paintings"
-                  className="mt-8 inline-block px-6 py-3 rounded-full font-semibold bg-gradient-to-r from-secondary-200 to-secondary-400 text-gray-900 shadow-md hover:shadow-xl transform transition-transform duration-300 hover:scale-105"
-                >
-                  See Paintings
-                </a>
-              </div>
-            </div>
-          </SwiperSlide>
 
-          {/* Slide 2 (contoh, bisa ditambah lagi) */}
-          <SwiperSlide>
-            <div className="bg-primary-200/90 backdrop-blur-xl rounded-3xl shadow-2xl p-8 md:p-12 grid md:grid-cols-2 gap-8 border border-white/20">
-              <div className="grid grid-cols-2 gap-4">
-                <img
-                  src="/illustrasi/wayang.png"
-                  alt="Another Artwork"
-                  className="rounded-2xl shadow-lg object-cover w-full h-48 md:h-64"
-                />
-                <img
-                  src="/illustrasi/wayang.png"
-                  alt="Artwork"
-                  className="rounded-2xl shadow-lg object-cover w-full h-48 md:h-64"
-                />
+                {/* Info tokoh */}
+                <div className="flex flex-col justify-center text-white">
+                  <h1
+                    className={`text-4xl md:text-5xl font-extrabold bg-gradient-to-r ${tokoh.gradient} bg-clip-text text-transparent`}
+                  >
+                    {tokoh.name}
+                  </h1>
+                  <p className="mt-4 text-lg leading-relaxed text-gray-100">
+                    {tokoh.description}
+                  </p>
+
+                  {tokoh.born && tokoh.died && (
+                    <div className="mt-6 grid grid-cols-2 gap-6 text-sm">
+                      <div>
+                        <p className="text-gray-300">Lahir pada Tanggal</p>
+                        <p className="font-bold">{tokoh.born}</p>
+                      </div>
+                      <div>
+                        <p className="text-gray-300">Melmulai Karir Pada Tahun</p>
+                        <p className="font-bold">{tokoh.died}</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
-              <div className="flex flex-col justify-center text-white">
-                <h1 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-secondary-300 to-secondary-500 bg-clip-text text-transparent">
-                  Another Tokoh
-                </h1>
-                <p className="mt-4 text-lg leading-relaxed text-gray-100">
-                  Deskripsi singkat tokoh lain bisa ditaruh di sini.
-                </p>
-              </div>
-            </div>
-          </SwiperSlide>
+            </SwiperSlide>
+          ))}
         </Swiper>
 
         {/* Custom Navigation Buttons */}
