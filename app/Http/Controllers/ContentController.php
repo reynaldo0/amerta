@@ -8,6 +8,7 @@ use App\Models\Content;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class ContentController extends Controller
 {
@@ -40,6 +41,7 @@ class ContentController extends Controller
             'title' => 'required|string|max:255',
             'body' => 'required|string',
             'type' => 'required|in:artikel,quiz,poster,event,map_asset,submission',
+            'media' => 'nullable|file|mimes:jpg,jpeg,png,mp4,mp3,wav,mov,avi|max:20480'
         ]);
 
         if ($vld->fails()) {
@@ -48,22 +50,41 @@ class ContentController extends Controller
                 ->withInput();
         }
 
-        $user_id = Auth::user()->id;
+        $user_id = Auth::id();
 
         // Generate unique slug
         $slug = Str::slug($request->title);
         $originalSlug = $slug;
         $i = 1;
-        while (\App\Models\Content::where('slug', $slug)->exists()) {
+        while (Content::where('slug', $slug)->exists()) {
             $slug = $originalSlug . '-' . $i++;
         }
-        
+
+        // handle media upload
+        $mediaPath = null;
+        $mediaType = null;
+
+        if ($request->hasFile('media')) {
+            $file = $request->file('media');
+            $mediaPath = $file->store('uploads/media', 'public');
+            $ext = strtolower($file->getClientOriginalExtension());
+
+            if (in_array($ext, ['jpg', 'jpeg', 'png'])) {
+                $mediaType = 'image';
+            } elseif (in_array($ext, ['mp4', 'mov', 'avi'])) {
+                $mediaType = 'video';
+            } elseif (in_array($ext, ['mp3', 'wav'])) {
+                $mediaType = 'audio';
+            }
+        }
+
         Content::create([
             'title' => $request->title,
             'body' => $request->body,
             'type' => $request->type,
             'slug' => $slug,
-            'author_id' => $user_id
+            'author_id' => $user_id,
+            'media' => $mediaPath,
         ]);
 
         return redirect()->back()
@@ -88,6 +109,7 @@ class ContentController extends Controller
             'body' => 'sometimes|required|string',
             'type' => 'sometimes|required|in:artikel,quiz,poster,event,map_asset,submission',
             'author_id' => 'sometimes|required|exists:users,id',
+            'media' => 'nullable|file|mimes:jpg,jpeg,png,mp4,mp3,wav,mov,avi|max:20480'
         ]);
 
         if ($vld->fails()) {
@@ -102,10 +124,34 @@ class ContentController extends Controller
             $slug = Str::slug($data['title']);
             $originalSlug = $slug;
             $i = 1;
-            while (\App\Models\Content::where('slug', $slug)->where('id', '!=', $content->id)->exists()) {
+            while (Content::where('slug', $slug)->where('id', '!=', $content->id)->exists()) {
                 $slug = $originalSlug . '-' . $i++;
             }
             $data['slug'] = $slug;
+        }
+
+        // handle new media upload (replace old)
+        if ($request->hasFile('media')) {
+            // delete old file
+            if ($content->media_path) {
+                Storage::disk('public')->delete($content->media_path);
+            }
+
+            $file = $request->file('media');
+            $path = $file->store('uploads/media', 'public');
+            $ext = strtolower($file->getClientOriginalExtension());
+
+            if (in_array($ext, ['jpg', 'jpeg', 'png'])) {
+                $type = 'image';
+            } elseif (in_array($ext, ['mp4', 'mov', 'avi'])) {
+                $type = 'video';
+            } elseif (in_array($ext, ['mp3', 'wav'])) {
+                $type = 'audio';
+            } else {
+                $type = null;
+            }
+
+            $data['media'] = $path;
         }
 
         $content->update($data);
@@ -119,6 +165,10 @@ class ContentController extends Controller
      */
     public function destroy(Content $content)
     {
+        if ($content->media_path) {
+            Storage::disk('public')->delete($content->media_path);
+        }
+
         $content->delete();
 
         return redirect()->back()
@@ -136,7 +186,7 @@ class ContentController extends Controller
 
     public function events()
     {
-        $events = Content::where('type', 'events')->latest()->get();
+        $events = Content::where('type', 'event')->latest()->get();
         return response()->json($events);
     }
 }

@@ -15,6 +15,7 @@ class LibraryItem extends Model
     protected $fillable = [
         'title',
         'description',
+        'file',
         'file_url',
         'category',
         'metadata',

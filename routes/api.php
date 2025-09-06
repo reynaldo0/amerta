@@ -5,6 +5,7 @@ use App\Http\Controllers\ContentController;
 use App\Http\Controllers\LibraryItemController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\RouteController;
 use App\Models\LibraryItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -34,5 +35,10 @@ Route::prefix('v1')->group(function () {
 
     Route::controller(MailController::class)->group(function () {
         Route::post('/mail', 'store');
+    });
+
+    Route::controller(RouteController::class)->group(function() {
+        Route::get('/provinces', 'prov');
+        Route::get('/regions', 'reg');
     });
 });

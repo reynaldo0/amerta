@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
+            $table->text('file');
             $table->text('file_url');
             $table->string('category');
             $table->foreignId('province_id')->constrained('provinces')->onDelete('cascade'); 
