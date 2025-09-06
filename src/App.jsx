@@ -12,6 +12,7 @@ import Home from "./pages/Home";
 import Article from "./pages/Article";
 import ArticleDetail from "./pages/artikel/ArticleDetail";
 import Footer from "./components/Footer";
+import ChatBotModal from "./pages/ChatBot";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="/budaya-sulawesi" element={<Sulawesi />} />
         <Route path="/budaya-papua" element={<Papua />} />
       </Routes>
+      <ChatBotModal />
       <Footer />
     </BrowserRouter>
   );
