@@ -3,7 +3,7 @@ import Star from "/illustrasi/star.svg"; // Pastikan path benar
 import Cross from "/illustrasi/salah.svg"; // Atau buat ikon khusus untuk 0 skor
 import questions from "../../../docs/questionData";
 
-const Questions = () => {
+const Questions = ({ goBack }) => {
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState(null);
   const [answers, setAnswers] = useState([]);
@@ -97,6 +97,13 @@ const Questions = () => {
           <h1 className="text-3xl md:text-4xl font-bold text-center text-primary-200 mb-6">
             Kuis Budaya Nusantara
           </h1>
+          {/* Tombol Kembali */}
+          <button
+            onClick={goBack}
+            className="mb-4 px-4 py-2 bg-gray-300 text-gray-800 rounded-xl hover:bg-gray-400 transition"
+          >
+            ← Kembali
+          </button>
 
           {/* Progress bar */}
           <div className="w-full h-3 mb-4 rounded-full border-2 border-black bg-white overflow-hidden">

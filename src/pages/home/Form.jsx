@@ -68,6 +68,10 @@ const Form = () => {
 
   return (
     <section className="bg-white relative min-h-screen py-24 flex lg:pb-40">
+      <div
+        className="absolute inset-0 bg-[url('/wave/bg.svg')] bg-cover bg-center opacity-10"
+        style={{ backgroundAttachment: "fixed" }}
+      />
       <form
         onSubmit={handleSubmit}
         className="flex flex-col-reverse xl:flex-row xl:gap-20 items-center justify-between px-8 md:px-24 xl:px-20 z-10 w-full"

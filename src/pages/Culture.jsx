@@ -1,7 +1,6 @@
-import React from "react";
-import Budaya from "./culture/awal/PulauBudaya";
 import Hero from "./culture/awal/Hero";
-import Questions from "./culture/awal/question";
+import Budaya from "./culture/awal/PulauBudaya";
+import QuizCardWrapper from "./culture/awal/QuizCard";
 import Tokoh from "./culture/awal/Tokoh";
 
 const Culture = () => {
@@ -10,7 +9,7 @@ const Culture = () => {
       <Hero />
       <Budaya />
       <Tokoh />
-      <Questions />
+      <QuizCardWrapper />
     </div>
   );
 };
