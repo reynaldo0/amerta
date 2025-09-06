@@ -21,14 +21,14 @@ class QuizController extends Controller
         ], 200);
     }
 
-    public function new(Request $request) {
+    public function new(Request $request)
+    {
         $quiz = Quiz::firstOrCreate(
             ['content_id' => $request->content_id],
             ['created_by' => auth()->id()]
         );
 
         return redirect()->back()->with('success', 'Quiz berhasil ditambahkan!');
-
     }
 
     /**
@@ -52,7 +52,7 @@ class QuizController extends Controller
             ['content_id' => $request->content_id],
             ['created_by' => auth()->id()]
         );
-        
+
         Question::create([
             'quiz_id'      => $quiz->id,
             'question_text'  => $request->question_text,
@@ -124,6 +124,21 @@ class QuizController extends Controller
 
         return response()->json([
             'message' => 'Question deleted successfully!'
+        ], 200);
+    }
+
+    public function all()
+    {
+        $quizzes = Quiz::with('questions')->get();
+
+        foreach ($quizzes as $quiz) {
+            foreach ($quiz->questions as $question) {
+                $question->options = json_decode($question->options, true);
+            }
+        }
+
+        return response()->json([
+            'quizzes' => $quizzes
         ], 200);
     }
 }

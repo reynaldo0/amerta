@@ -27,7 +27,9 @@ Route::prefix('v1')->group(function () {
     });
 
     Route::controller(QuizController::class)->group(function () {
-        Route::get('/quiz/{id}', 'show');
+        Route::get('/quiz', 'index');
+        Route::get('/quizzes', [QuizController::class, 'all']);
+        Route::get('/quiz/{id}', action: 'show');
     });
 
     Route::controller(MailController::class)->group(function () {
