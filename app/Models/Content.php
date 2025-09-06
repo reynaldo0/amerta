@@ -30,4 +30,8 @@ class Content extends Model
     public function medias() {
         return $this->hasMany(Media::class, 'content_id');
     }
+    
+    public function quiz() {
+        return $this->hasMany(Quiz::class, 'content_id');
+    }
 }

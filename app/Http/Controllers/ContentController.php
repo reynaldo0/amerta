@@ -76,25 +76,6 @@ class ContentController extends Controller
      */
     public function show(Content $content)
     {
-        if ($content->type === 'quiz') {
-            $quiz = $content->quiz; // assuming relation: Content hasOne Quiz
-            $questions = [];
-            if ($quiz) {
-                foreach ($quiz->questions as $question) {
-                    $questions[] = [
-                        'id' => $question->id,
-                        'question_text' => $question->question_text,
-                        'options' => json_decode($question->options, true),
-                        'correct_answer' => $question->correct_answer
-                    ];
-                }
-            }
-            return response()->json([
-                'content' => $content,
-                'quiz' => $quiz,
-                'questions' => $questions
-            ]);
-        }
         return response()->json($content);
     }
 
