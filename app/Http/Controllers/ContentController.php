@@ -16,7 +16,6 @@ class ContentController extends Controller
      */
     public function index(Request $request)
     {
-        // Optional: filter by type or author
         $query = Content::query();
 
         if ($request->has('type')) {
@@ -124,5 +123,20 @@ class ContentController extends Controller
 
         return redirect()->back()
             ->with('success', 'Content deleted successfully!');
+    }
+
+    /**
+     * Show only contents with type 'artikel'.
+     */
+    public function articles()
+    {
+        $articles = Content::where('type', 'artikel')->latest()->get();
+        return response()->json($articles);
+    }
+
+    public function events()
+    {
+        $events = Content::where('type', 'events')->latest()->get();
+        return response()->json($events);
     }
 }
