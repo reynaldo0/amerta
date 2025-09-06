@@ -7,6 +7,7 @@ use App\Models\LibraryItem;
 use App\Models\Mail;
 use App\Models\Province;
 use App\Models\Quiz;
+use App\Models\Region;
 use Illuminate\Http\Request;
 
 class RouteController extends Controller
@@ -52,5 +53,20 @@ class RouteController extends Controller
         $mails = Mail::latest()->get();
 
         return view('admin.mail', compact('mails'));
+    }
+
+    public function prov() {
+        $prov = Province::all();
+
+        return response()->json($prov);
+    }
+
+    public function reg() {
+        $reg = Region::with('provinces')->get();
+
+        return response()->json([
+            'regions' => $reg,
+            // 'provinces' => $reg->provinces,
+        ]);
     }
 }
