@@ -11,7 +11,7 @@ export default function ChatBotModal() {
   const [messages, setMessages] = useState([
     {
       sender: "bot",
-      text: "Halo! 👋 Anda bisa bertanya mengenai kenakalan remaja, narkoba, atau cara menghindarinya.",
+      text: "Halo! 👋 Anda bisa bertanya mengenai Budaya yang ada di Nusantara!",
     },
   ]);
   const [input, setInput] = useState("");
@@ -117,7 +117,7 @@ Jawaban maksimal 4 paragraf, gunakan emoji yang relevan untuk memperkaya teks. g
                 />
                 <div className="flex flex-col">
                   <span className="font-bold">
-                    <span className="text-white">Amer</span>
+                    <span className="text-white">Mer</span>
                     <span className="text-secondary-300">Bot</span>
                   </span>
                   <span className="flex items-center text-xs text-white/90">

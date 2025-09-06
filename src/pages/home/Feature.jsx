@@ -78,32 +78,32 @@ export default function Features() {
     {
       title: "Peta Interaktif",
       desc: "Jelajahi budaya tiap provinsi lewat peta digital yang hidup.",
-      icon: "🌏",
+      icon: "/illustrasi/feature/peta.png",
     },
     {
       title: "Kuis Budaya",
       desc: "Uji pengetahuanmu tentang budaya nusantara, dapatkan sertifikat digital.",
-      icon: "❓",
+      icon: "/illustrasi/feature/pertanyaan.png",
     },
     {
       title: "AI Budaya",
       desc: "Tanya apa saja tentang budaya, asisten AI siap menjawab dengan referensi.",
-      icon: "🤖",
+      icon: "/illustrasi/feature/bot.png",
     },
     {
       title: "Cerita Rakyat",
       desc: "Baca dan dengarkan dongeng klasik dari berbagai daerah Indonesia.",
-      icon: "📖",
+      icon: "/illustrasi/feature/cerita.png",
     },
     {
       title: "Galeri Multimedia",
       desc: "Nikmati foto 360°, video dokumenter, dan animasi 3D pakaian adat.",
-      icon: "🎥",
+      icon: "/illustrasi/feature/movie.png",
     },
     {
       title: "Event Budaya",
       desc: "Ikuti festival, seminar, dan live streaming budaya dari seluruh Indonesia.",
-      icon: "🎉",
+      icon: "/illustrasi/feature/event.png",
     },
   ];
 
@@ -132,7 +132,6 @@ export default function Features() {
           className="w-full h-full object-cover will-change-transform"
         />
       </div>
-
 
       <div className="relative max-w-7xl mx-auto px-6 text-center z-20">
         {/* Title */}
@@ -165,9 +164,10 @@ export default function Features() {
               <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 bg-gradient-to-br from-[#84441E]/20 to-transparent blur-2xl transition duration-500"></div>
 
               {/* Icon */}
-              <div className="relative z-10 text-5xl mb-6 text-primary-100">
-                {feature.icon}
+              <div className="relative z-10 grid place-items-center mb-6 text-primary-100">
+                <img src={feature.icon} width={70} alt="" />
               </div>
+
               <h3 className="relative z-10 text-2xl font-bold text-primary-100 mb-3">
                 {feature.title}
               </h3>

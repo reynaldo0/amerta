@@ -40,14 +40,7 @@ export default function Hero() {
 
   return (
     <section className="relative h-screen w-full bg-white overflow-hidden">
-      <div className="hidden sm:block absolute top-30 right-10 rounded-3xl overflow-hidden transform scale-95 blur-sm opacity-60 transition-all duration-500 hover:translate-x-1 hover:translate-y-1">
-        <img
-          src="/logo.png"
-          alt="Amerta"
-          className="w-full h-full object-cover animate-float"
-        />
-      </div>
-      <div className="hidden sm:block absolute top-30 left-10 rounded-3xl overflow-hidden transform scale-95 blur-sm opacity-60 transition-all duration-500 hover:translate-x-1 hover:translate-y-1">
+      <div className="hidden sm:block top-60 absolute left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-3xl overflow-hidden transform scale-95 blur-sm opacity-60 transition-all duration-500 hover:translate-x-1 hover:translate-y-1">
         <img
           src="/indonesia.png"
           alt="Peta Indonesia"
@@ -58,9 +51,9 @@ export default function Hero() {
       {/* Mobile */}
       <div className="flex -top-90 sm:hidden absolute inset-0 justify-center items-center transform scale-95 blur-sm opacity-60">
         <img
-          src="/logo.png"
+          src="/indonesia.png"
           alt="Budaya Sumatera 1"
-          className="w-32 h-32 object-cover animate-float"
+          className="w-full object-cover animate-float"
         />
       </div>
       {/* Background */}
