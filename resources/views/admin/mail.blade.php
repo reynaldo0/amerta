@@ -157,10 +157,10 @@
             </div>
 
             <!-- Submissions Grid -->
-            <div class="grid gap-6" id="submissionsGrid">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="submissionsGrid">
                 @foreach ($mails as $mail)
-                    <div class="form-card bg-white rounded-2xl shadow-lg hover:shadow-xl border border-amerta-accent/20 overflow-hidden transition-all duration-300 hover:transform hover:-translate-y-1"
-                        data-status="pending" data-category="tarian-daerah">
+                    <div
+                        class="form-card bg-white rounded-2xl shadow-lg hover:shadow-xl border border-amerta-accent/20 overflow-hidden transition-all duration-300 hover:transform hover:-translate-y-1">
                         <div class="p-6">
                             <div class="flex items-start justify-between mb-4">
                                 <div class="flex items-start space-x-4">
@@ -196,46 +196,17 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="flex items-center space-x-2">
-                                    <span
-                                        class="status-badge bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-semibold transition-all duration-300">
-                                        Active ✔
-                                    </span>
-                                    <button onclick="openReviewModal('submission-{{ $mail->id }}')"
-                                        class="text-amerta-secondary hover:text-amerta-primary transition-colors">
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                        </svg>
-                                    </button>
-                                </div>
                             </div>
 
-                            <div class="grid md:grid-cols-2 gap-4 mb-4">
-                                <div class="bg-gray-50 rounded-lg p-4">
-                                    <h4 class="font-semibold text-amerta-dark mb-2">Kategori Kontribusi</h4>
-                                    <span class="bg-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">
-                                        {{ $mail->description }}
-                                    </span>
-                                </div>
-                                <div class="bg-gray-50 rounded-lg p-4">
-                                    <h4 class="font-semibold text-amerta-dark mb-2">Story</h4>
-                                    <span class="text-gray-700 text-sm font-medium">
-                                        {{ $mail->story ?? 'Tidak ada cerita' }}
-                                    </span>
-                                </div>
-                            </div>
-
+                            <!-- Media Preview -->
                             <div class="mb-4">
                                 <h4 class="font-semibold text-amerta-dark mb-2">Media</h4>
-                                @if ($mail->media_url)
+                                @if ($mail->media)
                                     @if (Str::endsWith($mail->media, ['.jpg', '.jpeg', '.png', '.gif']))
-                                        <img src="{{ $mail->media_url }}" alt="media"
+                                        <img src="{{ $mail->media }}" alt="media"
                                             class="rounded-lg shadow max-h-40 object-cover">
                                     @else
-                                        <a href="{{ $mail->media_url }}" target="_blank"
+                                        <a href="{{ $mail->media }}" target="_blank"
                                             class="text-amerta-primary underline">Lihat Media</a>
                                     @endif
                                 @else
@@ -243,14 +214,15 @@
                                 @endif
                             </div>
 
+                            <!-- Footer -->
                             <div class="flex justify-between items-center pt-4 border-t border-gray-200">
                                 <div class="text-sm text-gray-500">
                                     ID: #SUB-{{ str_pad($mail->id, 3, '0', STR_PAD_LEFT) }}
                                 </div>
                                 <div class="flex space-x-2">
-                                    <button onclick="updateStatus('submission-{{ $mail->id }}', 'pending')"
-                                        class="bg-yellow-100 hover:bg-yellow-200 text-yellow-800 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200">
-                                        Reopen untuk Review
+                                    <button onclick="openReviewModal('submission-{{ $mail->id }}')"
+                                        class="bg-amerta-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-amerta-secondary transition">
+                                        Lihat Detail
                                     </button>
                                 </div>
                             </div>
@@ -258,7 +230,6 @@
                     </div>
                 @endforeach
             </div>
-
         </div>
 
         <!-- Review Detail Modal -->
@@ -275,7 +246,7 @@
                             </svg>
                             <div>
                                 <h3 class="text-2xl font-bold">Review Detail Submission</h3>
-                                <p class="text-white/90 text-sm" id="modalSubmissionId">ID: #SUB-001</p>
+                                <p class="text-white/90 text-sm" id="modalSubmissionId"></p>
                             </div>
                         </div>
                         <button onclick="closeReviewModal()" class="text-white/80 hover:text-white transition-colors">
@@ -290,25 +261,24 @@
                 <!-- Modal Body -->
                 <div class="p-6 overflow-y-auto max-h-[calc(95vh-200px)] custom-scrollbar">
                     <!-- Contributor Info -->
-                    <div
-                        class="bg-gradient-to-r from-amerta-accent/10 to-transparent rounded-xl p-6 mb-6 border border-amerta-accent/20">
+                    <div class="bg-gradient-to-r from-amerta-accent/10 to-transparent rounded-xl p-6 mb-6 border border-amerta-accent/20">
                         <h4 class="text-lg font-bold text-amerta-dark mb-4">Informasi Kontributor</h4>
                         <div class="grid md:grid-cols-2 gap-4">
                             <div>
                                 <label class="text-sm font-medium text-gray-600">Nama Lengkap</label>
-                                <p class="text-amerta-dark font-semibold" id="modalContributorName">Sari Dewi Kusuma</p>
+                                <p class="text-amerta-dark font-semibold" id="modalContributorName"></p>
                             </div>
                             <div>
                                 <label class="text-sm font-medium text-gray-600">Email</label>
-                                <p class="text-amerta-dark" id="modalContributorEmail">sari.dewi@email.com</p>
+                                <p class="text-amerta-dark" id="modalContributorEmail"></p>
                             </div>
                             <div>
                                 <label class="text-sm font-medium text-gray-600">Asal Daerah</label>
-                                <p class="text-amerta-dark" id="modalContributorRegion">Yogyakarta, DIY</p>
+                                <p class="text-amerta-dark" id="modalContributorRegion"></p>
                             </div>
                             <div>
                                 <label class="text-sm font-medium text-gray-600">Tanggal Submit</label>
-                                <p class="text-amerta-dark" id="modalSubmitDate">15 Januari 2024, 14:30</p>
+                                <p class="text-amerta-dark" id="modalSubmitDate"></p>
                             </div>
                         </div>
                     </div>
@@ -316,42 +286,27 @@
                     <!-- Contribution Details -->
                     <div class="bg-white rounded-xl p-6 mb-6 border border-gray-200">
                         <h4 class="text-lg font-bold text-amerta-dark mb-4">Detail Kontribusi</h4>
-
-                        <div class="mb-4">
+                        {{-- <div class="mb-4">
                             <label class="text-sm font-medium text-gray-600">Kategori</label>
                             <div class="mt-1">
                                 <span class="bg-amerta-accent text-amerta-dark px-3 py-1 rounded-full text-sm font-medium"
-                                    id="modalCategory">
-                                    Tarian Daerah
-                                </span>
+                                    id="modalCategory"></span>
                             </div>
-                        </div>
-
+                        </div> --}}
                         <div class="mb-4">
                             <label class="text-sm font-medium text-gray-600">Fitur yang Diinginkan</label>
-                            <div class="mt-2 flex flex-wrap gap-2" id="modalFeatures">
-                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Quiz
-                                    Interaktif</span>
-                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Galeri Foto</span>
-                            </div>
+                            <div class="mt-2 flex flex-wrap gap-2" id="modalFeatures"></div>
                         </div>
-
                         <div class="mb-4">
                             <label class="text-sm font-medium text-gray-600">Deskripsi Kontribusi</label>
                             <div class="mt-2 bg-gray-50 rounded-lg p-4">
-                                <p class="text-gray-700 leading-relaxed" id="modalDescription">
-                                    Saya ingin memperkenalkan Tari Saman dari Aceh yang merupakan warisan budaya tak benda
-                                    UNESCO...
-                                </p>
+                                <p class="text-gray-700 leading-relaxed" id="modalDescription"></p>
                             </div>
                         </div>
-
                         <div class="mb-4">
                             <label class="text-sm font-medium text-gray-600">Pengalaman Relevan</label>
                             <div class="mt-2 bg-gray-50 rounded-lg p-4">
-                                <p class="text-gray-700 leading-relaxed" id="modalExperience">
-                                    Saya adalah penari profesional yang sudah mendalami Tari Saman selama 15 tahun...
-                                </p>
+                                <p class="text-gray-700 leading-relaxed" id="modalExperience"></p>
                             </div>
                         </div>
                     </div>
@@ -359,46 +314,11 @@
                     <!-- Media Files -->
                     <div class="bg-white rounded-xl p-6 mb-6 border border-gray-200">
                         <h4 class="text-lg font-bold text-amerta-dark mb-4">Media Terlampir</h4>
-                        <div class="grid md:grid-cols-3 gap-4">
-                            <!-- Sample images -->
-                            <div class="bg-gray-100 rounded-lg p-4 aspect-square flex items-center justify-center">
-                                <div class="text-center">
-                                    <svg class="w-12 h-12 text-gray-400 mx-auto mb-2" fill="none"
-                                        stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                    </svg>
-                                    <p class="text-sm text-gray-600">tari-saman-1.jpg</p>
-                                    <p class="text-xs text-gray-500">2.3 MB</p>
-                                </div>
-                            </div>
-                            <div class="bg-gray-100 rounded-lg p-4 aspect-square flex items-center justify-center">
-                                <div class="text-center">
-                                    <svg class="w-12 h-12 text-gray-400 mx-auto mb-2" fill="none"
-                                        stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                                    </svg>
-                                    <p class="text-sm text-gray-600">tari-saman-demo.mp4</p>
-                                    <p class="text-xs text-gray-500">15.7 MB</p>
-                                </div>
-                            </div>
-                            <div class="bg-gray-100 rounded-lg p-4 aspect-square flex items-center justify-center">
-                                <div class="text-center">
-                                    <svg class="w-12 h-12 text-gray-400 mx-auto mb-2" fill="none"
-                                        stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                    </svg>
-                                    <p class="text-sm text-gray-600">kostum-detail.jpg</p>
-                                    <p class="text-xs text-gray-500">1.8 MB</p>
-                                </div>
-                            </div>
-                        </div>
+                        <div id="modalMediaFiles" class="grid md:grid-cols-3 gap-4"></div>
                     </div>
 
                     <!-- Admin Review Section -->
-                    <div class="bg-amerta-accent/10 rounded-xl p-6 border border-amerta-accent/20">
+                    {{-- <div class="bg-amerta-accent/10 rounded-xl p-6 border border-amerta-accent/20">
                         <h4 class="text-lg font-bold text-amerta-dark mb-4">Review Admin</h4>
 
                         <div class="mb-4">
@@ -440,7 +360,7 @@
                                 💾 Simpan Review
                             </button>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -504,41 +424,94 @@
         }
 
         // Modal functionality
+        // Make sure mails data is available globally
+        window.mails = @json($mails);
+
         function openReviewModal(submissionId) {
+            // submissionId is like 'submission-8', get the numeric id
+            const id = submissionId.replace('submission-', '');
+            if (!window.mails) {
+                alert('Data tidak tersedia');
+                return;
+            }
+            const mail = window.mails.find(m => m.id == id);
+            if (!mail) {
+                alert('Data tidak ditemukan');
+                return;
+            }
+
+            document.getElementById('modalSubmissionId').textContent = `ID: #SUB-${String(mail.id).padStart(3, '0')}`;
+            document.getElementById('modalContributorName').textContent = mail.name || '';
+            document.getElementById('modalContributorEmail').textContent = mail.email || '';
+            document.getElementById('modalContributorRegion').textContent = mail.address || '';
+            document.getElementById('modalSubmitDate').textContent = mail.created_at ? new Date(mail.created_at).toLocaleString('id-ID') : '';
+            // document.getElementById('modalCategory').textContent = mail.category || '';
+
+            // Features
+            const featuresContainer = document.getElementById('modalFeatures');
+            featuresContainer.innerHTML = '';
+            if (mail.features && Array.isArray(mail.features)) {
+                mail.features.forEach(f => {
+                    const span = document.createElement('span');
+                    span.className = 'bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm';
+                    span.textContent = f;
+                    featuresContainer.appendChild(span);
+                });
+            }
+
+            document.getElementById('modalDescription').textContent = mail.description || '';
+            document.getElementById('modalExperience').textContent = mail.story || '';
+
+            // Media files
+            const mediaFilesContainer = document.getElementById('modalMediaFiles');
+            mediaFilesContainer.innerHTML = '';
+            if (mail.media_files && Array.isArray(mail.media_files)) {
+                mail.media_files.forEach(file => {
+                    let html = '';
+                    if (/\.(jpg|jpeg|png|gif)$/i.test(file.url)) {
+                        html = `<div class="bg-gray-100 rounded-lg p-4 aspect-square flex items-center justify-center">
+                            <div class="text-center">
+                                <img src="${file.url}" alt="${file.name}" class="rounded-lg shadow max-h-40 object-cover mb-2">
+                                <p class="text-sm text-gray-600">${file.name}</p>
+                                <p class="text-xs text-gray-500">${file.size}</p>
+                            </div>
+                        </div>`;
+                    } else {
+                        html = `<div class="bg-gray-100 rounded-lg p-4 aspect-square flex items-center justify-center">
+                            <div class="text-center">
+                                <a href="${file.url}" target="_blank" class="text-amerta-primary underline">${file.name}</a>
+                                <p class="text-xs text-gray-500">${file.size}</p>
+                            </div>
+                        </div>`;
+                    }
+                    mediaFilesContainer.innerHTML += html;
+                });
+            } else if (mail.media) {
+                let html = '';
+                if (/\.(jpg|jpeg|png|gif)$/i.test(mail.media)) {
+                    html = `<div class="bg-gray-100 rounded-lg p-4 aspect-square flex items-center justify-center">
+                        <div class="text-center">
+                            <img src="${mail.media}" alt="media" class="rounded-lg shadow max-h-40 object-cover mb-2">
+                            <p class="text-sm text-gray-600">${mail.media.split('/').pop()}</p>
+                        </div>
+                    </div>`;
+                } else {
+                    html = `<div class="bg-gray-100 rounded-lg p-4 aspect-square flex items-center justify-center">
+                        <div class="text-center">
+                            <a href="${mail.media}" target="_blank" class="text-amerta-primary underline">Lihat Media</a>
+                        </div>
+                    </div>`;
+                }
+                mediaFilesContainer.innerHTML = html;
+            }
+
             document.getElementById('reviewModal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
-            loadSubmissionData(submissionId);
         }
 
         function closeReviewModal() {
             document.getElementById('reviewModal').classList.add('hidden');
             document.body.style.overflow = 'auto';
-        }
-
-        function loadSubmissionData(submissionId) {
-            const submissions = {
-                'submission-1': {
-                    name: 'Sari Dewi Kusuma',
-                    email: 'sari.dewi@email.com',
-                    region: 'Yogyakarta, DIY',
-                    date: '15 Januari 2024, 14:30',
-                    category: 'Tarian Daerah',
-                    description: 'Saya ingin memperkenalkan Tari Saman dari Aceh yang merupakan warisan budaya tak benda UNESCO...',
-                    experience: 'Saya adalah penari profesional yang sudah mendalami Tari Saman selama 15 tahun...'
-                }
-            };
-
-            const data = submissions[submissionId];
-            if (data) {
-                document.getElementById('modalSubmissionId').textContent = `ID: #${submissionId.toUpperCase()}`;
-                document.getElementById('modalContributorName').textContent = data.name;
-                document.getElementById('modalContributorEmail').textContent = data.email;
-                document.getElementById('modalContributorRegion').textContent = data.region;
-                document.getElementById('modalSubmitDate').textContent = data.date;
-                document.getElementById('modalCategory').textContent = data.category;
-                document.getElementById('modalDescription').textContent = data.description;
-                document.getElementById('modalExperience').textContent = data.experience;
-            }
         }
 
         function updateStatus(submissionId, newStatus) {
@@ -646,4 +619,7 @@
         // Initialize stats on page load
         document.addEventListener('DOMContentLoaded', updateStats);
     </script>
+
+    {{-- Example: window.mails = @json($mails); --}}
+    {{-- Add this after your <script> tag if not already present --}}
 @endsection

@@ -34,6 +34,8 @@ class MailController extends Controller
             $validated['media'] = $path;
         }
 
+        dd($request->all());
+
         $mail = Mail::create($validated);
 
         return response()->json([
