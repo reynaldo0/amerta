@@ -66,7 +66,7 @@ export default function Hero() {
             </span>
           </h1>
 
-          <p
+          <a href="#pulau"
             className="mt-6 text-base sm:text-lg md:text-xl text-primary-100 max-w-lg mx-auto lg:mx-0"
             data-aos="fade-right"
             data-aos-delay="200"
@@ -80,7 +80,7 @@ export default function Hero() {
             </span>{" "}
             dari Sabang sampai Merauke. Temukan cerita unik yang membentuk
             identitas bangsa Indonesia.
-          </p>
+          </a>
 
           {/* CTA */}
           <div

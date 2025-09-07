@@ -10,12 +10,15 @@ export default function Articles() {
   useEffect(() => {
     AOS.init({
       duration: 1000,
-      once: true, // animasi hanya sekali saat scroll
+      once: true,
     });
   }, []);
 
   return (
-    <section className="w-full bg-white relative py-20 px-6 md:px-12">
+    <section
+      className="w-full bg-white relative py-20 px-6 md:px-12"
+      id="article"
+    >
       <div
         className="absolute inset-0 bg-[url('/wave/budaya.png')] bg-cover bg-center opacity-10"
         style={{ backgroundAttachment: "fixed" }}

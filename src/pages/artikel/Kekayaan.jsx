@@ -17,7 +17,7 @@ export default function Kekayaan() {
   }, []);
 
   return (
-    <section className="w-full bg-white py-20 relative px-6 md:px-16 overflow-hidden">
+    <section className="w-full bg-white py-20 relative px-6 md:px-16 overflow-hidden" id="kekayaan">
       {/* Background */}
       <div
         className="absolute inset-0 bg-[url('/wave/budaya.png')] bg-cover bg-center opacity-10"
@@ -76,12 +76,12 @@ export default function Kekayaan() {
           </div>
 
           {/* CTA Button */}
-          <button
+          <a href="#article"
             className="bg-secondary-300 cursor-pointer text-white px-6 py-3 rounded-full font-semibold hover:scale-105 transition duration-300"
             data-aos="fade-up"
           >
             Jelajahi Artikel
-          </button>
+          </a>
         </div>
 
         {/* Right Image + Quote */}

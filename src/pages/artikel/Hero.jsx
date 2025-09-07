@@ -107,12 +107,12 @@ export default function BudayaSection() {
           </div>
 
           {/* Button */}
-          <button
+          <a href="#kekayaan"
             className="bg-secondary-300 cursor-pointer text-white px-6 py-3 rounded-full font-semibold hover:bg-secondary-300/90 transition"
             data-aos="fade-up"
           >
             Baca Selengkapnya
-          </button>
+          </a>
         </div>
       </div>
     </section>

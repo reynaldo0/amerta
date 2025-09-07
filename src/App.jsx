@@ -15,16 +15,15 @@ import ArticleDetail from "./pages/artikel/ArticleDetail";
 import Footer from "./components/Footer";
 import ChatBotModal from "./pages/ChatBot";
 import LoadingScreen from "./Loading";
+import ScrollToTop from "./pages/ScrollToTop";
 
 function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulasi loading selama 2 detik
     const timer = setTimeout(() => {
       setLoading(false);
     }, 4000);
-
     return () => clearTimeout(timer);
   }, []);
 
@@ -33,6 +32,7 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
+      <ScrollToTop /> {/* 🔹 tambahin di sini */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/beranda" element={<Home />} />

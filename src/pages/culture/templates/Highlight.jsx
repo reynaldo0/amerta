@@ -8,7 +8,7 @@ export default function HighlightRegion() {
   const highlights = highlightsData[path] || highlightsData.jawa;
 
   return (
-    <section className="relative w-full py-24 min-h-screen flex items-center justify-center overflow-hidden bg-primary-200">
+    <section className="relative w-full py-24 min-h-screen flex items-center justify-center overflow-hidden bg-primary-200" id="highlights">
       <div
         className="absolute inset-0 bg-[url('/wave/budaya.png')] bg-cover bg-center opacity-10"
         style={{ backgroundAttachment: "fixed" }}
