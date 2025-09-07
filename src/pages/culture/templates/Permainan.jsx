@@ -61,14 +61,15 @@ export default function SectionGameCultureMobile() {
                     <h4 className="text-sm text-secondary-300 mb-2 text-center">
                       {item.subtitle}
                     </h4>
-                    <p className="text-gray-700 text-sm mb-4 text-center">
+                    <p className="text-gray-700 text-sm mb-4 text-justify">
                       {item.description}
                     </p>
                     <a
                       href={item.pdfLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-secondary-300 font-semibold hover:text-secondary-400 transition"
+                      className="inline-flex
+                      bg-secondary-300 rounded-3xl px-5 py-3 items-center gap-2 text-white font-semibold hover:text-secondary-400 transition"
                     >
                       Lihat PDF
                     </a>
