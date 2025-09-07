@@ -18,6 +18,10 @@ Route::controller(AuthController::class)->group(function() {
 });
 
 Route::middleware('auth')->group(function() {
+    Route::controller(AuthController::class)->group(function() {
+        Route::get('/logout', 'simpleLogout');
+    });
+
     Route::controller(RouteController::class)->group(function() {
         Route::get('/admin/dashboard', 'dashboard');
         Route::get('/admin/contents', 'content');

@@ -82,4 +82,15 @@ class AuthController extends Controller
         return redirect()->route('login')
             ->with('success', 'Logged out successfully!');
     }
+
+    // Simple logout via GET method
+    public function simpleLogout()
+    {
+        Auth::logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+
+        return redirect()->route('login')
+            ->with('success', 'Logged out successfully!');
+    }
 }
