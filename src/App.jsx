@@ -17,7 +17,7 @@ import ChatBotModal from "./pages/ChatBot";
 import LoadingScreen from "./Loading";
 
 function App() {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Simulasi loading selama 2 detik
