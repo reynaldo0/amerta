@@ -2,7 +2,7 @@ export const articles = [
   {
     id: 1,
     title: "Wayang Kulit: Warisan Budaya Tak Ternilai",
-    image: "/illustrasi/budaya/wayang.jpg",
+    image: "/artikel/wayang.png",
     excerpt:
       "Wayang Kulit adalah seni pertunjukan tradisional yang sarat pesan moral dan filosofi, dikenal di seluruh dunia...",
     category: "Budaya",
@@ -19,7 +19,7 @@ UNESCO telah menetapkan Wayang Kulit sebagai Masterpiece of Oral and Intangible 
   {
     id: 2,
     title: "Batik: Filosofi dan Keindahan Kain Nusantara",
-    image: "/illustrasi/budaya/batik.jpg",
+    image: "/artikel/batik.png",
     excerpt:
       "Batik adalah warisan budaya Indonesia yang diakui dunia, setiap motif memiliki makna filosofi dan cerita unik...",
     category: "Seni",
@@ -36,7 +36,7 @@ UNESCO mengakui batik Indonesia sebagai Warisan Kemanusiaan untuk Budaya Lisan d
   {
     id: 3,
     title: "Angklung dan Gamelan: Musik Tradisi yang Mendunia",
-    image: "/illustrasi/budaya/gamelan.jpg",
+    image: "/artikel/gamelan.png",
     excerpt:
       "Angklung dan gamelan adalah musik tradisional Indonesia yang telah mendunia, membawa harmoni dan budaya lokal...",
     category: "Musik",
@@ -53,7 +53,7 @@ Selain digunakan dalam pertunjukan, gamelan dan angklung juga dipelajari di seko
   {
     id: 4,
     title: "Tari Pendet: Keindahan Ritual Bali",
-    image: "/illustrasi/budaya/pendet.jpg",
+    image: "/artikel/tari.png",
     excerpt:
       "Tari Pendet adalah tarian tradisional Bali yang memadukan keindahan gerak dengan ritual keagamaan...",
     category: "Tari",
@@ -70,7 +70,7 @@ Tari ini mengajarkan nilai spiritual, disiplin, dan menghormati tradisi leluhur 
   {
     id: 5,
     title: "Kerajinan Perak Kotagede: Karya Seni dan Tradisi",
-    image: "/illustrasi/budaya/perak.jpg",
+    image: "/artikel/yang.png",
     excerpt:
       "Kotagede, Yogyakarta, dikenal dengan kerajinan perak berkualitas tinggi yang diwariskan secara turun-temurun...",
     category: "Seni",
@@ -87,7 +87,7 @@ Selain sebagai produk seni, kerajinan perak Kotagede juga menjadi daya tarik wis
   {
     id: 6,
     title: "Kuliner Tradisional: Warisan Rasa Nusantara",
-    image: "/illustrasi/budaya/kuliner.jpg",
+    image: "/artikel/makanan.png",
     excerpt:
       "Kuliner tradisional Indonesia memadukan rempah, cita rasa, dan tradisi yang kaya dari berbagai daerah...",
     category: "Kuliner",

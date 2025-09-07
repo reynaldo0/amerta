@@ -30,26 +30,33 @@ export const permainanData = {
   ],
   sumatera: [
     {
-      title: "Congklak Sumatera",
-      subtitle: "Permainan Tradisional",
-      description: "Versi Congklak khas Sumatera yang unik.",
-      image: "/illustrasi/sumatera/congklak.jpg",
-      pdfLink: "/pdf/sumatera/congklak.pdf",
+      title:
+        "Meningkatkan Keterampilan Motorik Kasar Anak Melalui Permainan Egrang Bathon Kelapa",
+      subtitle:
+        "Meningkatkan Keterampilan Motorik Kasar Anak Melalui Permainan Egarang Bathok Kelapa di Kalibawang Kulon Kelapa",
+      description:
+        "Hai Merlovers! Tahu gk sih ? Keseimbangan merupakan integrasi yang kompleks dari system somatosensorik (visual, vestibular,  proprioceptive) dan motorik (musculoskeletal, otot, sendi jaringan lunak) yang keseluruhan kerjanya diatur  oleh otak terhadap respon atau pengaruh internal dan eksternal tubuh. Keseimbangan sangat penting untuk  aktifitas fisik bagi anak karena dalam setiap kegiatan sehari-hari membutuhkan keseimbangan yang baik.  Terbentuknya keseimbangan yang baik pada anak salah satunya dapat di tingkatkan dengan permainan  tradisional egrang bambu.  Wah!! ternyata keren sekali permainan Egrang ini !!",
+      image: "/budaya/jawa/1p.png",
+      pdfLink: "/budaya/jawa/pdf/sunda.pdf",
+    },
+
+    {
+      title: "Permainan congklak untuk penguatan karakter peserta didik",
+      subtitle:
+        "Permainan congklak untuk penguatan karakter peserta didik untuk penanaman nilai nilai karakter peserta didik  ",
+      description:
+        "Haihai Merlovers ! Permainan tradisional congklak adalah salah satu jenis permainan tradisional yang sudah ada sejak zaman dahulu dan diwariskan secara turun menurun (Dewi, Saragi, & ndona 2023). Permainan congklak memiliki nilai positif dan dampak positif. Misalnya, anak- anak cenderung lebih agresif, yang membuat mereka kurang, yang membuat mereka tidak mudah terkena masalah obesitas di masa kecil. Permainan tradisional juga dapat digunakan untuk mengajarkan karakter yang berharga kepada siswa lain di lingkungan tempat tinggal sekolah rentan terhadap masalah obesitas pada anak. Hah apa hubungannya dengan obesitas pada anak?? mari kita simak melalui PDF berikut ini",
+      image: "/budaya/jawa/3p.png",
+      pdfLink: "/budaya/jawa/pdf/congklak.pdf",
     },
     {
-      title: "Galah Asin",
-      subtitle: "Permainan Anak",
-      description: "Permainan tradisional anak Sumatera yang populer di desa.",
-      image: "/illustrasi/sumatera/galah_asin.jpg",
-      pdfLink: "/pdf/sumatera/galah_asin.pdf",
-    },
-    {
-      title: "Bola Gasing",
-      subtitle: "Permainan Fisik",
-      description: "Permainan memutar gasing khas Sumatera.",
-      image: "/illustrasi/sumatera/gasing.jpg",
-      pdfLink: "/pdf/sumatera/gasing.pdf",
+      title: "Badia Badia Batuang atau Mariam Bambu dengan suara yang keras",
+      subtitle:
+        "Badia Badia Batuang atau Mariam Bambu dengan suara yang keras dari Minangkabau",
+      description:
+        "Hello Merlovers ! Ada yang pernah tahu tentang Badia Badia Batuang ? Badia sendiri dalam bahasa Minang berarti Badia sendiri dalam bahasa Minang berarti bedil, pi bedil, pistol, atau meriam, sedangkan batuang stol, atau meriam, sedangkan batuang adalah sebutan untuk bambu yang berukuran besar. Sehingga kurang lebih arti badia batuang adalah meriam bambu. Permainan ini dulunya mungkin dibuat untuk mengenang perjuang nang perjuangan para pahlawan para pahlawan Minangkabau melawan penjajahan. Meriam bambu ini juga digunakan masyarakat tempo dulu untuk menakuti para penjajah dengan suaranya yang mirip meriam asli. Wah! ternyata fungsi asalnya berbeda dengan fungsi sekarang yaa, siapa yang baru tahuuuu",
+      image: "/budaya/jawa/2p.png",
+      pdfLink: "/budaya/jawa/pdf/cublak.pdf",
     },
   ],
-  // Tambahkan pulau lain: kalimantan, sulawesi, papua
 };
