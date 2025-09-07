@@ -80,11 +80,17 @@ export default function Hero() {
           className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-wider 
                bg-gradient-to-r from-primary-200 via-primary-300 to-primary-200 
                bg-clip-text text-transparent drop-shadow-lg md:pb-3"
+          data-aos="zoom-in-down"
+          data-aos-duration="800"
         >
           Keindahan Budaya Nusantara
         </h1>
 
-        <p className="mt-6 text-lg md:text-2xl text-primary-100 max-w-2xl">
+        <p
+          className="mt-6 text-lg md:text-2xl text-primary-100 max-w-2xl"
+          data-aos="zoom-in-down"
+          data-aos-duration="1000"
+        >
           Menyelami ragam budaya dan tradisi yang membentuk identitas bangsa.
         </p>
       </div>

@@ -22,10 +22,10 @@ export default function VisiMisi() {
         className="absolute inset-0 bg-[url('/wave/aboutw.png')] bg-cover bg-center opacity-10"
         style={{ backgroundAttachment: "fixed" }}
       />
-      <h2 className="text-2xl md:text-5xl mb-10 font-bold text-white text-center tracking-tight will-change-transform">
-        Jelajahi Kekayaan Budaya Nusantara
-      </h2>
-      <div className="py-24">
+      <div className="py-24 px-5">
+        <h2 className="text-2xl md:text-5xl mb-10 font-bold text-white text-center tracking-tight will-change-transform">
+          Jelajahi Kekayaan Budaya Nusantara
+        </h2>
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center ">
           {/* Visi */}
           <div className="space-y-6 animate-slideInLeft">

@@ -14,7 +14,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[90%] md:w-[80%]">
+    <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[90%] md:w-[80%]" data-aos="zoom-in-down" data-aos-duration="1500">
       <div
         className="flex items-center justify-between 
         bg-white/30 backdrop-blur-lg border border-white/20 
@@ -45,7 +45,7 @@ const Navbar = () => {
 
         {/* Tombol Dashboard Desktop */}
         <Link
-          to="/dashboard"
+          to="http://127.0.0.1:8000/admin/contents"
           className="hidden md:inline bg-secondary-300 hover:bg-secondary-300/80 text-white font-bold 
             px-5 py-2 rounded-full transition duration-300 shadow-md"
         >

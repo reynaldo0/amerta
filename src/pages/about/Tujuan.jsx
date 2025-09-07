@@ -48,7 +48,7 @@ export default function TujuanSection() {
       </div>
 
       {/* Cards */}
-      <div className="mt-16 grid md:grid-cols-2 lg:grid-cols-4 gap-10 max-w-6xl mx-auto relative z-10">
+      <div className="mt-16 grid md:grid-cols-2 lg:grid-cols-4 gap-10 max-w-7xl mx-auto relative z-10">
         {tujuan.map((item, index) => (
           <div
             key={index}
@@ -56,7 +56,11 @@ export default function TujuanSection() {
           >
             {/* Icon */}
             <div className="flex items-center justify-center w-20 h-20 bg-gradient-to-tr from-secondary-200 via-secondary-300 to-secondary-200 text-white rounded-2xl mx-auto mb-6 shadow-md group-hover:scale-110 transition-transform duration-300">
-              <FontAwesomeIcon icon={item.icon} size="2x" />
+              <FontAwesomeIcon
+                icon={item.icon}
+                size="2x"
+                className="transition-transform duration-500 ease-in-out group-hover:rotate-20"
+              />
             </div>
 
             {/* Title */}
@@ -66,7 +70,6 @@ export default function TujuanSection() {
 
             {/* Desc */}
             <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
-
           </div>
         ))}
       </div>

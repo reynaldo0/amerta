@@ -51,7 +51,7 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-6 lg:px-16 flex flex-col-reverse lg:flex-row items-center gap-12">
+      <div className="relative z-10 container mx-auto px-6 flex flex-col-reverse lg:flex-row items-center gap-12">
         {/* Text */}
         <div className="flex-1 text-center lg:text-left">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-primary-100 leading-tight animate-fade-in-down">

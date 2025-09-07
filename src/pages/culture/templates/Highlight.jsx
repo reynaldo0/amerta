@@ -1,33 +1,12 @@
-import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faUtensils,
-  faGamepad,
-  faMusic,
-} from "@fortawesome/free-solid-svg-icons";
+import { useLocation } from "react-router-dom";
+import { highlightsData } from "../../../docs/HighlightData";
 
-const highlights = [
-  {
-    icon: faUtensils,
-    title: "Budaya Keseharian",
-    description:
-      "Menampilkan kehidupan sehari-hari masyarakat Sumatera, termasuk adat makan, ritual, dan kebiasaan tradisional.",
-  },
-  {
-    icon: faGamepad,
-    title: "Budaya Permainan",
-    description:
-      "Permainan tradisional yang dimainkan sejak zaman dahulu, termasuk permainan anak-anak dan permainan komunitas.",
-  },
-  {
-    icon: faMusic,
-    title: "Budaya Tarian",
-    description:
-      "Tarian tradisional Sumatera yang indah, menggambarkan cerita rakyat, perayaan, dan simbolisme budaya.",
-  },
-];
+export default function HighlightRegion() {
+  const location = useLocation();
+  const path = location.pathname.replace("/budaya-", "");
+  const highlights = highlightsData[path] || highlightsData.jawa;
 
-export default function Highlight() {
   return (
     <section className="relative w-full py-24 min-h-screen flex items-center justify-center overflow-hidden bg-primary-200">
       <div
@@ -41,10 +20,11 @@ export default function Highlight() {
           className="w-full h-full object-cover will-change-transform"
         />
       </div>
+
       <div className="max-w-7xl mx-auto px-6 lg:px-16 z-10 pb-20">
         {/* Section Title */}
         <h2 className="text-4xl md:text-5xl font-extrabold text-white text-center mb-16 drop-shadow-lg">
-          Budaya Khas Pulau Jawa
+          Budaya Khas Pulau {path.charAt(0).toUpperCase() + path.slice(1)}
         </h2>
 
         {/* Highlight Cards */}

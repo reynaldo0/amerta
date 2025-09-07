@@ -17,13 +17,13 @@ import ChatBotModal from "./pages/ChatBot";
 import LoadingScreen from "./Loading";
 
 function App() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     // Simulasi loading selama 2 detik
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 3200);
+    }, 4000);
 
     return () => clearTimeout(timer);
   }, []);

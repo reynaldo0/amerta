@@ -25,19 +25,17 @@ const Peta = () => {
 
       {/* Konten Utama */}
       <div
-        className="relative z-10 px-8 md:px-24 lg:px-20 pt-16 lg:pt-16 pb-20 flex flex-col-reverse lg:flex-row-reverse justify-between text-black gap-y-10 lg:gap-x-10 items-center"
-        data-aos="fade-up"
-        data-aos-duration="800"
+        className="relative z-10 px-8 md:px-24 lg:px-20 pt-16 lg:pt-16 pb-20 flex flex-col-reverse lg:flex-row-reverse justify-between text-black gap-y-10 lg:gap-x-10 items-center" 
       >
         {/* Map Section */}
         <div className="w-full flex flex-col items-center lg:items-start pt-40">
-          <div className="mb-4 animate-horizontal-bounce hover:scale-105 transition-transform duration-300">
+          <div className="mb-4 animate-horizontal-bounce hover:scale-105 transition-transform duration-300" data-aos="zoom-in-down" data-aos-duration="800">
             <span className="font-bold text-lg text-white">
               Arahkan Kursor ke{" "}
               <span className="text-secondary-200 text-xl">Daerah Anda</span>
             </span>
           </div>
-          <div className="w-full">
+          <div className="w-full" data-aos="zoom-in" data-aos-duration="1200">
             <Map />
           </div>
         </div>

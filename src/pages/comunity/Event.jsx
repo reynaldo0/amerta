@@ -3,25 +3,46 @@ import { createPortal } from "react-dom";
 
 const events = [
   {
-    title: "Webinar Inovasi Teknologi Hijau",
-    date: "15 November 2024",
-    location: "Online",
+    title: "Festival Wayang Kulit Yogyakarta",
+    date: "12 November 2024",
+    location: "Yogyakarta, Indonesia",
     description:
-      "Ikuti diskusi mendalam mengenai teknologi hijau terkini bersama ahli. Dapatkan wawasan terbaru dalam bidang ini.",
+      "Saksikan pertunjukan Wayang Kulit klasik dari dalang terkenal. Nikmati kisah epik Ramayana dan Mahabharata yang menghidupkan budaya Jawa.",
   },
   {
-    title: "Workshop Energi Terbarukan Pintar",
-    date: "25 November 2024",
-    location: "Jakarta, Indonesia",
+    title: "Lomba Tari Tradisional Bali",
+    date: "20 November 2024",
+    location: "Ubud, Bali",
     description:
-      "Sesi praktis memanfaatkan energi terbarukan sehari-hari. Bimbingan langsung oleh para profesional di lokasi workshop.",
+      "Ikuti lomba tari tradisional Bali dengan kostum warna-warni. Rasakan irama gamelan yang memukau dan keindahan tarian klasik Bali.",
   },
   {
-    title: "Konferensi Teknologi dan Lingkungan",
-    date: "5 Desember 2024",
+    title: "Pasar Seni dan Kerajinan Nusantara",
+    date: "1 Desember 2024",
     location: "Bandung, Indonesia",
     description:
-      "Diskusikan inovasi teknologi ramah lingkungan dalam konferensi tahunan ini. Dampak positif terhadap masa depan dibahas.",
+      "Temukan kerajinan tangan unik dari seluruh Indonesia: batik, ukiran kayu, anyaman, dan masih banyak lagi. Suasana pasar yang ramai dan penuh budaya.",
+  },
+  {
+    title: "Festival Musik Gamelan Jawa",
+    date: "8 Desember 2024",
+    location: "Solo, Jawa Tengah",
+    description:
+      "Nikmati pertunjukan musik gamelan dari berbagai daerah Jawa. Suara gong dan kendang membawa Anda masuk ke dalam budaya tradisional yang memukau.",
+  },
+  {
+    title: "Pameran Batik Nusantara",
+    date: "15 Desember 2024",
+    location: "Pekanbaru, Riau",
+    description:
+      "Pameran batik dari berbagai daerah Nusantara, menampilkan motif khas daerah dan proses pembuatannya. Cocok untuk pecinta seni dan budaya.",
+  },
+  {
+    title: "Festival Kuliner Tradisional Indonesia",
+    date: "22 Desember 2024",
+    location: "Jakarta, Indonesia",
+    description:
+      "Cicipi berbagai kuliner tradisional Nusantara dari Sabang hingga Merauke. Workshop masak dan demo kuliner membuat pengalaman lebih interaktif.",
   },
 ];
 
@@ -149,7 +170,7 @@ const RegistrationForm = () => {
       />
       <button
         type="submit"
-        className="w-full bg-primary-300 cursor-pointer text-white rounded-lg py-2 hover:bg-primary-400 transition-all"
+        className="w-full bg-secondary-300 hover:bg-secondary-300/90 cursor-pointer text-white rounded-lg py-2 hover:bg-primary-400 transition-all"
       >
         Daftar Sekarang
       </button>
@@ -207,7 +228,7 @@ const Events = () => {
           {events.map((event, index) => (
             <div
               key={index}
-              className="bg-white shadow-md rounded-lg p-6 border-l-4 border-primary-300 hover:shadow-xl transition-shadow"
+              className="bg-white shadow-md rounded-lg p-6 border-l-4 border-secondary-300 hover:shadow-xl transition-shadow"
             >
               <h3 className="text-2xl font-semibold text-primary-200 mb-2">
                 {event.title}

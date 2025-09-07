@@ -3,52 +3,24 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
-
-const gameCultureData = [
-  {
-    title: "Congklak",
-    subtitle: "Permainan Tradisional",
-    description:
-      "Permainan papan tradisional yang mengasah strategi dan kesabaran.",
-    image: "/illustrasi/congklak.jpg",
-    pdfLink: "/pdf/congklak.pdf",
-  },
-  {
-    title: "Gasing",
-    subtitle: "Permainan Fisik",
-    description:
-      "Permainan memutar gasing yang menantang ketangkasan dan koordinasi.",
-    image: "/illustrasi/gasing.jpg",
-    pdfLink: "/pdf/gasing.pdf",
-  },
-  {
-    title: "Engklek",
-    subtitle: "Permainan Anak",
-    description: "Permainan melompat pada kotak-kotak yang digambar di tanah.",
-    image: "/illustrasi/engkle.jpg",
-    pdfLink: "/pdf/engkle.pdf",
-  },
-  {
-    title: "Engklek",
-    subtitle: "Permainan Anak",
-    description: "Permainan melompat pada kotak-kotak yang digambar di tanah.",
-    image: "/illustrasi/engkle.jpg",
-    pdfLink: "/pdf/engkle.pdf",
-  },
-];
+import { useLocation } from "react-router-dom";
+import { permainanData as data } from "../../../docs/permainanData";
 
 export default function SectionGameCultureSlider() {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
+  const location = useLocation();
+  const path = location.pathname.replace("/budaya-", ""); // ex: "jawa"
+  const permainanData = data[path] || data.jawa;
+
   return (
     <section className="py-24 bg-primary-100 relative">
       <div className="max-w-7xl mx-auto px-6 lg:px-16">
         <h2 className="text-4xl md:text-5xl font-extrabold text-white text-center mb-12">
-          Budaya Permainan
+          Budaya Permainan {path.charAt(0).toUpperCase() + path.slice(1)}
         </h2>
 
-        {/* Slider with navigation buttons */}
         <div className="relative">
           <Swiper
             modules={[Navigation]}
@@ -67,10 +39,9 @@ export default function SectionGameCultureSlider() {
               swiper.params.navigation.nextEl = nextRef.current;
             }}
           >
-            {gameCultureData.map((item, idx) => (
+            {permainanData.map((item, idx) => (
               <SwiperSlide key={idx}>
                 <div className="relative p-5 group flex flex-col items-center">
-                  {/* Floating Image */}
                   <div className="w-48 h-48 rounded-2xl overflow-hidden shadow-2xl mb-[-2rem] transition-transform duration-500 group-hover:scale-110 group-hover:rotate-2">
                     <img
                       src={item.image}
@@ -79,7 +50,6 @@ export default function SectionGameCultureSlider() {
                     />
                   </div>
 
-                  {/* Card */}
                   <div className="bg-white/20 backdrop-blur-xl rounded-3xl p-6 pt-24 w-full flex flex-col items-center shadow-lg transform transition-transform duration-500 group-hover:scale-105 group-hover:rotate-1">
                     <h3 className="text-2xl font-bold text-white mb-1 text-center">
                       {item.title}
@@ -104,7 +74,6 @@ export default function SectionGameCultureSlider() {
             ))}
           </Swiper>
 
-          {/* Navigation Buttons */}
           <button
             ref={prevRef}
             className="absolute top-1/2 -left-6 -translate-y-1/2 bg-white/20 backdrop-blur-lg text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-white/30 transition"

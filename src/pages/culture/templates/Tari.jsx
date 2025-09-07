@@ -1,121 +1,117 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faArrowLeft,
-  faArrowRight,
-  faArrowUpRightFromSquare,
+  faChevronLeft,
+  faChevronRight,
+  faDownload,
 } from "@fortawesome/free-solid-svg-icons";
+import { useLocation } from "react-router-dom";
+import { tariData } from "../../../docs/tariData";
 
-export default function PinterestBlogModern() {
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true);
+export default function TariSectionClean() {
+  const swiperRef = useRef(null);
+  const [isBeginning, setIsBeginning] = useState(true);
+  const [isEnd, setIsEnd] = useState(false);
 
-  useEffect(() => {
-    const fetchItems = async () => {
-      try {
-        const res = await axios.get("http://127.0.0.1:8000/api/v1/items");
-        // Pastikan API mengembalikan array items
-        setItems(res.data.items || []);
-      } catch (err) {
-        console.error("Gagal fetch data:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchItems();
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-[200px]">
-        <p className="text-gray-600">Loading data...</p>
-      </div>
-    );
-  }
+  const location = useLocation();
+  const path = location.pathname.replace("/budaya-", "");
+  const posts = tariData[path] || tariData.jawa;
 
   return (
-    <section className="relative w-full bg-gray-50 py-16 px-6 md:px-16">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12">
-        {/* Left Section */}
-        <div className="md:w-1/3 flex flex-col justify-between">
-          <div>
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900 animate-fade-in-down">
-              Koleksi Budaya
-            </h2>
-            <p className="text-gray-600 mb-6">
-              Jelajahi budaya keseharian, kebiasaan, serta tari dari seluruh
-              provinsi di Indonesia.
-            </p>
-            <button className="bg-secondary-300 text-white px-6 py-3 rounded-full font-semibold hover:bg-secondary-400 transition shadow-md hover:shadow-xl">
-              Lihat semua koleksi
+    <section className="relative w-full min-h-screen py-32 bg-gradient-to-b from-primary-900 to-primary-800 overflow-hidden">
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-16 z-10">
+        {/* Title */}
+        <h1 className="text-5xl md:text-6xl font-extrabold text-white text-center mb-6">
+          Budaya <span className="text-secondary-300">Tari</span>{" "}
+          {path.charAt(0).toUpperCase() + path.slice(1)}
+        </h1>
+        <p className="text-center text-white/80 text-lg md:text-xl mb-16 max-w-3xl mx-auto">
+          Jelajahi tarian tradisional dari pulau {path}. Setiap gerakan
+          menyimpan cerita dan filosofi budaya yang unik.
+        </p>
+
+        {/* Slider + Controls */}
+        <div className="flex flex-col lg:flex-row items-center gap-12">
+          {/* Navigation Buttons */}
+          <div className="flex flex-row lg:flex-col gap-4 justify-center lg:justify-start">
+            <button
+              onClick={() => swiperRef.current?.slidePrev()}
+              disabled={isBeginning}
+              className={`flex items-center justify-center w-12 h-12 rounded-full bg-white text-gray-800 shadow-md hover:bg-secondary-300 hover:text-white transition ${
+                isBeginning ? "opacity-40 cursor-not-allowed" : ""
+              }`}
+            >
+              <FontAwesomeIcon icon={faChevronLeft} />
+            </button>
+            <button
+              onClick={() => swiperRef.current?.slideNext()}
+              disabled={isEnd}
+              className={`flex items-center justify-center w-12 h-12 rounded-full bg-white text-gray-800 shadow-md hover:bg-secondary-300 hover:text-white transition ${
+                isEnd ? "opacity-40 cursor-not-allowed" : ""
+              }`}
+            >
+              <FontAwesomeIcon icon={faChevronRight} />
             </button>
           </div>
 
-          {/* Navigation buttons */}
-          <div className="flex items-center gap-6 mt-10">
-            <button className="swiper-button-prev-custom w-12 h-12 rounded-full bg-white shadow-lg hover:bg-secondary-300 flex items-center justify-center text-gray-600 hover:text-white transition">
-              <FontAwesomeIcon icon={faArrowLeft} size="lg" />
-            </button>
-            <button className="swiper-button-next-custom w-12 h-12 rounded-full bg-white shadow-lg hover:bg-secondary-300 flex items-center justify-center text-gray-600 hover:text-white transition">
-              <FontAwesomeIcon icon={faArrowRight} size="lg" />
-            </button>
-          </div>
-        </div>
-
-        {/* Right Section - Swiper */}
-        <div className="md:w-2/3">
+          {/* Swiper Cards */}
           <Swiper
             modules={[Navigation]}
-            navigation={{
-              prevEl: ".swiper-button-prev-custom",
-              nextEl: ".swiper-button-next-custom",
+            spaceBetween={30}
+            slidesPerView={1.1}
+            breakpoints={{
+              768: { slidesPerView: 2.2 },
+              1024: { slidesPerView: 3 },
             }}
-            spaceBetween={20}
-            slidesPerView={1}
-            breakpoints={{ 768: { slidesPerView: 2 } }}
+            onSwiper={(swiper) => {
+              swiperRef.current = swiper;
+              setIsBeginning(swiper.isBeginning);
+              setIsEnd(swiper.isEnd);
+            }}
+            onSlideChange={(swiper) => {
+              setIsBeginning(swiper.isBeginning);
+              setIsEnd(swiper.isEnd);
+            }}
           >
-            {items.map((item, index) => (
-              <SwiperSlide key={index}>
-                <div className="bg-white m-5 rounded-3xl shadow-xl hover:shadow-2xl overflow-hidden flex flex-col h-full transition-transform duration-500 hover:scale-105">
-                  <div className="relative w-full h-56 md:h-64">
-                    {item.file_url && (
-                      <img
-                        src={`http://localhost:8000${item.file_url}`} 
-                        alt={item.title}
-                        className="w-full h-full object-cover"
-                      />
-                    )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+            {posts.map((post, idx) => (
+              <SwiperSlide key={idx}>
+                <div className="group relative rounded-2xl overflow-hidden shadow-lg bg-white hover:shadow-2xl transition-transform duration-300 hover:scale-105">
+                  {/* Image */}
+                  <div className="relative h-64 overflow-hidden rounded-t-2xl">
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+                    />
                   </div>
-                  <div className="p-6 flex flex-col flex-grow">
-                    <p className="text-sm text-gray-500 mb-1">
-                      {item.category}
+
+                  {/* Content */}
+                  <div className="p-5 flex flex-col">
+                    <p className="text-sm text-secondary-300 font-semibold mb-1">
+                      {post.subtitle}
                     </p>
-                    <h3 className="text-lg md:text-xl font-bold text-gray-900">
-                      {item.title}
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">
+                      {post.title}
                     </h3>
-                    <p className="text-gray-700 text-sm mt-2 flex-grow">
-                      {item.description}
+                    <p className="text-gray-700 text-sm mb-4 flex-grow">
+                      {post.description}
                     </p>
-                    {item.file_url && (
-                      <a
-                        href={item.file_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-4 inline-flex items-center gap-2 font-semibold text-secondary-300 hover:text-secondary-400 transition"
-                      >
-                        <FontAwesomeIcon
-                          icon={faArrowUpRightFromSquare}
-                          className="w-4 h-4"
-                        />
-                        Lihat File
-                      </a>
-                    )}
+
+                    {/* PDF */}
+                    <a
+                      href={post.pdf}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-secondary-300 font-semibold hover:text-secondary-400 transition"
+                    >
+                      <FontAwesomeIcon icon={faDownload} />
+                      Lihat PDF
+                    </a>
                   </div>
                 </div>
               </SwiperSlide>
@@ -123,12 +119,6 @@ export default function PinterestBlogModern() {
           </Swiper>
         </div>
       </div>
-
-      {/* Animations */}
-      <style>{`
-        @keyframes fadeInDown {0%{opacity:0; transform:translateY(-20px);}100%{opacity:1; transform:translateY(0);}}
-        .animate-fade-in-down {animation: fadeInDown 1s ease-out forwards;}
-      `}</style>
     </section>
   );
 }
