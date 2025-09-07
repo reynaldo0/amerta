@@ -10,7 +10,7 @@ import {
   faDownload,
 } from "@fortawesome/free-solid-svg-icons";
 import { useLocation } from "react-router-dom";
-import { keseharianData } from "../../../docs/KeseharianData";
+import { keseharianData } from "../../../docs/keseharianData";
 
 export default function CultureHighlights() {
   const swiperRef = useRef(null);
