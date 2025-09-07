@@ -12,7 +12,7 @@ import {
 import { useLocation } from "react-router-dom";
 import { tariData } from "../../../docs/tariData";
 
-export default function TariSectionClean() {
+export default function TariSectionMobile() {
   const swiperRef = useRef(null);
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
@@ -22,49 +22,36 @@ export default function TariSectionClean() {
   const posts = tariData[path] || tariData.jawa;
 
   return (
-    <section className="relative w-full min-h-screen py-32 bg-gradient-to-b from-primary-900 to-primary-800 overflow-hidden">
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-16 z-10">
+    <section className="relative w-full min-h-screen bg-white overflow-hidden">
+      <div
+        className="absolute inset-0 bg-[url('/wave/budaya.png')] bg-cover bg-center opacity-10"
+        style={{ backgroundAttachment: "fixed" }}
+      />
+      <img
+        src="/wave/form.png"
+        alt="Wave"
+        className="w-full h-full object-cover will-change-transform"
+      />
+      <div className="absolute top-0 w-full overflow-hidden leading-[0] z-20 will-change-transform"></div>
+      <div className="max-w-7xl mx-auto px-6 lg:px-16 z-10 py-20">
         {/* Title */}
-        <h1 className="text-5xl md:text-6xl font-extrabold text-white text-center mb-6">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-white text-center mb-4">
           Budaya <span className="text-secondary-300">Tari</span>{" "}
           {path.charAt(0).toUpperCase() + path.slice(1)}
         </h1>
-        <p className="text-center text-white/80 text-lg md:text-xl mb-16 max-w-3xl mx-auto">
+        <p className="text-center text-white/80 text-base md:text-lg mb-12 max-w-3xl mx-auto">
           Jelajahi tarian tradisional dari pulau {path}. Setiap gerakan
           menyimpan cerita dan filosofi budaya yang unik.
         </p>
 
-        {/* Slider + Controls */}
-        <div className="flex flex-col lg:flex-row items-center gap-12">
-          {/* Navigation Buttons */}
-          <div className="flex flex-row lg:flex-col gap-4 justify-center lg:justify-start">
-            <button
-              onClick={() => swiperRef.current?.slidePrev()}
-              disabled={isBeginning}
-              className={`flex items-center justify-center w-12 h-12 rounded-full bg-white text-gray-800 shadow-md hover:bg-secondary-300 hover:text-white transition ${
-                isBeginning ? "opacity-40 cursor-not-allowed" : ""
-              }`}
-            >
-              <FontAwesomeIcon icon={faChevronLeft} />
-            </button>
-            <button
-              onClick={() => swiperRef.current?.slideNext()}
-              disabled={isEnd}
-              className={`flex items-center justify-center w-12 h-12 rounded-full bg-white text-gray-800 shadow-md hover:bg-secondary-300 hover:text-white transition ${
-                isEnd ? "opacity-40 cursor-not-allowed" : ""
-              }`}
-            >
-              <FontAwesomeIcon icon={faChevronRight} />
-            </button>
-          </div>
-
-          {/* Swiper Cards */}
+        {/* Slider */}
+        <div className="relative">
           <Swiper
             modules={[Navigation]}
-            spaceBetween={30}
+            spaceBetween={20}
             slidesPerView={1.1}
             breakpoints={{
+              640: { slidesPerView: 1.2 },
               768: { slidesPerView: 2.2 },
               1024: { slidesPerView: 3 },
             }}
@@ -80,34 +67,29 @@ export default function TariSectionClean() {
           >
             {posts.map((post, idx) => (
               <SwiperSlide key={idx}>
-                <div className="group relative rounded-2xl overflow-hidden shadow-lg bg-white hover:shadow-2xl transition-transform duration-300 hover:scale-105">
-                  {/* Image */}
-                  <div className="relative h-64 overflow-hidden rounded-t-2xl">
+                <div className="group relative rounded-2xl overflow-hidden shadow-lg bg-white transition-transform duration-300 hover:scale-105 active:scale-100">
+                  <div className="relative h-56 md:h-64 overflow-hidden rounded-t-2xl">
                     <img
                       src={post.image}
                       alt={post.title}
                       className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
-
-                  {/* Content */}
-                  <div className="p-5 flex flex-col">
-                    <p className="text-sm text-secondary-300 font-semibold mb-1">
+                  <div className="p-4 md:p-5 flex flex-col">
+                    <p className="text-xs md:text-sm text-secondary-300 font-semibold mb-1">
                       {post.subtitle}
                     </p>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">
+                    <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2">
                       {post.title}
                     </h3>
-                    <p className="text-gray-700 text-sm mb-4 flex-grow">
+                    <p className="text-gray-700 text-sm mb-3 flex-grow">
                       {post.description}
                     </p>
-
-                    {/* PDF */}
                     <a
                       href={post.pdf}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-secondary-300 font-semibold hover:text-secondary-400 transition"
+                      className="inline-flex items-center gap-2 text-secondary-300 font-semibold hover:text-secondary-400 transition text-sm md:text-base"
                     >
                       <FontAwesomeIcon icon={faDownload} />
                       Lihat PDF
@@ -117,6 +99,48 @@ export default function TariSectionClean() {
               </SwiperSlide>
             ))}
           </Swiper>
+
+          {/* Mobile Navigation Buttons */}
+          <div className="flex justify-center gap-6 mt-6 md:hidden">
+            <button
+              onClick={() => swiperRef.current?.slidePrev()}
+              disabled={isBeginning}
+              className={`w-12 h-12 rounded-full bg-white text-gray-800 shadow-lg flex items-center justify-center hover:bg-secondary-300 hover:text-white transition ${
+                isBeginning ? "opacity-40 cursor-not-allowed" : ""
+              }`}
+            >
+              <FontAwesomeIcon icon={faChevronLeft} />
+            </button>
+            <button
+              onClick={() => swiperRef.current?.slideNext()}
+              disabled={isEnd}
+              className={`w-12 h-12 rounded-full bg-white text-gray-800 shadow-lg flex items-center justify-center hover:bg-secondary-300 hover:text-white transition ${
+                isEnd ? "opacity-40 cursor-not-allowed" : ""
+              }`}
+            >
+              <FontAwesomeIcon icon={faChevronRight} />
+            </button>
+          </div>
+
+          {/* Desktop Buttons */}
+          <button
+            onClick={() => swiperRef.current?.slidePrev()}
+            disabled={isBeginning}
+            className={`hidden md:flex absolute top-1/2 -left-20 transform -translate-y-1/2 w-14 h-14 rounded-full bg-white text-gray-800 shadow-xl items-center justify-center hover:bg-secondary-300 hover:text-white transition ${
+              isBeginning ? "opacity-40 cursor-not-allowed" : ""
+            }`}
+          >
+            <FontAwesomeIcon icon={faChevronLeft} size="lg" />
+          </button>
+          <button
+            onClick={() => swiperRef.current?.slideNext()}
+            disabled={isEnd}
+            className={`hidden md:flex absolute top-1/2 -right-20 transform -translate-y-1/2 w-14 h-14 rounded-full bg-white text-gray-800 shadow-xl items-center justify-center hover:bg-secondary-300 hover:text-white transition ${
+              isEnd ? "opacity-40 cursor-not-allowed" : ""
+            }`}
+          >
+            <FontAwesomeIcon icon={faChevronRight} size="lg" />
+          </button>
         </div>
       </div>
     </section>

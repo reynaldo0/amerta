@@ -6,17 +6,21 @@ import { Navigation } from "swiper/modules";
 import { useLocation } from "react-router-dom";
 import { permainanData as data } from "../../../docs/permainanData";
 
-export default function SectionGameCultureSlider() {
+export default function SectionGameCultureMobile() {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
   const location = useLocation();
-  const path = location.pathname.replace("/budaya-", ""); // ex: "jawa"
+  const path = location.pathname.replace("/budaya-", "");
   const permainanData = data[path] || data.jawa;
 
   return (
-    <section className="py-24 bg-primary-100 relative">
-      <div className="max-w-7xl mx-auto px-6 lg:px-16">
+    <section className="min-h-screen bg-primary-100 relative py-24">
+      <div
+        className="absolute inset-0 bg-[url('/wave/budaya.png')] bg-cover bg-center opacity-10"
+        style={{ backgroundAttachment: "fixed" }}
+      />
+      <div className="max-w-7xl mx-auto px-6 lg:px-16 z-10">
         <h2 className="text-4xl md:text-5xl font-extrabold text-white text-center mb-12">
           Budaya Permainan {path.charAt(0).toUpperCase() + path.slice(1)}
         </h2>
@@ -24,11 +28,12 @@ export default function SectionGameCultureSlider() {
         <div className="relative">
           <Swiper
             modules={[Navigation]}
-            spaceBetween={40}
-            slidesPerView={1.2}
+            spaceBetween={20}
+            slidesPerView={1.1} // mobile peek
             breakpoints={{
+              640: { slidesPerView: 1.2 },
               768: { slidesPerView: 2.2 },
-              1024: { slidesPerView: 3.2 },
+              1024: { slidesPerView: 3 },
             }}
             navigation={{
               prevEl: prevRef.current,
@@ -41,30 +46,29 @@ export default function SectionGameCultureSlider() {
           >
             {permainanData.map((item, idx) => (
               <SwiperSlide key={idx}>
-                <div className="relative p-5 group flex flex-col items-center">
-                  <div className="w-48 h-48 rounded-2xl overflow-hidden shadow-2xl mb-[-2rem] transition-transform duration-500 group-hover:scale-110 group-hover:rotate-2">
+                <div className="group relative rounded-2xl overflow-hidden shadow-lg bg-white transition-transform duration-300 hover:scale-105">
+                  <div className="relative h-56 md:h-64 overflow-hidden rounded-t-2xl">
                     <img
                       src={item.image}
                       alt={item.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
-
-                  <div className="bg-white/20 backdrop-blur-xl rounded-3xl p-6 pt-24 w-full flex flex-col items-center shadow-lg transform transition-transform duration-500 group-hover:scale-105 group-hover:rotate-1">
-                    <h3 className="text-2xl font-bold text-white mb-1 text-center">
+                  <div className="p-4 md:p-5 flex flex-col items-center">
+                    <h3 className="text-xl font-bold text-gray-900 mb-1 text-center">
                       {item.title}
                     </h3>
-                    <h4 className="text-lg text-secondary-300 mb-3 text-center">
+                    <h4 className="text-sm text-secondary-300 mb-2 text-center">
                       {item.subtitle}
                     </h4>
-                    <p className="text-white/90 mb-4 text-center">
+                    <p className="text-gray-700 text-sm mb-4 text-center">
                       {item.description}
                     </p>
                     <a
                       href={item.pdfLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-secondary-300 px-4 py-2 rounded-full font-semibold text-white shadow-lg hover:scale-110 hover:shadow-2xl transition-all"
+                      className="inline-flex items-center gap-2 text-secondary-300 font-semibold hover:text-secondary-400 transition"
                     >
                       Lihat PDF
                     </a>
@@ -74,15 +78,32 @@ export default function SectionGameCultureSlider() {
             ))}
           </Swiper>
 
+          {/* Mobile Navigation Buttons */}
+          <div className="flex justify-center gap-6 mt-6 md:hidden">
+            <button
+              ref={prevRef}
+              className="w-12 h-12 rounded-full bg-white text-gray-800 shadow-lg flex items-center justify-center hover:bg-secondary-300 hover:text-white transition"
+            >
+              &#8592;
+            </button>
+            <button
+              ref={nextRef}
+              className="w-12 h-12 rounded-full bg-white text-gray-800 shadow-lg flex items-center justify-center hover:bg-secondary-300 hover:text-white transition"
+            >
+              &#8594;
+            </button>
+          </div>
+
+          {/* Desktop Buttons */}
           <button
             ref={prevRef}
-            className="absolute top-1/2 -left-6 -translate-y-1/2 bg-white/20 backdrop-blur-lg text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-white/30 transition"
+            className="hidden md:flex absolute top-1/2 -left-16 transform -translate-y-1/2 w-14 h-14 rounded-full bg-white text-gray-800 shadow-xl items-center justify-center hover:bg-secondary-300 hover:text-white transition"
           >
             &#8592;
           </button>
           <button
             ref={nextRef}
-            className="absolute top-1/2 -right-6 -translate-y-1/2 bg-white/20 backdrop-blur-lg text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-white/30 transition"
+            className="hidden md:flex absolute top-1/2 -right-16 transform -translate-y-1/2 w-14 h-14 rounded-full bg-white text-gray-800 shadow-xl items-center justify-center hover:bg-secondary-300 hover:text-white transition"
           >
             &#8594;
           </button>
