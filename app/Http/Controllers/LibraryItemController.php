@@ -205,4 +205,9 @@ class LibraryItemController extends Controller
 
         return redirect()->back()->with('success', 'Item berhasil dihapus!');
     }
+
+    public function story() {
+        $story = LibraryItem::where('category', 'cerita_rakyat')->latest()->get();
+        return response()->json($story);
+    }
 }

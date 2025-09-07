@@ -537,9 +537,6 @@
             itemModal.classList.add('hidden');
         });
 
-        document.getElementById('cancel-delete-item').addEventListener('click', () => {
-            deleteItemModal.classList.add('hidden');
-        });
 
         // File upload functionality
         const fileInput = document.getElementById('item-file');
@@ -547,27 +544,33 @@
         const filePreview = document.getElementById('file-preview');
         const removeFileBtn = document.getElementById('remove-file');
 
-        fileUploadArea.addEventListener('click', () => fileInput.click());
+        // Fix: prevent default form submission when clicking upload area
+        fileUploadArea.addEventListener('click', function(e) {
+            e.preventDefault();
+            fileInput.click();
+        });
 
-        fileUploadArea.addEventListener('dragover', (e) => {
+        fileUploadArea.addEventListener('dragover', function(e) {
             e.preventDefault();
             fileUploadArea.classList.add('bg-amerta-primary/5');
         });
 
-        fileUploadArea.addEventListener('dragleave', () => {
+        fileUploadArea.addEventListener('dragleave', function(e) {
+            e.preventDefault();
             fileUploadArea.classList.remove('bg-amerta-primary/5');
         });
 
-        fileUploadArea.addEventListener('drop', (e) => {
+        fileUploadArea.addEventListener('drop', function(e) {
             e.preventDefault();
             fileUploadArea.classList.remove('bg-amerta-primary/5');
             const files = e.dataTransfer.files;
             if (files.length > 0) {
+                fileInput.files = files;
                 handleFileUpload(files[0]);
             }
         });
 
-        fileInput.addEventListener('change', (e) => {
+        fileInput.addEventListener('change', function(e) {
             if (e.target.files.length > 0) {
                 handleFileUpload(e.target.files[0]);
             }
@@ -586,7 +589,8 @@
             filePreview.classList.remove('hidden');
         }
 
-        removeFileBtn.addEventListener('click', () => {
+        removeFileBtn.addEventListener('click', function(e) {
+            e.preventDefault();
             fileInput.value = '';
             fileUploadArea.style.display = 'block';
             filePreview.classList.add('hidden');
@@ -607,22 +611,6 @@
             if (mimeType === 'application/pdf') return 'fas fa-file-pdf text-2xl text-red-500';
             return 'fas fa-file text-2xl text-gray-500';
         }
-
-        // Form submission
-        document.getElementById('item-form').addEventListener('submit', function(e) {
-
-            // Validate metadata JSON
-            const metadata = document.getElementById('item-metadata').value;
-            if (metadata.trim()) {
-                try {
-                    JSON.parse(metadata);
-                } catch (error) {
-                    alert('Format metadata JSON tidak valid!');
-                    return;
-                }
-            }
-
-        });
 
         // Filter & Search functionality
         document.getElementById('search-input').addEventListener('input', function(e) {
@@ -669,22 +657,36 @@
         // Preview item functionality
         document.querySelectorAll('.btn-preview').forEach(btn => {
             btn.addEventListener('click', function() {
-                // Load preview content via AJAX if needed
+                const itemId = btn.getAttribute('data-id');
+                // Find item data from items array (if available)
+                let item = null;
+                @foreach($items as $item)
+                    if ("{{ $item->id }}" == itemId) {
+                        item = @json($item);
+                    }
+                @endforeach
+
+                const previewContent = document.getElementById('preview-content');
+                previewContent.innerHTML = '';
+
+                if (item) {
+                    let html = `<div class="p-8 flex flex-col items-center justify-center">`;
+                    if (item.file) {
+                        html += `<img src="${item.file}" alt="${item.title}" class="max-w-xl max-h-[60vh] rounded-lg shadow mb-4">`;
+                    }
+                    html += `<h3 class="text-xl font-bold mb-2">${item.title}</h3>`;
+                    html += `<p class="text-gray-700 mb-4">${item.description}</p>`;
+                    if (item.file_url) {
+                        html += `<a href="${item.file_url}" target="_blank" class="text-blue-600 underline mb-2 block">Download PDF</a>`;
+                    }
+                    html += `</div>`;
+                    previewContent.innerHTML = html;
+                } else {
+                    previewContent.innerHTML = '<div class="p-8 text-center text-gray-500">Data tidak ditemukan.</div>';
+                }
+
                 previewModal.classList.remove('hidden');
             });
-        });
-
-        // Auto-save metadata JSON formatting
-        document.getElementById('item-metadata').addEventListener('blur', function() {
-            const value = this.value.trim();
-            if (value) {
-                try {
-                    const parsed = JSON.parse(value);
-                    this.value = JSON.stringify(parsed, null, 2);
-                } catch (error) {
-                    // Invalid JSON, keep as is
-                }
-            }
         });
 
         // Keyboard shortcuts
@@ -701,33 +703,20 @@
             }
         });
 
-        // Thumbnail preview
-        document.getElementById('item-thumbnail').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            const preview = document.getElementById('thumbnail-preview');
-            const img = document.getElementById('thumbnail-img');
-            if (file) {
-                img.src = URL.createObjectURL(file);
-                preview.classList.remove('hidden');
-            } else {
-                preview.classList.add('hidden');
-                img.src = '';
-            }
-        });
 
-        // PDF preview
-        document.getElementById('item-pdf').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            const preview = document.getElementById('pdf-preview');
-            const nameSpan = document.getElementById('pdf-file-name');
-            if (file) {
-                nameSpan.textContent = file.name;
-                preview.classList.remove('hidden');
-            } else {
-                preview.classList.add('hidden');
-                nameSpan.textContent = '';
-            }
-        });
+        // // PDF preview
+        // document.getElementById('item-pdf').addEventListener('change', function(e) {
+        //     const file = e.target.files[0];
+        //     const preview = document.getElementById('pdf-preview');
+        //     const nameSpan = document.getElementById('pdf-file-name');
+        //     if (file) {
+        //         nameSpan.textContent = file.name;
+        //         preview.classList.remove('hidden');
+        //     } else {
+        //         preview.classList.add('hidden');
+        //         nameSpan.textContent = '';
+        //     }
+        // });
     </script>
 
 @endsection

@@ -13,7 +13,10 @@ use Illuminate\Http\Request;
 class RouteController extends Controller
 {
     public function dashboard() {
-        return view('admin.dashboard');
+        return view('admin.dashboard')->with([
+            'contents' => Content::all(),
+            'items' => LibraryItem::latest()->get(),
+        ]);
     }
 
     public function content() {
@@ -26,7 +29,8 @@ class RouteController extends Controller
             'total' => $total,
             'article' => $article,
             'quiz' => $quiz,
-            'event' => $event
+            'event' => $event,
+            'items' => LibraryItem::latest()->get(),
         ]);
     }
 
@@ -35,7 +39,8 @@ class RouteController extends Controller
         $prov = Province::all()->sortBy('name');
         return view('admin.item')->with([
             'items' => $items,
-            'provinces' => $prov
+            'provinces' => $prov,
+            'contents' => Content::all(),
         ]);
     }
 
@@ -45,6 +50,7 @@ class RouteController extends Controller
         return view('admin.quiz')->with([
             'quiz' => $quiz,
             'quizzes' => $quizzes,
+            'items' => LibraryItem::latest()->get(),
             'contents' => Content::where('type', 'quiz')->get()
         ]);
     }
@@ -52,7 +58,21 @@ class RouteController extends Controller
     public function mail() {
         $mails = Mail::latest()->get();
 
-        return view('admin.mail', compact('mails'));
+        return view('admin.mail', compact('mails'))->with([
+            'items' => LibraryItem::latest()->get(),
+            'contents' => Content::all(),
+        ]);
+    }
+
+    public function stories() {
+        $items = LibraryItem::where('category', 'cerita_rakyat')->get();
+        $prov = Province::all()->sortBy('name');
+        return view('admin.story')->with([
+            'story' => $items,
+            'items' => LibraryItem::latest()->get(),
+            'provinces' => $prov,
+            'contents' => Content::all(),
+        ]);
     }
 
     public function prov() {
@@ -64,9 +84,6 @@ class RouteController extends Controller
     public function reg() {
         $reg = Region::with('provinces')->get();
 
-        return response()->json([
-            'regions' => $reg,
-            // 'provinces' => $reg->provinces,
-        ]);
+        return response()->json($reg);
     }
 }

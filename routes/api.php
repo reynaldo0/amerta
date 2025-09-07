@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChatMessageController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\LibraryItemController;
 use App\Http\Controllers\MailController;
@@ -18,6 +19,7 @@ Route::prefix('v1')->group(function () {
     Route::controller(LibraryItemController::class)->group(function () {
         Route::get('/items', 'index');
         Route::get('/item/{id}', 'show');
+        Route::get('/items/story', 'story');
     });
 
     Route::controller(ContentController::class)->group(function () {
@@ -42,4 +44,6 @@ Route::prefix('v1')->group(function () {
         Route::get('/provinces', 'prov');
         Route::get('/regions', 'reg');
     });
+
+    Route::apiResource('chat', ChatMessageController::class);
 });

@@ -24,6 +24,7 @@ Route::middleware('auth')->group(function() {
         Route::get('/admin/items', 'item');
         Route::get('/admin/quizzes', 'quiz');
         Route::get('/admin/mails', 'mail');
+        Route::get('/admin/stories', 'stories');
     });
 
     Route::controller(ContentController::class)->group(function() {
@@ -35,6 +36,7 @@ Route::middleware('auth')->group(function() {
     Route::controller(LibraryItemController::class)->group(function() {
         Route::post('/create/item', 'store');
         Route::delete('/item/{id}', 'destroy');
+        Route::put('/item/{id}', 'update');
     });
 
     Route::controller(QuizController::class)->group(function() {

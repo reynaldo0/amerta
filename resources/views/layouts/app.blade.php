@@ -137,6 +137,8 @@
                     </a>
                 </li>
 
+                {{-- Show menu only if content type exists --}}
+                @if (isset($contents) && $contents->where('type', 'quiz')->count())
                 <li>
                     <a href="/admin/quizzes"
                         class="flex items-center p-3 text-gray-700 rounded-xl hover:bg-amerta-primary/10 hover:text-amerta-secondary transition-all duration-200 group">
@@ -144,12 +146,67 @@
                         <span class="ml-4">Quiz</span>
                     </a>
                 </li>
+                @endif
+
+                @if (isset($contents) && $contents->where('type', 'event')->count())
+                <li>
+                    <a href="/admin/events"
+                        class="flex items-center p-3 text-gray-700 rounded-xl hover:bg-amerta-primary/10 hover:text-amerta-secondary transition-all duration-200 group">
+                        <i class="fas fa-calendar text-lg w-5"></i>
+                        <span class="ml-4">Event</span>
+                    </a>
+                </li>
+                @endif
+
+                @if (isset($contents) && $contents->where('type', 'poster')->count())
+                <li>
+                    <a href="/admin/posters"
+                        class="flex items-center p-3 text-gray-700 rounded-xl hover:bg-amerta-primary/10 hover:text-amerta-secondary transition-all duration-200 group">
+                        <i class="fas fa-image text-lg w-5"></i>
+                        <span class="ml-4">Poster</span>
+                    </a>
+                </li>
+                @endif
+
+                @if (isset($contents) && $contents->where('type', 'map_asset')->count())
+                <li>
+                    <a href="/admin/map-assets"
+                        class="flex items-center p-3 text-gray-700 rounded-xl hover:bg-amerta-primary/10 hover:text-amerta-secondary transition-all duration-200 group">
+                        <i class="fas fa-map-marked-alt text-lg w-5"></i>
+                        <span class="ml-4">Aset Peta</span>
+                    </a>
+                </li>
+                @endif
+
+                @if (isset($contents) && $contents->where('type', 'submission')->count())
+                <li>
+                    <a href="/admin/submissions"
+                        class="flex items-center p-3 text-gray-700 rounded-xl hover:bg-amerta-primary/10 hover:text-amerta-secondary transition-all duration-200 group">
+                        <i class="fas fa-file-upload text-lg w-5"></i>
+                        <span class="ml-4">Submission</span>
+                    </a>
+                </li>
+                @endif
 
                 <!-- Team & Settings -->
                 <li class="pt-4">
-                    <h3 class="px-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">Pengaturan</h3>
+                    <h3 class="px-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">Edit Galeri</h3>
                 </li>
                 
+                @if (isset($items) && $items->where('category', 'cerita_rakyat')->count())
+                <li>
+                    <a href="/admin/stories"
+                        class="flex items-center p-3 text-gray-700 rounded-xl hover:bg-amerta-primary/10 hover:text-amerta-secondary transition-all duration-200 group">
+                        <i class="fas fa-book text-lg w-5"></i>
+                        <span class="ml-4">Cerita Rakyat</span>
+                    </a>
+                </li>
+                @endif
+
+                <li class="pt-4">
+                    <h3 class="px-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">Pengaturan</h3>
+                </li>
+
                 <li>
                     <a href="/admin/team"
                         class="flex items-center p-3 text-gray-700 rounded-xl hover:bg-amerta-primary/10 hover:text-amerta-primary transition-all duration-200 group">
