@@ -77,18 +77,18 @@ const Footer = () => {
                   </a>
                 </li>
                 <li className="mb-4">
-                  <a href="/detail" className="hover:underline">
-                    Detail
+                  <a href="/budaya" className="hover:underline">
+                    budaya
                   </a>
                 </li>
                 <li className="mb-4">
-                  <a href="/comunity" className="hover:underline">
-                    Komunitas
+                  <a href="/artikel" className="hover:underline">
+                    Artikel
                   </a>
                 </li>
                 <li className="mb-4">
-                  <a href="/data" className="hover:underline">
-                    Data
+                  <a href="/komunitas" className="hover:underline">
+                    komunitas
                   </a>
                 </li>
               </ul>
@@ -104,7 +104,7 @@ const Footer = () => {
                     href="https://www.omahbse.com"
                     className="lowercase hover:underline"
                   >
-                    omahbse.com
+                    Omahbse.com
                   </a>
                 </li>
                 <li className="mb-4">
@@ -112,31 +112,24 @@ const Footer = () => {
                     href="https://culture-indonesia-ku.blogspot.com"
                     className="lowercase hover:underline"
                   >
-                    culture-indonesia-ku
+                    Culture-indonesia-ku
+                  </a>
+                </li>
+
+                <li className="mb-4">
+                  <a
+                    href="https://indonesiakaya.com/"
+                    className="lowercase hover:underline"
+                  >
+                    Indonesiakaya
                   </a>
                 </li>
                 <li className="mb-4">
                   <a
-                    href="https://www.wikipedia.org/"
+                    href="https://kemendikdasmen.go.id/"
                     className="lowercase hover:underline"
                   >
-                    Wikipedia.org
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a
-                    href="https://www.clearwatercf.com/"
-                    className="lowercase hover:underline"
-                  >
-                    ClearWatercf.com
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a
-                    href="https://emerhub.com/"
-                    className="lowercase hover:underline"
-                  >
-                    Emerhub.com
+                    Kemendikbud
                   </a>
                 </li>
               </ul>
@@ -157,7 +150,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <hr className="my-6 border-gray-700 sm:mx-auto lg:my-8" />
+        <hr className="my-6 border-white sm:mx-auto lg:my-8" />
         <div className="sm:flex sm:items-center sm:justify-between">
           <span className="text-center text-sm text-gray-300/90">
             Dibuat oleh Tim Amerta
