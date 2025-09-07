@@ -87,24 +87,57 @@
         </div>
 
         <!-- Charts Section -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div class="gap-6 mb-8">
             <!-- Visitor Analytics Chart -->
-            <div class="bg-white rounded-2xl border border-gray-100 p-6">
+            <!-- Chat Messages Card -->
+            <div class="bg-white rounded-2xl border border-gray-100 p-6 lg:col-span-2">
                 <div class="flex items-center justify-between mb-6">
-                    <h3 class="text-lg font-semibold text-gray-800">Analitik Pengunjung</h3>
-                    <div class="flex items-center space-x-2">
-                        <select
-                            class="text-sm border border-gray-200 rounded-lg px-3 py-1 focus:ring-2 focus:ring-amerta-primary/20">
-                            <option>7 Hari Terakhir</option>
-                            <option>30 Hari Terakhir</option>
-                            <option>3 Bulan Terakhir</option>
-                        </select>
-                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800">Pesan Terbaru</h3>
+                    <button onclick="fetchChatMessages()"
+                        class="text-sm px-3 py-1 bg-amerta-primary text-white rounded-md hover:bg-amerta-dark transition-colors">
+                        Refresh
+                    </button>
                 </div>
-                <div class="h-72">
-                    <canvas id="visitorsChart"></canvas>
+
+                <div id="chat-messages" class="space-y-4 max-h-96 overflow-y-auto">
+                    <p class="text-gray-500 text-sm">Memuat pesan...</p>
                 </div>
             </div>
+
+            <script>
+                async function fetchChatMessages() {
+                    const container = document.getElementById('chat-messages');
+                    container.innerHTML = '<p class="text-gray-500 text-sm">Memuat pesan...</p>';
+
+                    try {
+                        const res = await fetch('http://127.0.0.1:8000/api/v1/chat');
+                        if (!res.ok) throw new Error('Gagal fetch data');
+                        const data = await res.json();
+
+                        if (!data.length) {
+                            container.innerHTML = '<p class="text-gray-500 text-sm">Belum ada pesan.</p>';
+                            return;
+                        }
+
+                        container.innerHTML = data.map(msg => `
+            <div class="p-4 bg-gray-50 rounded-xl border border-gray-100 hover:shadow-sm transition">
+                <div class="flex items-center justify-between mb-1">
+                    <span class="font-semibold text-amerta-primary">${msg.username}</span>
+                    <span class="text-xs text-gray-400">${new Date(msg.created_at).toLocaleString()}</span>
+                </div>
+                <p class="text-gray-700 text-sm">${msg.message}</p>
+            </div>
+        `).join('');
+                    } catch (err) {
+                        container.innerHTML = '<p class="text-red-500 text-sm">Terjadi kesalahan saat mengambil pesan.</p>';
+                        console.error(err);
+                    }
+                }
+
+                // load langsung saat halaman dibuka
+                document.addEventListener('DOMContentLoaded', fetchChatMessages);
+            </script>
+
 
             <!-- Device Usage -->
             <div class="bg-white rounded-2xl border border-gray-100 p-6">
@@ -438,6 +471,6 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 @endsection
