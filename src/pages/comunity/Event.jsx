@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const events = [
   {
@@ -60,9 +62,9 @@ const Modal = ({ event, isOpen, onClose }) => {
     <div
       id="modalOverlay"
       onClick={handleOutsideClick}
-      className="fixed inset-0 bg-black/30 backdrop-blur-md flex items-center justify-center z-[9999] transition-opacity duration-300 animate-fadeIn"
+      className="fixed inset-0 bg-black/50 flex items-center justify-center z-[9999] animate-fadeIn"
     >
-      <div className="bg-white/90 backdrop-blur-lg w-full max-w-lg p-6 rounded-2xl shadow-2xl relative transform transition-all duration-300 scale-95 opacity-0 animate-zoomIn">
+      <div className="bg-white w-full max-w-lg p-6 rounded-2xl shadow-2xl relative animate-zoomIn">
         <button
           onClick={onClose}
           className="text-gray-500 hover:text-gray-800 absolute right-4 top-4 font-bold text-2xl"
@@ -170,7 +172,7 @@ const RegistrationForm = () => {
       />
       <button
         type="submit"
-        className="w-full bg-secondary-300 hover:bg-secondary-300/90 cursor-pointer text-white rounded-lg py-2 hover:bg-primary-400 transition-all"
+        className="w-full bg-secondary-300 hover:bg-secondary-300/90 cursor-pointer text-white rounded-lg py-2 transition-all"
       >
         Daftar Sekarang
       </button>
@@ -182,6 +184,10 @@ const RegistrationForm = () => {
 const Events = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
+
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true });
+  }, []);
 
   const openModal = (event) => {
     setSelectedEvent(event);
@@ -210,15 +216,19 @@ const Events = () => {
         className="absolute inset-0 bg-[url('/wave/komunitas.png')] bg-cover bg-center opacity-10"
         style={{ backgroundAttachment: "fixed" }}
       />
-      <div
-        className="absolute inset-0 bg-[url('/wave/komunitas.png')] bg-cover bg-center opacity-10"
-        style={{ backgroundAttachment: "fixed" }}
-      />
+
       <div className="container mx-auto px-6 relative py-16 md:px-10">
-        <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-8">
+        <h2
+          data-aos="fade-up"
+          className="text-3xl md:text-4xl font-bold text-white text-center mb-8"
+        >
           Acara dan Festival Budaya Nusantara
         </h2>
-        <p className="text-lg text-center text-gray-200 mb-12 md:px-32">
+        <p
+          data-aos="fade-up"
+          data-aos-delay="200"
+          className="text-lg text-center text-gray-200 mb-12 md:px-32"
+        >
           Ikuti berbagai acara budaya, festival, dan kegiatan seni dari seluruh
           penjuru Indonesia untuk mengenal, merayakan, dan melestarikan kekayaan
           budaya Nusantara.
@@ -228,6 +238,8 @@ const Events = () => {
           {events.map((event, index) => (
             <div
               key={index}
+              data-aos="zoom-in"
+              data-aos-delay={index * 100}
               className="bg-white shadow-md rounded-lg p-6 border-l-4 border-secondary-300 hover:shadow-xl transition-shadow"
             >
               <h3 className="text-2xl font-semibold text-primary-200 mb-2">
@@ -242,7 +254,7 @@ const Events = () => {
               <p className="text-gray-700 mt-3">{event.description}</p>
               <button
                 onClick={() => openModal(event)}
-                className="mt-4 bg-secondary-300 hover:bg-secondary-300/90 cursor-pointer py-2 px-4 hover:bg-primary-400 rounded-xl text-white font-medium transition-all"
+                className="mt-4 bg-secondary-300 hover:bg-secondary-300/90 cursor-pointer py-2 px-4 rounded-xl text-white font-medium transition-all"
               >
                 Daftar Sekarang
               </button>

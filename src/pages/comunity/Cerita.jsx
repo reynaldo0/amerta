@@ -1,4 +1,6 @@
 import { useEffect, useState, useRef } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const stories = [
   {
@@ -8,9 +10,6 @@ const stories = [
 Dahulu kala, hiduplah seorang putri yang cantik jelita bernama Dewi Sri.
 Ia dikenal sebagai dewi kesuburan yang membawa kemakmuran bagi rakyat.
 Namun, suatu ketika kerajaan dilanda kekeringan yang panjang...
-(Lanjutan cerita bisa diperpanjang sesuai kebutuhan)
-Dahulu kala, hiduplah seorang putri yang cantik jelita bernama Dewi Sri.
-Ia dikenal sebagai dewi kesuburan yang membawa kemakmuran bagi rakyat.
     `,
   },
   {
@@ -20,35 +19,13 @@ Ia dikenal sebagai dewi kesuburan yang membawa kemakmuran bagi rakyat.
 Dahulu kala, hiduplah seorang anak bernama Malin Kundang.
 Ia pergi merantau dan menjadi kaya raya. Namun ketika pulang,
 ia malu mengakui ibunya sendiri. Akhirnya ia dikutuk menjadi batu...
-Dahulu kala, hiduplah seorang anak bernama Malin Kundang.
-Ia pergi merantau dan menjadi kaya raya.
-Dahulu kala, hiduplah seorang anak bernama Malin Kundang.
-Ia pergi merantau dan menjadi kaya raya. Namun ketika pulang,
-ia malu mengakui ibunya sendiri. Akhirnya ia dikutuk menjadi batu...
-Dahulu kala, hiduplah seorang anak bernama Malin Kundang.
-Ia pergi merantau dan menjadi kaya raya.
-Dahulu kala, hiduplah seorang anak bernama Malin Kundang.
-Ia pergi merantau dan menjadi kaya raya. Namun ketika pulang,
-ia malu mengakui ibunya sendiri. Akhirnya ia dikutuk menjadi batu...
-Dahulu kala, hiduplah seorang anak bernama Malin Kundang.
-Ia pergi merantau dan menjadi kaya raya.
-Dahulu kala, hiduplah seorang anak bernama Malin Kundang.
-Ia pergi merantau dan menjadi kaya raya. Namun ketika pulang,
-ia malu mengakui ibunya sendiri. Akhirnya ia dikutuk menjadi batu...
-Dahulu kala, hiduplah seorang anak bernama Malin Kundang.
-Ia pergi merantau dan menjadi kaya raya.
-Dahulu kala, hiduplah seorang anak bernama Malin Kundang.
-Ia pergi merantau dan menjadi kaya raya. Namun ketika pulang,
-ia malu mengakui ibunya sendiri. Akhirnya ia dikutuk menjadi batu...
-Dahulu kala, hiduplah seorang anak bernama Malin Kundang.
-Ia pergi merantau dan menjadi kaya raya.
     `,
   },
 ];
 
 // Fungsi untuk membuat excerpt otomatis
 const getExcerpt = (text, length = 120) => {
-  const cleanText = text.replace(/\s+/g, " ").trim(); // hapus spasi ekstra
+  const cleanText = text.replace(/\s+/g, " ").trim();
   if (cleanText.length <= length) return cleanText;
   return cleanText.slice(0, length) + "...";
 };
@@ -60,6 +37,14 @@ export default function CeritaRakyat() {
   const [hasRead, setHasRead] = useState(false);
 
   const storyRef = useRef(null);
+
+  // Init AOS
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+  }, []);
 
   // Scroll progress & poin
   useEffect(() => {
@@ -98,14 +83,20 @@ export default function CeritaRakyat() {
         className="w-full opacity-100 h-full object-cover will-change-transform"
       />
 
-      <h1 className="text-4xl md:text-6xl font-extrabold text-center text-primary-200 mb-8 relative z-10">
+      <h1
+        className="text-4xl md:text-6xl font-extrabold text-center text-primary-200 mb-8 relative z-10"
+        data-aos="fade-up"
+      >
         Cerita Rakyat Interaktif
       </h1>
 
       {/* Card selection */}
       {!selectedStory && (
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto py-24 relative z-10">
-          {stories.map((story) => (
+        <div
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto py-24 relative z-10"
+          data-aos="fade-up"
+        >
+          {stories.map((story, index) => (
             <div
               key={story.id}
               onClick={() => {
@@ -114,6 +105,8 @@ export default function CeritaRakyat() {
                 setScrollProgress(0);
               }}
               className="cursor-pointer bg-white rounded-2xl shadow-md hover:shadow-2xl transition-transform hover:-translate-y-1 p-6 flex flex-col justify-between"
+              data-aos="zoom-in"
+              data-aos-delay={index * 150}
             >
               <div>
                 <h2 className="text-2xl font-semibold text-primary-200">
@@ -133,8 +126,14 @@ export default function CeritaRakyat() {
 
       {/* Selected story */}
       {selectedStory && (
-        <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-6 py-24 relative z-10">
-          <div className="col-span-3 bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col">
+        <div
+          className="max-w-6xl mx-auto grid md:grid-cols-4 gap-6 py-24 relative z-10"
+          data-aos="fade-up"
+        >
+          <div
+            className="col-span-3 bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col"
+            data-aos="fade-right"
+          >
             <div className="bg-gradient-to-r from-secondary-300 via-secondary-200 to-secondary-300 p-6 text-white">
               <h2 className="text-3xl font-bold">{selectedStory.title}</h2>
               <p className="opacity-90 mt-1">
@@ -148,7 +147,11 @@ export default function CeritaRakyat() {
             >
               <p className="whitespace-pre-line">{selectedStory.content}</p>
               {!hasRead && (
-                <div className="flex justify-center mt-8 animate-bounce text-gray-400">
+                <div
+                  className="flex justify-center mt-8 text-gray-400"
+                  data-aos="fade-up"
+                  data-aos-delay="300"
+                >
                   ⬇️ Gulir terus ke bawah
                 </div>
               )}
@@ -161,7 +164,10 @@ export default function CeritaRakyat() {
               />
             </div>
 
-            <div className="p-6 flex items-center justify-between">
+            <div
+              className="p-6 flex items-center justify-between"
+              data-aos="fade-up"
+            >
               <button
                 onClick={() => setSelectedStory(null)}
                 className="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg text-gray-600"
@@ -182,7 +188,10 @@ export default function CeritaRakyat() {
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-xl p-6 flex flex-col justify-between">
+          <div
+            className="bg-white rounded-2xl shadow-xl p-6 flex flex-col justify-between"
+            data-aos="fade-left"
+          >
             <div>
               <h2 className="text-xl font-semibold text-gray-800">
                 📊 Total Poin

@@ -11,9 +11,10 @@ const team = [
     name: "Bekhyun Aditya",
     role: "Leader, Illustrator, Data Analyst",
     image: "/team/adit.jpeg",
-    github: "https://github.com/",
-    linkedin: "https://linkedin.com/",
-    instagram: "https://instagram.com/",
+    github: "https://github.com/hzinterpol",
+    linkedin: "https://linkedin.com/bekhyun-aditya-45786930a",
+    instagram: "https://instagram.com/bekhyunaditya_",
+    aos: "fade-up",
   },
   {
     name: "Reynaldo Yusellino",
@@ -22,26 +23,33 @@ const team = [
     github: "https://github.com/reynaldo0",
     linkedin: "https://linkedin.com/reynaldoyusellino",
     instagram: "https://instagram.com/rynldysllino",
+    aos: "fade-right",
   },
   {
     name: "Naufal Aqil Nasrullah",
     role: "Backend Developer",
     image: "/team/aqil.png",
-    github: "https://github.com/",
-    linkedin: "https://linkedin.com/",
-    instagram: "https://instagram.com/",
+    github: "https://github.com/nastroCoding",
+    linkedin: "https://linkedin.com/naufal-aqil-nasrullah-b42a99373/",
+    instagram: "https://instagram.com/primeaqil",
+    aos: "fade-left",
   },
 ];
 
 export default function TeamSection() {
   return (
     <section className="min-h-screen flex relative items-center justify-center bg-white py-16">
+      {/* Background */}
       <div
         className="absolute inset-0 bg-[url('/wave/about.png')] bg-cover bg-center opacity-10"
         style={{ backgroundAttachment: "fixed" }}
       />
+
       <div className="max-w-6xl mx-auto px-6 text-center">
-        <h2 className="text-3xl md:text-4xl font-extrabold mb-14 text-primary-200">
+        <h2
+          className="text-3xl md:text-4xl font-extrabold mb-14 text-primary-200"
+          data-aos="fade-down"
+        >
           Tim Amerta
         </h2>
 
@@ -49,7 +57,9 @@ export default function TeamSection() {
           {team.map((member, idx) => (
             <div
               key={idx}
-              className="group relative bg-white/70 backdrop-blur-lg border border-gray-200 p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transform transition-all duration-300"
+              data-aos={member.aos}
+              data-aos-delay={idx * 150} // jeda antar card
+              className="group relative bg-white/70 border border-gray-200 p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transform transition-all duration-300"
             >
               {/* Foto */}
               <div className="relative w-32 h-32 mx-auto overflow-hidden rounded-full border-2 border-secondary-300 shadow-md group-hover:scale-110 transform transition duration-300">

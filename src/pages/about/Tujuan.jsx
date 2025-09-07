@@ -12,21 +12,25 @@ export default function TujuanSection() {
       icon: faBullseye,
       title: "Fokus Tujuan",
       desc: "Kami berkomitmen untuk mencapai target dengan strategi yang terarah dan efektif.",
+      aos: "fade-up",
     },
     {
       icon: faLightbulb,
       title: "Inovasi",
       desc: "Menciptakan ide-ide baru yang kreatif untuk meningkatkan kualitas dan daya saing.",
+      aos: "fade-right",
     },
     {
       icon: faHandshake,
       title: "Kolaborasi",
       desc: "Membangun kerja sama yang solid untuk mencapai hasil yang lebih baik.",
+      aos: "fade-left",
     },
     {
       icon: faChartLine,
       title: "Pertumbuhan",
       desc: "Mendorong perkembangan berkelanjutan dengan pendekatan modern dan dinamis.",
+      aos: "zoom-in",
     },
   ];
 
@@ -38,10 +42,16 @@ export default function TujuanSection() {
         style={{ backgroundAttachment: "fixed" }}
       />
       <div className="max-w-6xl mx-auto text-center relative z-10">
-        <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4 tracking-tight">
+        <h2
+          className="text-4xl md:text-5xl font-extrabold text-white mb-4 tracking-tight"
+          data-aos="fade-down"
+        >
           Tujuan Kami
         </h2>
-        <p className="text-lg text-gray-100 max-w-2xl mx-auto">
+        <p
+          className="text-lg text-gray-100 max-w-2xl mx-auto"
+          data-aos="fade-up"
+        >
           Kami hadir dengan visi dan misi untuk memberikan dampak positif dan
           solusi terbaik melalui tujuan yang jelas.
         </p>
@@ -52,14 +62,16 @@ export default function TujuanSection() {
         {tujuan.map((item, index) => (
           <div
             key={index}
-            className="group relative bg-white/70 backdrop-blur-lg p-8 rounded-3xl shadow-lg border border-white/30 hover:shadow-2xl transition-transform transform hover:-translate-y-2 duration-300"
+            data-aos={item.aos}
+            data-aos-delay={index * 100} // biar ada jeda animasi tiap card
+            className="group relative bg-white/70 p-8 rounded-3xl shadow-lg border border-white/30 hover:shadow-2xl transition-transform transform hover:-translate-y-2 duration-300"
           >
             {/* Icon */}
             <div className="flex items-center justify-center w-20 h-20 bg-gradient-to-tr from-secondary-200 via-secondary-300 to-secondary-200 text-white rounded-2xl mx-auto mb-6 shadow-md group-hover:scale-110 transition-transform duration-300">
               <FontAwesomeIcon
                 icon={item.icon}
                 size="2x"
-                className="transition-transform duration-500 ease-in-out group-hover:rotate-20"
+                className="transition-transform duration-500 ease-in-out group-hover:rotate-12"
               />
             </div>
 

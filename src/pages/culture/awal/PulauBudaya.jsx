@@ -39,19 +39,27 @@ const islands = [
   },
 ];
 
-function TiltCard({ island }) {
+// daftar animasi AOS
+const animations = [
+  "fade-up",
+  "fade-down",
+  "fade-right",
+  "fade-left",
+  "zoom-in",
+  "flip-left",
+  "flip-right",
+];
+
+function TiltCard({ island, animation }) {
   const cardRef = useRef(null);
 
   const handleMouseMove = (e) => {
     const card = cardRef.current;
     const rect = card.getBoundingClientRect();
-
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-
     const rotateY = (x / rect.width - 0.5) * 20;
     const rotateX = (y / rect.height - 0.5) * -20;
-
     card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
   };
 
@@ -64,17 +72,19 @@ function TiltCard({ island }) {
   return (
     <div
       ref={cardRef}
+      data-aos={animation} // animasi unik tiap card
+      data-aos-duration="1200"
+      data-aos-once="true"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative group p-6 bg-white rounded-2xl shadow-md border border-gray-200 overflow-hidden transition-transform duration-300 
-      animate-fadeUpSlow"
+      className="relative group p-6 bg-white rounded-2xl shadow-md border border-gray-200 overflow-hidden transition-transform duration-300"
     >
       {/* Background Image */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <img
           src={island.image}
           alt={island.name}
-          className="w-3/4 opacity-20 group-hover:opacity-20 transition duration-500 object-contain animate-float"
+          className="w-3/4 opacity-20 group-hover:opacity-20 transition duration-500 object-contain"
         />
       </div>
 
@@ -112,7 +122,10 @@ export default function Budaya() {
       />
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-start z-20 ">
         {/* Left side - Text */}
-        <div className="space-y-3 text-left flex flex-col items-center md:items-start">
+        <div
+          className="space-y-3 text-left flex flex-col items-center md:items-start"
+          data-aos="fade-right"
+        >
           <img
             src="/illustrasi/budaya/pulau.png"
             alt="Budaya Nusantara Illustration"
@@ -137,7 +150,11 @@ export default function Budaya() {
         {/* Right side - Cards */}
         <div className="grid gap-8 sm:grid-cols-2">
           {islands.map((island, idx) => (
-            <TiltCard key={idx} island={island} />
+            <TiltCard
+              key={idx}
+              island={island}
+              animation={animations[idx % animations.length]} // pilih animasi sesuai index
+            />
           ))}
         </div>
       </div>

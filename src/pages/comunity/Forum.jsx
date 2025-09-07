@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faReply, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export default function ForumSection() {
   const [posts, setPosts] = useState([
@@ -22,6 +24,10 @@ export default function ForumSection() {
   const [newPost, setNewPost] = useState("");
   const [replyContent, setReplyContent] = useState({});
   const [showReplyBox, setShowReplyBox] = useState(null);
+
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true });
+  }, []);
 
   const addPost = () => {
     if (!newPost.trim()) return;
@@ -85,15 +91,22 @@ export default function ForumSection() {
         className="absolute inset-0 bg-[url('/wave/komunitas.png')] bg-cover bg-center opacity-10"
         style={{ backgroundAttachment: "fixed" }}
       />
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-primary-200">
+      <div className="max-w-5xl mx-auto relative z-10">
+        <h2
+          data-aos="fade-up"
+          className="text-3xl md:text-4xl font-bold text-center mb-8 text-primary-200"
+        >
           Forum Diskusi Budaya
         </h2>
 
         {/* Form Komentar */}
-        <div className="bg-white/40 backdrop-blur-xl shadow-xl rounded-3xl p-6 mb-8 border border-white/20">
+        <div
+          data-aos="fade-up"
+          data-aos-delay="200"
+          className="bg-white shadow-xl rounded-3xl p-6 mb-8 border border-gray-200"
+        >
           <textarea
-            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-secondary-300 outline-none backdrop-blur-sm bg-white/30"
+            className="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-secondary-300 outline-none bg-white"
             rows="3"
             placeholder="Tulis pendapatmu..."
             value={newPost}
@@ -109,10 +122,12 @@ export default function ForumSection() {
 
         {/* List Diskusi */}
         <div className="space-y-6">
-          {posts.map((post) => (
+          {posts.map((post, i) => (
             <div
               key={post.id}
-              className="bg-white/40 backdrop-blur-xl shadow-lg rounded-3xl p-6 transition-transform duration-300 hover:scale-[1.02] border border-white/20"
+              data-aos="zoom-in"
+              data-aos-delay={i * 100}
+              className="bg-white shadow-lg rounded-3xl p-6 transition-transform duration-300 hover:scale-[1.02] border border-gray-200"
             >
               <div className="flex items-center gap-3 mb-2">
                 <img
@@ -147,7 +162,8 @@ export default function ForumSection() {
                 {post.replies.map((reply) => (
                   <div
                     key={reply.id}
-                    className="bg-white/30 backdrop-blur-md p-3 rounded-xl transition-transform hover:scale-[1.02]"
+                    data-aos="fade-left"
+                    className="bg-white p-3 rounded-xl transition-transform hover:scale-[1.02] border"
                   >
                     <div className="flex items-center gap-2 mb-1">
                       <img
@@ -172,9 +188,9 @@ export default function ForumSection() {
 
               {/* Input balasan */}
               {showReplyBox === post.id && (
-                <div className="mt-4 ml-10">
+                <div data-aos="fade-up" className="mt-4 ml-10">
                   <textarea
-                    className="w-full border rounded-xl p-2 text-sm focus:ring-2 focus:ring-secondary-300 outline-none backdrop-blur-sm bg-white/30"
+                    className="w-full border rounded-xl p-2 text-sm focus:ring-2 focus:ring-secondary-300 outline-none bg-white"
                     rows="2"
                     placeholder="Tulis balasanmu..."
                     value={replyContent[post.id] || ""}

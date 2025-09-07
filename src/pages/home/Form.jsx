@@ -9,12 +9,18 @@ import {
   faCheckCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Form = () => {
   const [previewImage, setPreviewImage] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const typedRef = useRef(null);
+
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true }); // aktifkan AOS
+  }, []);
 
   useEffect(() => {
     if (typedRef.current) {
@@ -55,7 +61,7 @@ const Form = () => {
       await axios.post("http://localhost:8000/api/v1/mail", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-      setModalOpen(true); // buka modal sukses
+      setModalOpen(true);
       e.target.reset();
       setPreviewImage(null);
     } catch (err) {
@@ -72,13 +78,14 @@ const Form = () => {
         className="absolute inset-0 bg-[url('/wave/bg.svg')] bg-cover bg-center opacity-10"
         style={{ backgroundAttachment: "fixed" }}
       />
+
       <form
         onSubmit={handleSubmit}
         className="flex flex-col-reverse xl:flex-row xl:gap-20 items-center justify-between px-8 md:px-24 xl:px-20 z-10 w-full"
       >
         {/* Form Inputs */}
-        <div className="space-y-6 flex-1 pt-16 xl:pt-0">
-          <h1 className="font-bold text-3xl mb-4">
+        <div className="space-y-6 flex-1 pt-16 xl:pt-0" data-aos="fade-right">
+          <h1 className="font-bold text-3xl mb-4" data-aos="fade-down">
             Dari kamu untuk
             <span
               ref={typedRef}
@@ -87,7 +94,10 @@ const Form = () => {
           </h1>
 
           {/* Nama */}
-          <div className="flex items-center border border-gray-300 rounded-full px-4 py-3 bg-white shadow-lg">
+          <div
+            className="flex items-center border border-gray-300 rounded-full px-4 py-3 bg-white shadow-lg"
+            data-aos="zoom-in"
+          >
             <input
               id="nama"
               name="nama"
@@ -101,7 +111,10 @@ const Form = () => {
 
           {/* Email & Asal */}
           <div className="flex flex-wrap gap-4">
-            <div className="flex items-center border border-gray-300 rounded-full px-4 py-3 bg-white shadow-lg flex-1">
+            <div
+              className="flex items-center border border-gray-300 rounded-full px-4 py-3 bg-white shadow-lg flex-1"
+              data-aos="fade-up"
+            >
               <input
                 id="email"
                 name="email"
@@ -112,7 +125,11 @@ const Form = () => {
               />
               <FontAwesomeIcon icon={faEnvelope} className="text-gray-400" />
             </div>
-            <div className="flex items-center border border-gray-300 rounded-full px-4 py-3 bg-white shadow-lg flex-1">
+            <div
+              className="flex items-center border border-gray-300 rounded-full px-4 py-3 bg-white shadow-lg flex-1"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
               <input
                 id="asal"
                 name="asal"
@@ -135,11 +152,11 @@ const Form = () => {
             placeholder="Apa fitur yang ingin ditambahkan?"
             className="w-full border border-gray-300 rounded-2xl px-4 py-3 bg-white focus:outline-none resize-none text-gray-600 shadow-lg"
             rows="4"
-            required
+            data-aos="fade-left"
           ></textarea>
 
           {/* Upload */}
-          <div className="flex gap-4 items-start">
+          <div className="flex gap-4 items-start" data-aos="zoom-in-up">
             <div
               id="preview"
               className="flex items-center h-40 md:h-36 justify-center border border-gray-300 rounded-2xl bg-white shadow-lg flex-[1]"
@@ -191,23 +208,28 @@ const Form = () => {
             placeholder="Ceritakan pengalamanmu..."
             className="w-full border border-gray-300 rounded-2xl px-4 py-3 bg-white focus:outline-none resize-none text-gray-600 shadow-lg"
             rows="4"
+            data-aos="fade-up-right"
           ></textarea>
 
           <button
             type="submit"
             disabled={submitting}
             className="w-full bg-secondary-300 text-white font-semibold py-3 rounded-full hover:bg-secondary-300/90 transition disabled:opacity-50"
+            data-aos="flip-up"
           >
             {submitting ? "Mengirim..." : "Kirim"}
           </button>
         </div>
 
         {/* Illustration */}
-        <div className="flex justify-center items-center relative">
+        <div
+          className="flex justify-center items-center relative"
+          data-aos="fade-left"
+        >
           <img
             src="/illustrasi/form.png"
             alt="Tari Nusantara"
-            className="w-80 md:w-[600px] h-auto object-contain animate-float hover:scale-105 transition-transform duration-300 hover:rotate-10 hover:translate-y-1"
+            className="w-80 md:w-[600px] h-auto object-contain hover:scale-105 transition-transform duration-300"
           />
         </div>
       </form>
@@ -216,11 +238,12 @@ const Form = () => {
       {modalOpen && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
-          onClick={() => setModalOpen(false)} // klik di overlay menutup modal
+          onClick={() => setModalOpen(false)}
         >
           <div
-            className="bg-white rounded-3xl p-8 max-w-xl w-full text-center relative animate-scale-in"
-            onClick={(e) => e.stopPropagation()} // mencegah klik di dalam modal menutup
+            className="bg-white rounded-3xl p-8 max-w-xl w-full text-center relative"
+            data-aos="zoom-in"
+            onClick={(e) => e.stopPropagation()}
           >
             <FontAwesomeIcon
               icon={faCheckCircle}
@@ -238,15 +261,6 @@ const Form = () => {
               Tutup
             </button>
           </div>
-
-          {/* Animation */}
-          <style>{`
-      @keyframes scaleIn {
-        0% {transform: scale(0.5); opacity:0;}
-        100% {transform: scale(1); opacity:1;}
-      }
-      .animate-scale-in {animation: scaleIn 0.5s ease-out forwards;}
-    `}</style>
         </div>
       )}
     </section>

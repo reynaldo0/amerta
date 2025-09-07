@@ -47,13 +47,25 @@ export default function Tokoh() {
     {
       name: "Eko Supriyanto",
       description:
-        "Eko Supriyanto telah menciptakan berbagai pertunjukan tari kontemporer yang mendapatkan pengakuan internasional, seperti \"Tari Bumi\" yang menggambarkan hubungan antara manusia dengan alam. Ia juga aktif dalam mendidik generasi muda tentang tari kontemporer melalui workshop-wokshop serta program pelatihan tari di berbagai institusi seni.",
+        'Eko Supriyanto telah menciptakan berbagai pertunjukan tari kontemporer yang mendapatkan pengakuan internasional, seperti "Tari Bumi" yang menggambarkan hubungan antara manusia dengan alam. Ia juga aktif dalam mendidik generasi muda tentang tari kontemporer melalui workshop-wokshop serta program pelatihan tari di berbagai institusi seni.',
       born: "26 November 1970",
       died: "2002",
       images: ["/tokoh/eko.png", "/tokoh/eko2.png"],
       gradient: "from-secondary-200 via-secondary-400 to-secondary-300",
     },
   ];
+
+  // daftar animasi AOS
+  const animations = [
+    "fade-up",
+    "fade-down",
+    "fade-left",
+    "fade-right",
+    "zoom-in",
+    "flip-left",
+    "flip-right",
+  ];
+
   return (
     <section className="relative w-full min-h-screen text-white overflow-hidden">
       <img
@@ -65,7 +77,10 @@ export default function Tokoh() {
         className="absolute inset-0 bg-[url('/wave/budaya.png')] bg-cover bg-center opacity-10"
         style={{ backgroundAttachment: "fixed" }}
       />
-      <h2 className="text-4xl md:text-5xl font-extrabold text-center text-primary-200 tracking-tight">
+      <h2
+        className="text-4xl md:text-5xl font-extrabold text-center text-primary-200 tracking-tight"
+        data-aos="fade-down"
+      >
         Tokoh Budaya Nusantara
       </h2>
 
@@ -84,7 +99,12 @@ export default function Tokoh() {
         >
           {tokohData.map((tokoh, index) => (
             <SwiperSlide key={index}>
-              <div className="bg-primary-200/90 backdrop-blur-xl rounded-3xl shadow-2xl p-8 md:p-12 grid md:grid-cols-2 gap-8 border border-white/20">
+              <div
+                className="bg-primary-200/90 rounded-3xl shadow-2xl p-8 md:p-12 grid md:grid-cols-2 gap-8 border border-white/20"
+                data-aos={animations[index % animations.length]}
+                data-aos-duration="1200"
+                data-aos-once="true"
+              >
                 {/* Gambar tokoh */}
                 <div className="grid grid-cols-2 gap-4">
                   {tokoh.images.map((img, idx) => (
@@ -92,13 +112,19 @@ export default function Tokoh() {
                       key={idx}
                       src={img}
                       alt={tokoh.name + idx}
+                      data-aos="zoom-in"
+                      data-aos-delay={idx * 200}
                       className="rounded-2xl shadow-lg object-cover w-full h-48 md:h-64 transform transition-transform duration-500 hover:scale-105"
                     />
                   ))}
                 </div>
 
                 {/* Info tokoh */}
-                <div className="flex flex-col justify-center text-white">
+                <div
+                  className="flex flex-col justify-center text-white"
+                  data-aos="fade-up"
+                  data-aos-delay="400"
+                >
                   <h1
                     className={`text-4xl md:text-5xl font-extrabold bg-gradient-to-r ${tokoh.gradient} bg-clip-text text-transparent`}
                   >
@@ -110,12 +136,14 @@ export default function Tokoh() {
 
                   {tokoh.born && tokoh.died && (
                     <div className="mt-6 grid grid-cols-2 gap-6 text-sm">
-                      <div>
+                      <div data-aos="fade-right">
                         <p className="text-gray-300">Lahir pada Tanggal</p>
                         <p className="font-bold">{tokoh.born}</p>
                       </div>
-                      <div>
-                        <p className="text-gray-300">Melmulai Karir Pada Tahun</p>
+                      <div data-aos="fade-left">
+                        <p className="text-gray-300">
+                          Memulai Karir Pada Tahun
+                        </p>
                         <p className="font-bold">{tokoh.died}</p>
                       </div>
                     </div>
@@ -127,10 +155,16 @@ export default function Tokoh() {
         </Swiper>
 
         {/* Custom Navigation Buttons */}
-        <button className="custom-prev absolute left-4 top-1/2 -translate-y-1/2 bg-secondary-200 text-white p-3 rounded-full shadow-lg hover:bg-secondary-300 transition">
+        <button
+          className="custom-prev absolute left-4 top-1/2 -translate-y-1/2 bg-secondary-200 text-white p-3 rounded-full shadow-lg hover:bg-secondary-300 transition"
+          data-aos="fade-right"
+        >
           <FontAwesomeIcon icon={faArrowLeft} size="lg" />
         </button>
-        <button className="custom-next absolute right-4 top-1/2 -translate-y-1/2 bg-secondary-200 text-white p-3 rounded-full shadow-lg hover:bg-secondary-300 transition">
+        <button
+          className="custom-next absolute right-4 top-1/2 -translate-y-1/2 bg-secondary-200 text-white p-3 rounded-full shadow-lg hover:bg-secondary-300 transition"
+          data-aos="fade-left"
+        >
           <FontAwesomeIcon icon={faArrowRight} size="lg" />
         </button>
       </div>

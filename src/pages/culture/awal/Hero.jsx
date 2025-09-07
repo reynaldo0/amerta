@@ -44,6 +44,7 @@ export default function Hero() {
         className="absolute inset-0 bg-[url('/wave/budaya.png')] bg-cover bg-center opacity-10"
         style={{ backgroundAttachment: "fixed" }}
       />
+
       {/* Decorations */}
       <div className="absolute inset-0">
         <div className="absolute w-48 h-48 md:w-72 md:h-72 rounded-full bg-primary-100 opacity-20 blur-3xl top-10 left-10 animate-pulse" />
@@ -54,7 +55,10 @@ export default function Hero() {
       <div className="relative z-10 container mx-auto px-6 flex flex-col-reverse lg:flex-row items-center gap-12">
         {/* Text */}
         <div className="flex-1 text-center lg:text-left">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-primary-100 leading-tight animate-fade-in-down">
+          <h1
+            className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-primary-100 leading-tight"
+            data-aos="fade-down"
+          >
             Budaya Indonesia
             <br />
             <span className="bg-gradient-to-r from-primary-100 via-secondary-300 to-primary-200 bg-clip-text text-transparent">
@@ -62,7 +66,11 @@ export default function Hero() {
             </span>
           </h1>
 
-          <p className="mt-6 text-base sm:text-lg md:text-xl text-primary-100 max-w-lg mx-auto lg:mx-0 animate-fade-in-up">
+          <p
+            className="mt-6 text-base sm:text-lg md:text-xl text-primary-100 max-w-lg mx-auto lg:mx-0"
+            data-aos="fade-right"
+            data-aos-delay="200"
+          >
             Jelajahi ragam{" "}
             <span className="text-secondary-300 font-semibold">tradisi</span>,
             <span className="text-secondary-300 font-semibold"> seni</span>, dan
@@ -75,7 +83,11 @@ export default function Hero() {
           </p>
 
           {/* CTA */}
-          <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in-up animation-delay-700">
+          <div
+            className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+            data-aos="zoom-in"
+            data-aos-delay="400"
+          >
             <a
               href="#pulau"
               className="px-6 sm:px-8 py-3 rounded-2xl font-bold bg-secondary-300 text-white text-sm sm:text-base"
@@ -86,7 +98,11 @@ export default function Hero() {
         </div>
 
         {/* 3D Object */}
-        <div className="flex-1 flex justify-center relative w-full pt-20 md:pt-0">
+        <div
+          className="flex-1 flex justify-center relative w-full pt-20 md:pt-0"
+          data-aos="fade-left"
+          data-aos-delay="600"
+        >
           <div
             className="relative w-full max-w-full"
             style={{ maxWidth: canvasSize.width }}

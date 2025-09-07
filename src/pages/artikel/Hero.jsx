@@ -1,33 +1,47 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLandmark,
   faPeopleGroup,
   faBookOpen,
 } from "@fortawesome/free-solid-svg-icons";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export default function BudayaSection() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+  }, []);
+
   return (
-    <section className="w-full bg-white py-20 md:py-24 px-6 md:px-16">
+    <section className="w-full bg-white py-20 md:py-24 px-6 md:px-16 relative overflow-hidden">
+      {/* Background */}
       <div
         className="absolute inset-0 bg-[url('/wave/budaya.png')] bg-cover bg-center opacity-10"
         style={{ backgroundAttachment: "fixed" }}
       />
+
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center relative">
         {/* Left: Image */}
-        <div className="relative group">
+        <div className="relative group" data-aos="fade-right">
           <img
             src="/illustrasi/artikel.png"
             alt="Wayang"
-            className="rounded-3xl  transform group-hover:scale-105 transition duration-500"
+            className="rounded-3xl transform group-hover:scale-105 transition duration-500"
           />
-          <div className="absolute -bottom-6 -right-6 bg-secondary-300 text-white px-4 py-2 rounded-full shadow-lg text-sm font-semibold">
+          <div
+            className="absolute -bottom-6 -right-6 bg-secondary-300 text-white px-4 py-2 rounded-full shadow-lg text-sm font-semibold"
+            data-aos="zoom-in-up"
+          >
             Budaya Nusantara
           </div>
         </div>
 
         {/* Right: Content */}
-        <div>
+        <div data-aos="fade-left">
           <p className="text-secondary-200 font-semibold mb-2">
             — Artikel Budaya
           </p>
@@ -43,7 +57,7 @@ export default function BudayaSection() {
 
           {/* Highlight Features */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
-            <div className="flex items-start gap-4">
+            <div className="flex items-start gap-4" data-aos="zoom-in-up">
               <FontAwesomeIcon
                 icon={faLandmark}
                 className="text-secondary-300 text-2xl"
@@ -56,7 +70,11 @@ export default function BudayaSection() {
                 </p>
               </div>
             </div>
-            <div className="flex items-start gap-4">
+            <div
+              className="flex items-start gap-4"
+              data-aos="zoom-in-up"
+              data-aos-delay="200"
+            >
               <FontAwesomeIcon
                 icon={faPeopleGroup}
                 className="text-secondary-300 text-2xl"
@@ -69,7 +87,11 @@ export default function BudayaSection() {
                 </p>
               </div>
             </div>
-            <div className="flex items-start gap-4">
+            <div
+              className="flex items-start gap-4"
+              data-aos="zoom-in-up"
+              data-aos-delay="400"
+            >
               <FontAwesomeIcon
                 icon={faBookOpen}
                 className="text-secondary-300 text-2xl"
@@ -85,7 +107,10 @@ export default function BudayaSection() {
           </div>
 
           {/* Button */}
-          <button className="bg-secondary-300 cursor-pointer text-white px-6 py-3 rounded-full font-semibold hover:bg-secondary-300/90 transition">
+          <button
+            className="bg-secondary-300 cursor-pointer text-white px-6 py-3 rounded-full font-semibold hover:bg-secondary-300/90 transition"
+            data-aos="fade-up"
+          >
             Baca Selengkapnya
           </button>
         </div>

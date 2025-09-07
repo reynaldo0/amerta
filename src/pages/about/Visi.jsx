@@ -10,6 +10,16 @@ export default function VisiMisi() {
     "Mengintegrasikan teknologi dengan budaya untuk menciptakan pengalaman belajar yang interaktif dan menarik.",
   ];
 
+  // Variasi animasi AOS
+  const aosAnimations = [
+    "fade-up",
+    "fade-down",
+    "fade-right",
+    "fade-left",
+    "zoom-in",
+    "zoom-out",
+  ];
+
   return (
     <section className="relative bg-primary-100 text-white min-h-screen overflow-hidden">
       {/* Background Parallax */}
@@ -23,12 +33,16 @@ export default function VisiMisi() {
         style={{ backgroundAttachment: "fixed" }}
       />
       <div className="py-24 px-5">
-        <h2 className="text-2xl md:text-5xl mb-10 font-bold text-white text-center tracking-tight will-change-transform">
+        <h2 className="text-2xl md:text-5xl mb-10 font-bold text-white text-center tracking-tight">
           Jelajahi Kekayaan Budaya Nusantara
         </h2>
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center ">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           {/* Visi */}
-          <div className="space-y-6 animate-slideInLeft">
+          <div
+            className="space-y-6"
+            data-aos="zoom-in-down"
+            data-aos-duration="800"
+          >
             <h2 className="text-4xl font-bold border-l-4 border-secondary-200 pl-4">
               Visi
             </h2>
@@ -40,7 +54,7 @@ export default function VisiMisi() {
           </div>
 
           {/* Misi */}
-          <div className="space-y-6 animate-slideInRight">
+          <div className="space-y-6">
             <h2 className="text-4xl font-bold border-l-4 border-secondary-200 pl-4">
               Misi
             </h2>
@@ -49,8 +63,11 @@ export default function VisiMisi() {
                 <div
                   key={idx}
                   className="relative p-6 rounded-2xl shadow-lg hover:scale-105 transform transition duration-300 
-             border border-gray-700 hover:border-secondary-200 
-             bg-secondary-300/40 backdrop-blur-lg"
+                   border border-gray-700 hover:border-secondary-200 
+                   bg-secondary-300/40 backdrop-blur-lg"
+                  data-aos={aosAnimations[idx % aosAnimations.length]} // efek beda2
+                  data-aos-duration="800"
+                  data-aos-delay={idx * 150} // supaya berurutan smooth
                 >
                   {/* Nomor di kanan atas */}
                   <div className="absolute -top-3 -right-3 w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-r from-secondary-200 to-secondary-400 text-white font-bold shadow-lg">
@@ -63,24 +80,6 @@ export default function VisiMisi() {
           </div>
         </div>
       </div>
-
-      {/* CSS Animasi */}
-      <style>{`
-        @keyframes slideInLeft {
-          0% { opacity: 0; transform: translateX(-50px); }
-          100% { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes slideInRight {
-          0% { opacity: 0; transform: translateX(50px); }
-          100% { opacity: 1; transform: translateX(0); }
-        }
-        .animate-slideInLeft {
-          animation: slideInLeft 1s ease-out forwards;
-        }
-        .animate-slideInRight {
-          animation: slideInRight 1s ease-out forwards;
-        }
-      `}</style>
     </section>
   );
 }

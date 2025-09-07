@@ -1,16 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export default function HeroCommunity() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // durasi animasi
+      once: true, // hanya sekali animasi
+    });
+  }, []);
+
   return (
-    <section className="w-full bg-white py-20">
+    <section className="w-full bg-white py-20 relative overflow-hidden">
       {/* Background Parallax */}
       <div
         className="absolute inset-0 bg-[url('/wave/komunitas.png')] bg-cover bg-center opacity-10"
         style={{ backgroundAttachment: "fixed" }}
       />
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-6">
+
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-6 relative z-10">
         {/* Left: Image */}
-        <div className="relative group">
+        <div className="relative group" data-aos="fade-right">
           <img
             src="/illustrasi/komunitas.png"
             alt="Komunitas Budaya"
@@ -21,7 +31,7 @@ export default function HeroCommunity() {
         </div>
 
         {/* Right: Content */}
-        <div>
+        <div data-aos="fade-left">
           <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
             <span className="bg-primary-100 bg-clip-text text-transparent">
               Lestarikan Budaya Nusantara
@@ -34,7 +44,11 @@ export default function HeroCommunity() {
           </p>
 
           {/* Episode Card */}
-          <div className="flex items-center gap-4 bg-white/70 backdrop-blur-md border border-gray-200 rounded-2xl p-5 mt-8 shadow-lg hover:shadow-xl transition duration-300">
+          <div
+            className="flex items-center gap-4 bg-white border border-gray-200 rounded-2xl p-5 mt-8 shadow-lg hover:shadow-xl transition duration-300"
+            data-aos="zoom-in"
+            data-aos-delay="200"
+          >
             <img
               src="/illustrasi/wayang.png"
               alt="Wayang Kulit"
@@ -53,13 +67,18 @@ export default function HeroCommunity() {
               </button>
             </div>
           </div>
+
           {/* Stats */}
-          <div className="flex gap-6 mt-8">
-            <div className="flex-1 bg-white/70 backdrop-blur-md border border-gray-200 rounded-2xl p-6 text-center shadow-md hover:shadow-xl transition duration-300">
+          <div
+            className="flex gap-6 mt-8"
+            data-aos="fade-up"
+            data-aos-delay="400"
+          >
+            <div className="flex-1 bg-white border border-gray-200 rounded-2xl p-6 text-center shadow-md hover:shadow-xl transition duration-300">
               <p className="text-3xl font-bold text-gray-900">50k+</p>
               <p className="text-gray-600 text-sm">Anggota Komunitas</p>
             </div>
-            <div className="flex-1 bg-primary-100 backdrop-blur-md rounded-2xl p-6 text-center shadow-md hover:shadow-xl transition duration-300">
+            <div className="flex-1 bg-primary-100 rounded-2xl p-6 text-center shadow-md hover:shadow-xl transition duration-300">
               <p className="text-3xl font-bold text-white">200+</p>
               <p className="text-gray-100 text-sm">Acara Budaya</p>
             </div>

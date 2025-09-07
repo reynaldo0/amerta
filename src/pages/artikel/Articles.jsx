@@ -2,8 +2,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { articles } from "../../docs/articlesData";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export default function Articles() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true, // animasi hanya sekali saat scroll
+    });
+  }, []);
+
   return (
     <section className="w-full bg-white relative py-20 px-6 md:px-12">
       <div
@@ -11,15 +21,20 @@ export default function Articles() {
         style={{ backgroundAttachment: "fixed" }}
       />
       <div className="max-w-7xl mx-auto relative">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+        <h2
+          className="text-3xl md:text-4xl font-bold text-center mb-12"
+          data-aos="fade-up"
+        >
           Artikel Budaya
         </h2>
 
         <div className="grid gap-10 md:grid-cols-3 relative">
-          {articles.map((article) => (
+          {articles.map((article, index) => (
             <div
               key={article.id}
               className="group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col"
+              data-aos="fade-up"
+              data-aos-delay={index * 150} // kasih delay biar muncul bertahap
             >
               <div className="relative w-full h-56 overflow-hidden">
                 <img
@@ -44,6 +59,8 @@ export default function Articles() {
                 <Link
                   to={`/artikel/${article.id}`}
                   className="mt-auto inline-flex items-center justify-center gap-2 px-5 py-2 rounded-full bg-secondary-300 text-white font-medium hover:bg-secondary-400 shadow-md hover:shadow-lg transition-all"
+                  data-aos="zoom-in"
+                  data-aos-delay={index * 200}
                 >
                   Baca Selengkapnya
                   <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4" />
