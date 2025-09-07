@@ -94,8 +94,9 @@ class ContentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Content $content)
+    public function show($slug)
     {
+        $content = Content::where('slug', $slug)->first();
         return response()->json($content);
     }
 
@@ -188,5 +189,11 @@ class ContentController extends Controller
     {
         $events = Content::where('type', 'event')->latest()->get();
         return response()->json($events);
+    }
+
+    public function quizzes()
+    {
+        $quizzes = Content::where('type', 'quiz')->latest()->get();
+        return response()->json($quizzes);
     }
 }

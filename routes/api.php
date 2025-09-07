@@ -22,9 +22,10 @@ Route::prefix('v1')->group(function () {
 
     Route::controller(ContentController::class)->group(function () {
         Route::get('/contents', 'index');
-        Route::get('/content/{content}', 'show');
+        Route::get('/content/{slug}', 'show');
         Route::get('/contents/articles', 'articles');
         Route::get('/contents/events', 'events');
+        Route::get('/contents/quizzes', 'quizzes');
     });
 
     Route::controller(QuizController::class)->group(function () {

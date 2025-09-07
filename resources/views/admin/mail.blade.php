@@ -203,7 +203,7 @@
                                 <h4 class="font-semibold text-amerta-dark mb-2">Media</h4>
                                 @if ($mail->media)
                                     @if (Str::endsWith($mail->media, ['.jpg', '.jpeg', '.png', '.gif']))
-                                        <img src="{{ $mail->media }}" alt="media"
+                                        <img src="{{ Storage::url($mail->media) }}" alt="media"
                                             class="rounded-lg shadow max-h-40 object-cover">
                                     @else
                                         <a href="{{ $mail->media }}" target="_blank"
@@ -467,19 +467,19 @@
             mediaFilesContainer.innerHTML = '';
             if (mail.media_files && Array.isArray(mail.media_files)) {
                 mail.media_files.forEach(file => {
+                    let url = '/storage/' + file.url.replace(/^\/?storage\//, '');
                     let html = '';
                     if (/\.(jpg|jpeg|png|gif)$/i.test(file.url)) {
                         html = `<div class="bg-gray-100 rounded-lg p-4 aspect-square flex items-center justify-center">
                             <div class="text-center">
-                                <img src="${file.url}" alt="${file.name}" class="rounded-lg shadow max-h-40 object-cover mb-2">
-                                <p class="text-sm text-gray-600">${file.name}</p>
+                                <img src="${url}" alt="${file.name}" class="rounded-lg shadow max-h-40 object-cover mb-2">
                                 <p class="text-xs text-gray-500">${file.size}</p>
                             </div>
                         </div>`;
                     } else {
                         html = `<div class="bg-gray-100 rounded-lg p-4 aspect-square flex items-center justify-center">
                             <div class="text-center">
-                                <a href="${file.url}" target="_blank" class="text-amerta-primary underline">${file.name}</a>
+                                <a href="${url}" target="_blank" class="text-amerta-primary underline">${file.name}</a>
                                 <p class="text-xs text-gray-500">${file.size}</p>
                             </div>
                         </div>`;
@@ -487,18 +487,18 @@
                     mediaFilesContainer.innerHTML += html;
                 });
             } else if (mail.media) {
+                let url = '/storage/' + mail.media.replace(/^\/?storage\//, '');
                 let html = '';
                 if (/\.(jpg|jpeg|png|gif)$/i.test(mail.media)) {
                     html = `<div class="bg-gray-100 rounded-lg p-4 aspect-square flex items-center justify-center">
                         <div class="text-center">
-                            <img src="${mail.media}" alt="media" class="rounded-lg shadow max-h-40 object-cover mb-2">
-                            <p class="text-sm text-gray-600">${mail.media.split('/').pop()}</p>
+                            <img src="${url}" alt="media" class="rounded-lg shadow max-h-40 object-cover mb-2">
                         </div>
                     </div>`;
                 } else {
                     html = `<div class="bg-gray-100 rounded-lg p-4 aspect-square flex items-center justify-center">
                         <div class="text-center">
-                            <a href="${mail.media}" target="_blank" class="text-amerta-primary underline">Lihat Media</a>
+                            <a href="${url}" target="_blank" class="text-amerta-primary underline">Lihat Media</a>
                         </div>
                     </div>`;
                 }
