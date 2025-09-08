@@ -59,8 +59,6 @@ export default function Tokoh() {
   const animations = [
     "fade-up",
     "fade-down",
-    "fade-left",
-    "fade-right",
     "zoom-in",
     "flip-left",
     "flip-right",
@@ -71,7 +69,7 @@ export default function Tokoh() {
       <img
         src="/wave/tokoh.png"
         alt="Wave"
-        className="hidden md:block w-full h-full object-cover will-change-transform"
+        className="w-full h-full object-cover will-change-transform"
       />
       <div
         className="absolute inset-0 bg-[url('/wave/budaya.png')] bg-cover bg-center opacity-10"
@@ -156,13 +154,13 @@ export default function Tokoh() {
 
         {/* Custom Navigation Buttons */}
         <button
-          className="custom-prev absolute left-4 top-1/2 -translate-y-1/2 bg-secondary-200 text-white p-3 rounded-full shadow-lg hover:bg-secondary-300 transition"
+          className="custom-prev absolute left-4 top-[35%] md:top-1/2 -translate-y-1/2 bg-secondary-200 text-white p-3 rounded-full shadow-lg hover:bg-secondary-300 transition z-[9999999]"
           data-aos="fade-right"
         >
           <FontAwesomeIcon icon={faArrowLeft} size="lg" />
         </button>
         <button
-          className="custom-next absolute right-4 top-1/2 -translate-y-1/2 bg-secondary-200 text-white p-3 rounded-full shadow-lg hover:bg-secondary-300 transition"
+          className="custom-next absolute right-4 top-[35%] md:top-1/2 -translate-y-1/2 bg-secondary-200 text-white p-3 rounded-full shadow-lg hover:bg-secondary-300 transition z-[9999999]"
           data-aos="fade-left"
         >
           <FontAwesomeIcon icon={faArrowRight} size="lg" />

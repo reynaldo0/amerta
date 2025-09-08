@@ -43,8 +43,6 @@ const islands = [
 const animations = [
   "fade-up",
   "fade-down",
-  "fade-right",
-  "fade-left",
   "zoom-in",
   "flip-left",
   "flip-right",
@@ -120,7 +118,7 @@ export default function Budaya() {
         className="absolute inset-0 bg-[url('/wave/budayaw.png')] bg-cover bg-center opacity-10"
         style={{ backgroundAttachment: "fixed" }}
       />
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-start z-20 ">
+      <div className="max-w-7xl mx-5 md:mx-auto grid md:grid-cols-2 gap-12 items-start z-20 ">
         {/* Left side - Text */}
         <div
           className="space-y-3 text-left flex flex-col items-center md:items-start"

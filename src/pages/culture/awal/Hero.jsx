@@ -68,7 +68,7 @@ export default function Hero() {
 
           <a href="#pulau"
             className="mt-6 text-base sm:text-lg md:text-xl text-primary-100 max-w-lg mx-auto lg:mx-0"
-            data-aos="fade-right"
+            data-aos="zoom-in"
             data-aos-delay="200"
           >
             Jelajahi ragam{" "}
@@ -100,8 +100,6 @@ export default function Hero() {
         {/* 3D Object */}
         <div
           className="flex-1 flex justify-center relative w-full pt-20 md:pt-0"
-          data-aos="fade-left"
-          data-aos-delay="600"
         >
           <div
             className="relative w-full max-w-full"
