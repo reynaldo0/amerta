@@ -84,7 +84,7 @@ const Form = () => {
         className="flex flex-col-reverse xl:flex-row xl:gap-20 items-center justify-between px-8 md:px-24 xl:px-20 z-10 w-full"
       >
         {/* Form Inputs */}
-        <div className="space-y-6 flex-1 pt-16 xl:pt-0" data-aos="fade-right">
+        <div className="space-y-6 flex-1 pt-16 xl:pt-0" data-aos="zoom-in">
           <h1 className="font-bold text-3xl mb-4" data-aos="fade-down">
             Dari kamu untuk
             <span
@@ -152,7 +152,7 @@ const Form = () => {
             placeholder="Apa fitur yang ingin ditambahkan?"
             className="w-full border border-gray-300 rounded-2xl px-4 py-3 bg-white focus:outline-none resize-none text-gray-600 shadow-lg"
             rows="4"
-            data-aos="fade-left"
+            data-aos="zoom-in"
           ></textarea>
 
           {/* Upload */}
@@ -208,7 +208,7 @@ const Form = () => {
             placeholder="Ceritakan pengalamanmu..."
             className="w-full border border-gray-300 rounded-2xl px-4 py-3 bg-white focus:outline-none resize-none text-gray-600 shadow-lg"
             rows="4"
-            data-aos="fade-up-right"
+            data-aos="fadzoom-in"
           ></textarea>
 
           <button
@@ -224,7 +224,7 @@ const Form = () => {
         {/* Illustration */}
         <div
           className="flex justify-center items-center relative"
-          data-aos="fade-left"
+          data-aos="zoom-in"
         >
           <img
             src="/illustrasi/form.png"
